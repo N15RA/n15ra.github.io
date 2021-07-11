@@ -8,109 +8,308 @@
 
     <title>NISRA</title>
 
+    <!-- Bootstrap Css import -->
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+
     <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="./styles/reset.css">
     <link rel="stylesheet" type="text/css" href="./styles/style.css">
 
     <!-- Font family -->
 </head>
 <body id="page-top">
-    <!-- Navigation -->
-    <nav>
-        <a href="#page-top">
-            <img src="./images/logos/logo-lg.png" alt="NISRA logo with full NISRA name">
-        </a>
-        <ul>
-            <li><a href="#">Our-Story</a></li>
-            <li><a href="#">Membership</a></li>
-            <li><a href="#">Lessons</a></li>
-            <li><a href="#">Events</a></li>
-        </ul>
-    </nav>
-
-    <!-- Masthead -->
     <header>
-        <h1>NISRA</h1>
-        <p>a place to learn, challenge, <br>and communicate</p>
-
-        <img src="./images/logos/logo-sm@2x.png" alt="NISRA logo without word">
+        <!-- Navigation -->
+        <nav>
+            
+        </nav>
     </header>
 
     <main>
+        <!-- Masthead -->
+        <section class="container h-100" id="masthead">
+            <div class="row h-100">
+                <!-- left text block -->
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col">
+                            <h1>NISRA</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                a place to learn, challenge, <br>
+                                and communicate
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- right image block -->
+                <div class="col-lg-4">
+                    <img src="./images/logos/logo-sm@2x.png" alt="NISRA logo" width="430" height="430">
+                </div>
+            </div>
+        </section>
+
         <!-- About -->
-        <section id="about">
-            <h2>Who are we?</h2>
-            <!-- images -->
-            <p>We are <strong>NISRA</strong>.<br>Network and Information Security<br>Research Association</p>
-            <p>
-                本會是由輔仁大學資工系學生於 2007 年 5 月自主發起創立，<br>以資訊安全為研究主軸的自學團體。<br>
-                成立宗旨不止於提高個人資訊能力，<br>更希望能藉由這個社團，培養出更多專業資安人才，<br>
-                一代帶一代，延續其精神，專精其素養。
-            </p>
+        <section class="container h-100" id="about">
+            <div class="row h-80">
+                <!-- left image block -->
+                <div class="col-lg-6">
+                    <!-- first image row -->
+                    <div class="row">
+                        <div class="col">
+                            <img src="./images/photos/crazyfire.png" alt="class speaker photo" width="209" height="270">
+                        </div>
+                        <div class="col">
+                            <img src="./images/photos/halloworld.png" alt="class speaker photo" width="202" height="270">
+                        </div>
+                        <div class="col">
+                            <img src="./images/photos/theo.png" alt="class speaker photo" width="358" height="270">
+                        </div>
+                    </div>
+
+                    <!-- second image row -->
+                    <div class="row">
+                        <div class="col">
+                            <img src="./images/photos/chess.png" alt="class speaker photo" height="214">
+                        </div>
+                        <div class="col">
+                            <img src="./images/photos/roy&dalun.png" alt="class speaker photo" height="214">
+                        </div>
+                        <div class="col">
+                            <img src="./images/photos/mask.png" alt="class speaker photo" height="214">
+                        </div>
+                    </div>
+
+                    <!-- third image row -->
+                    <div class="row">
+                        <div class="col">
+                            <img src="./images/photos/seniors.png" alt="class speaker photo" height="366">
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="./images/photos/boris&dogQ&marcarn.png" alt="class speaker photo" height="178">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <img src="./images/photos/dr_m.png" alt="class speaker photo" height="188">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- right text block -->
+                <div class="col-lg-6">
+                    <h2>Who are we?</h2>
+                    <p>We are <strong>NISRA</strong>.<br>Network and Information Security<br>Research Association</p>
+                    <p>
+                        本會是由輔仁大學資工系學生於 2007 年 5 月自主發起創立，<br>
+                        以資訊安全為研究主軸的自學團體。<br>
+                        成立宗旨不止於提高個人資訊能力，<br>
+                        更希望能藉由這個社團，培養出更多專業資安人才，<br>
+                        一代帶一代，延續其精神，專精其素養。
+                    </p>
+                </div>
+            </div>
         </section>
 
         <!-- Learning -->
-        <section id="learning">
-            <h2>Never Stop Learning</h2>
-            
-            <!-- Speech -->
-            <section id="speech">
-                <img src="./images/icons/ic_chat_bubble_outline_24px.png" alt="Icon for chat bubble">
-                <h3>Speech</h3>
-                <p>
-                    NISRA不僅僅是個資安研究社團，<br>更是個成員切磋學習​的社團。<br>
-                    成員皆會收到一項題目，<br>且在時間內自主學習與研究，<br>
-                    並在約定課程時間發表。更重要的是，<br>
-                    研究不會是只有你孤單獨自的一人，<br>NISRA的所有成員都會持續地進行研究。
-                </p>
-            </section>
+        <section class="container h-100" id="learning">
+            <div class="row h-80">
+                <div class="col">
+                    <!-- top title row -->
+                    <div class="row">
+                        <div class="col">
+                            <p>Never <br> Stop</p>
+                        </div>
+                        <div class="col">
+                            <h2>Learning</h2>
+                        </div>
+                    </div>
 
-            <!-- Security -->
-            <section id="security">
-                <img src="./images/icons/ic_security_24px.png" alt="Icon for security">
-                <h3>Security</h3>
-                <p>
-                    在​NISRA，我們不只是要研究新興的<br>駭客手段，更是要深入理解如何建構<br>
-                    更安全的系統。攻擊不會是唯一所要<br>理解的，該如何防護是更加地迫切與<br>重要。
-                </p>
-            </section>
+                    <!-- bottom card row -->
+                    <div class="row">
+                        <!-- left card block -->
+                        <div class="col">
+                            <section class="card" id="speech">
+                                <img class="card-img-top" src="./images/icons/ic_chat_bubble_outline_24px.png" alt="chat bubble icon" width="170" height="170">
+                                <div class="card-body">
+                                    <h3 class="card-title">Speech</h3>
+                                    <p>
+                                        NISRA不僅僅是個資安研究社團，<br> 
+                                        更是個成員切磋學習​的社團。<br>
+                                        成員皆會收到一項題目，<br>
+                                        且在時間內自主學習與研究，<br>
+                                        並在約定課程時間發表。更重要的是，<br>
+                                        研究不會是只有你孤單獨自的一人，<br>
+                                        NISRA的所有成員都會持續地進行研究。
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
 
-            <!-- Share -->
-            <section id="share">
-                <img src="./images/icons/ic_share_24px.png" alt="Icon for share">
-                <h3>Share</h3>
-                <p>
-                    每一次的課程，我們都會有影音、文字與<br>
-                    簡報紀錄。著實記錄著每一次寶貴的課程<br>
-                    經驗，並分享至資源平台上，使成員能夠<br>
-                    無時無刻地回顧課程精華與重要技術。
-                </p>
-            </section>
+                        <!-- middle card block -->
+                        <div class="col">
+                            <section class="card" id="security">
+                                <img class="card-img-top" src="./images/icons/ic_security_24px.png" alt="chat bubble icon" width="170" height="170">
+                                <div class="card-body">
+                                    <h3 class="card-title">Security</h3>
+                                    <p>
+                                        在​NISRA，我們不只是要研究新興的<br>
+                                        駭客手段，更是要深入理解如何建構<br>
+                                        更安全的系統。攻擊不會是唯一所要<br>
+                                        理解的，該如何防護是更加地迫切與<br>
+                                        重要。
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- right card block -->
+                        <div class="col">
+                            <section class="card" id="share">
+                                <img class="card-img-top" src="./images/icons/ic_share_24px.png" alt="chat bubble icon" width="170" height="170">
+                                <div class="card-body">
+                                    <h3 class="card-title">Share</h3>
+                                    <p>
+                                        每一次的課程，我們都會有影音、文字與<br>
+                                        簡報紀錄。著實記錄著每一次寶貴的課程<br>
+                                        經驗，並分享至資源平台上，使成員能夠<br>
+                                        無時無刻地回顧課程精華與重要技術。
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Join Us -->
-        <section id="join-us">
-            <h2>Join Us</h2>
-            <p>什麼都不用帶<br>不需要申請，不需要會費</p>
-            <p>每周二晚上七點至九點<br>第一週與期中期末考及其前一週不開課<br>詳情請見課程資訊</p>
-            <p>新北市新莊區中正路 510 號<br>輔仁大學資訊工程學系<br>聖言樓 SF 645 室</p>
-            <!-- img of map, or the map tool -->
+        <section class="container h-100" id="join-us">
+            <div class="row  h-50">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <h2>Join Us</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                什麼都不用帶<br>
+                                不需要申請，不需要會費
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p>
+                                每周二晚上七點至九點<br>
+                                第一週與期中期末考及其前一週不開課<br>
+                                詳情請見課程資訊
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p>
+                                新北市新莊區中正路 510 號<br>
+                                輔仁大學資訊工程學系<br>
+                                聖言樓 SF 645 室
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row  h-50">
+                <div class="col">
+                    <!-- img of map, or the map tool -->
+                </div>
+            </div>
         </section>
 
         <!-- Events -->
-        <section id="events">
-            <h2>More Events</h2>
+        <section class="container h-100" id="events">
+            <div class="row h-60">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <h2>More Events</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Enlightened -->
+                        <div class="col">
+                            <article class="card" id="enlightened">
+                                <!-- images slide -->
+                                <!-- Parent Carousel div -->
+                                <div class="carousel slide" data-bs-ride="carousel" id="enlightenedAlbum">
+                                    <!-- Control button -->
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#enlightenedAlbum" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#enlightenedAlbum" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#enlightenedAlbum" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                        <button type="button" data-bs-target="#enlightenedAlbum" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                                    </div>
 
-            <!-- Enlightened -->
-            <article id="enlightened">
-                <h3>NISRA Enlightened</h3>
-                <p>每年暑假，NISRA 都會準備<strong>公開的</strong>資安入門課程...</p>
-            </article>
+                                    <!-- Inner Carousel div -->
+                                    <div class="carousel-inner">
+                                        <!-- First slide div -->
+                                        <div class="carousel-item active">
+                                            <img class="bd-placeholder-img d-block w-100" src="./images/photos/enlightened-2020.jpg" alt="enlightened 2020 images">
+                                        </div>
+                        
+                                        <!-- Second slide div -->
+                                        <div class="carousel-item">
+                                            <img class="bd-placeholder-img d-block w-100" src="./images/photos/enlightened-2019.jpg" alt="enlightened 2019 images">
+                                        </div>
+                        
+                                        <!-- Third slide div -->
+                                        <div class="carousel-item">
+                                            <img class="bd-placeholder-img d-block w-100" src="./images/photos/enlightened-2018.jpg" alt="enlightened 2018 images">
+                                        </div>
+                        
+                                        <!-- Forth slide div -->
+                                        <div class="carousel-item">
+                                            <img class="bd-placeholder-img d-block w-100" src="./images/photos/enlightened-2017.jpg" alt="enlightened 2017 images">
+                                        </div>
+                                    </div>
+                        
+                                    <!-- Add code for controls -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#enlightenedAlbum" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#enlightenedAlbum" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
 
-            <!-- Winter Training -->
-            <article id="training">
-                <h3>NISRA Winter Training</h3>
-                <p>每年寒假，NISRA 都會準備<strong>公開的</strong>資安訓練課程...</p>
-            </article>
+                                <!-- text -->
+                                <div class="card-body">
+                                    <h3 class="card-title">NISRA Enlightened</h3>
+                                    <p>每年暑假，NISRA 都會準備<strong>公開的</strong>資安入門課程...</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Winter Training -->
+                        <div class="col">
+                            <article class="card" id="training">
+                                <div class="card-body">
+                                    <h3 class="card-title">NISRA Winter Training</h3>
+                                    <p>每年寒假，NISRA 都會準備<strong>公開的</strong>資安訓練課程...</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -118,5 +317,7 @@
     <footer>
         <!-- icon of facebook-->
     </footer>
+
+    <script src="./scripts/bootstrap.bundle.min.js"></script>
 </body>
 </html>
