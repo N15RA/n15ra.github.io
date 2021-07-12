@@ -1,0 +1,144 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+#mainNav {
+    height: 65px;
+    background-color: #3C3E43;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+body {
+    height: 100vh;
+}
+
+main {
+    height: 100%;
+}
+
+section.masthead {
+    background: url(../images/backgrounds/stars.png);
+}
+
+section.masthead h1 {
+    color: #E4F46C;
+    font-size: 10rem;
+}
+
+section.masthead p {
+    color: #FFFFFF;
+    font-size: 5rem;
+}
+
+section.about {
+    background-color: #E4F46C;
+}
+
+section.about div.image-container {
+    background-color: #2E2E2E;
+    height: 80%;
+    width: 44.5%;
+}
+
+section.about div.text-container {
+    background-color: #2E2E2E;
+    height: 80%;
+    width: 44.5%;
+}
+
+section.about div.text-container h2 {
+    color: #E4F46C;
+    font-size: 5rem;
+}
+
+section.about div.text-container p#en {
+    color: #FFFFFF;
+    font-size: 2.5rem;
+}
+
+section.about div.text-container p#en strong {
+    color: #E4F46C;
+    font-size: 2.5rem;
+}
+
+section.about div.text-container p#chin {
+    color: #FFFFFF;
+    font-size: 1.5rem;
+}
+
+section.learning {
+    background-color: #242528;
+}
+
+section.learning div.col {
+    background-color: #2E2E2E;
+}
+
+section.learning h2 {
+    color: #FFFFFF;
+    font-size: 6rem;
+}
+
+section.learning p {
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+
+section.learning section {
+    background-color: #2E2E2E;
+}
+
+section.learning section h3 {
+    color: #E4F46C;
+    font-size: 3rem;
+}
+
+section.learning section p {
+    color: #FFFFFF;
+    line-height: 2rem;
+}
+
+section.join-us {
+    background-color: #3C3E43;
+}
+
+section.join-us h2 {
+    color: #E4F46C;
+    font-size: 5rem;
+}
+
+section.join-us p {
+    color: #FFFFFF;
+    font-size: 1rem;
+}
+
+section.events {
+    background-color: #242528;
+}
+
+section.events h2 {
+    color: #E4F46C;
+    font-size: 5rem;
+}
+
+section.events article.card {
+    background-color: #3C3E43;
+    color: #FFFFFF;
+}
+
+section.events article.card h3 {
+    font-size: 3rem;
+}
+
+section.events article.card p {
+    font-size: 1rem;
+}
