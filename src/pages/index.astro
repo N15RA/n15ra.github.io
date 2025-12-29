@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { useTranslations } from '../i18n/utils';
+import EventCard from '../components/EventCard.astro';
+import CourseCard from '../components/CourseCard.astro';
+import { fetchEvents, fetchCourses } from '../lib/sheets';
 
 const t = useTranslations('zh-TW');
+
+const events = await fetchEvents();
+const courses = await fetchCourses();
 ---
 
 <Layout title="NISRA - 輔仁大學資訊安全研究社">
@@ -94,48 +100,48 @@ const t = useTranslations('zh-TW');
       </div>
 
       <div class="max-w-6xl mx-auto">
-        <!-- Event Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Enlightened Event -->
-          <div class="card bg-base-300 shadow-xl">
-            <figure>
-              <img
-                src="/images/photos/enlightened_2020_1.jpg"
-                alt="Enlightened"
-                class="w-full h-64 object-cover"
+        {events.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {events.map((event) => (
+              <EventCard
+                title={event.title}
+                description={event.description_zh}
+                badge={event.badge}
+                image={event.image}
               />
-            </figure>
-            <div class="card-body">
-              <h3 class="card-title text-primary">Enlightened</h3>
-              <p class="opacity-80">
-                年度資安研討會，邀請業界專家分享最新技術與趨勢，提供學生與專業人士交流的平台。
-              </p>
-              <div class="card-actions justify-end">
-                <div class="badge badge-outline">Annual Event</div>
-              </div>
-            </div>
+            ))}
           </div>
+        ) : (
+          <p class="text-center text-lg opacity-70">{t('events.noEvents')}</p>
+        )}
+      </div>
+    </div>
+  </section>
 
-          <!-- Winter Training -->
-          <div class="card bg-base-300 shadow-xl">
-            <figure>
-              <img
-                src="/images/photos/photo-group.jpg"
-                alt="Winter Training"
-                class="w-full h-64 object-cover"
+  <!-- Courses Section -->
+  <section id="courses" class="py-20 bg-base-100">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('courses.title')}</h2>
+        <p class="text-lg opacity-70">{t('courses.subtitle')}</p>
+      </div>
+
+      <div class="max-w-6xl mx-auto">
+        {courses.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.map((course) => (
+              <CourseCard
+                title={course.title_zh}
+                description={course.description_zh}
+                date={course.date}
+                time={course.time}
+                speaker={course.speaker}
               />
-            </figure>
-            <div class="card-body">
-              <h3 class="card-title text-primary">Winter Training</h3>
-              <p class="opacity-80">
-                寒假期間舉辦的密集培訓課程，涵蓋網路安全、滲透測試、CTF 競賽等主題。
-              </p>
-              <div class="card-actions justify-end">
-                <div class="badge badge-outline">Winter Break</div>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
+        ) : (
+          <p class="text-center text-lg opacity-70">{t('courses.noCourses')}</p>
+        )}
       </div>
     </div>
   </section>
