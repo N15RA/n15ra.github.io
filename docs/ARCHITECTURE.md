@@ -135,7 +135,7 @@ export const ui = {
 ## Deployment
 
 ### Trigger Conditions
-1. Push to `master` branch
+1. Push to `main` branch
 2. Manual trigger (workflow_dispatch)
 3. Scheduled daily at UTC 22:00 (Taiwan 06:00)
 

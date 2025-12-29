@@ -57,7 +57,7 @@ public/
 
 ## Deployment
 
-The website automatically deploys when pushing to the `master` branch.
+The website automatically deploys when pushing to the `main` branch.
 
 **Manual deployment**: Go to Actions > "Deploy to GitHub Pages" > "Run workflow"
 
