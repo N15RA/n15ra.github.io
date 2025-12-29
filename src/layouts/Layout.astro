@@ -17,8 +17,8 @@ const htmlLang = currentLocale === "zh-TW" ? "zh-Hant-TW" : "en";
 const basePath = Astro.url.pathname.startsWith("/en")
   ? Astro.url.pathname.replace(/^\/en/, "") || "/"
   : Astro.url.pathname;
-const zhUrl = `${Astro.site}${basePath.startsWith("/") ? basePath.slice(1) : basePath}`;
-const enUrl = `${Astro.site}en${basePath === "/" ? "" : basePath}`;
+const zhUrl = new URL(basePath, Astro.site).href;
+const enUrl = new URL(basePath === "/" ? "/en" : `/en${basePath}`, Astro.site).href;
 
 // Canonical URL (use current page URL)
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
