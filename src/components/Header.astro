@@ -1,31 +1,31 @@
 ---
-import { getCurrentLocale, useTranslations } from '../i18n/utils';
-import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getCurrentLocale, useTranslations } from "../i18n/utils";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 const currentLocale = getCurrentLocale(Astro.url.pathname);
 const t = useTranslations(currentLocale);
 
 const navItems = [
-  { href: '/', label: t('nav.home') },
-  { href: '/#about', label: t('nav.about') },
-  { href: '/#events', label: t('nav.events') },
-  { href: '/courses', label: t('nav.courses') },
-  { href: '/officers', label: t('nav.officers') },
-  { href: '/#join', label: t('nav.join') },
+  { href: "/", label: t("nav.home") },
+  { href: "/#about", label: t("nav.about") },
+  { href: "/#events", label: t("nav.events") },
+  { href: "/courses", label: t("nav.courses") },
+  { href: "/officers", label: t("nav.officers") },
+  { href: "/#join", label: t("nav.join") },
 ];
 
 // Adjust links for English locale
 const getLocalizedHref = (href: string) => {
-  if (currentLocale === 'en' && href === '/') {
-    return '/en';
+  if (currentLocale === "en" && href === "/") {
+    return "/en";
   }
-  if (currentLocale === 'en' && href === '/courses') {
-    return '/en/courses';
+  if (currentLocale === "en" && href === "/courses") {
+    return "/en/courses";
   }
-  if (currentLocale === 'en' && href === '/officers') {
-    return '/en/officers';
+  if (currentLocale === "en" && href === "/officers") {
+    return "/en/officers";
   }
-  if (currentLocale === 'en' && href.startsWith('/#')) {
+  if (currentLocale === "en" && href.startsWith("/#")) {
     return `/en${href}`;
   }
   return href;
@@ -44,10 +44,17 @@ const getLocalizedHref = (href: string) => {
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16"></path>
         </svg>
       </div>
-      <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-300 rounded-box z-50 mt-3 w-52 p-2 shadow">
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-300 rounded-box z-50 mt-3 w-52 p-2 shadow"
+      >
         {
           navItems.map((item) => (
             <li>
@@ -59,8 +66,15 @@ const getLocalizedHref = (href: string) => {
     </div>
 
     <!-- Logo -->
-    <a href={currentLocale === 'en' ? '/en' : '/'} class="btn btn-ghost text-xl font-bold">
-      <img src="/images/logos/logo-sm.png" alt="NISRA Logo" class="h-8 w-auto" />
+    <a
+      href={currentLocale === "en" ? "/en" : "/"}
+      class="btn btn-ghost text-xl font-bold"
+    >
+      <img
+        src="/images/logos/logo-sm.png"
+        alt="NISRA Logo"
+        class="h-8 w-auto"
+      />
       <span class="hidden sm:inline text-primary">NISRA</span>
     </a>
   </div>
@@ -71,7 +85,10 @@ const getLocalizedHref = (href: string) => {
       {
         navItems.map((item) => (
           <li>
-            <a href={getLocalizedHref(item.href)} class="hover:text-primary transition-colors">
+            <a
+              href={getLocalizedHref(item.href)}
+              class="hover:text-primary transition-colors"
+            >
               {item.label}
             </a>
           </li>

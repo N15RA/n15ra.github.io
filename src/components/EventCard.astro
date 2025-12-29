@@ -11,11 +11,7 @@ const { title, description, badge, image } = Astro.props;
 
 <div class="card bg-base-300 shadow-xl">
   <figure>
-    <img
-      src={image}
-      alt={title}
-      class="w-full h-64 object-cover"
-    />
+    <img src={image} alt={title} class="w-full h-64 object-cover" />
   </figure>
   <div class="card-body">
     <h3 class="card-title text-primary">{title}</h3>
