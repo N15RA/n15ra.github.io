@@ -12,6 +12,8 @@ export interface Event {
 
 export interface Course {
   id: string;
+  semester: string;
+  semester_label: string;
   title_zh: string;
   title_en: string;
   description_zh: string;
@@ -20,5 +22,4 @@ export interface Course {
   time: string;
   speaker: string;
   order: number;
-  visible: string | boolean;
 }

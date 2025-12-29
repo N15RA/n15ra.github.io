@@ -3,12 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import { useTranslations } from '../i18n/utils';
 import EventCard from '../components/EventCard.astro';
 import CourseCard from '../components/CourseCard.astro';
-import { fetchEvents, fetchCourses } from '../lib/sheets';
+import { fetchEvents, fetchAllCourses, getCurrentSemesterCourses, getLatestSemester } from '../lib/sheets';
 
 const t = useTranslations('zh-TW');
 
 const events = await fetchEvents();
-const courses = await fetchCourses();
+const allCourses = await fetchAllCourses();
+const currentCourses = getCurrentSemesterCourses(allCourses);
+const currentSemesterLabel = currentCourses[0]?.semester_label || null;
 ---
 
 <Layout title="NISRA - 輔仁大學資訊安全研究社">
@@ -123,22 +125,31 @@ const courses = await fetchCourses();
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('courses.title')}</h2>
-        <p class="text-lg opacity-70">{t('courses.subtitle')}</p>
+        <p class="text-lg opacity-70">
+          {currentSemesterLabel ? currentSemesterLabel : t('courses.subtitle')}
+        </p>
       </div>
 
       <div class="max-w-6xl mx-auto">
-        {courses.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((course) => (
-              <CourseCard
-                title={course.title_zh}
-                description={course.description_zh}
-                date={course.date}
-                time={course.time}
-                speaker={course.speaker}
-              />
-            ))}
-          </div>
+        {currentCourses.length > 0 ? (
+          <>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {currentCourses.map((course) => (
+                <CourseCard
+                  title={course.title_zh}
+                  description={course.description_zh}
+                  date={course.date}
+                  time={course.time}
+                  speaker={course.speaker}
+                />
+              ))}
+            </div>
+            <div class="text-center mt-8">
+              <a href="/courses" class="btn btn-outline btn-primary">
+                {t('courses.viewAll')}
+              </a>
+            </div>
+          </>
         ) : (
           <p class="text-center text-lg opacity-70">{t('courses.noCourses')}</p>
         )}
