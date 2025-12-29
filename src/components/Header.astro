@@ -10,6 +10,7 @@ const navItems = [
   { href: '/#about', label: t('nav.about') },
   { href: '/#events', label: t('nav.events') },
   { href: '/courses', label: t('nav.courses') },
+  { href: '/officers', label: t('nav.officers') },
   { href: '/#join', label: t('nav.join') },
 ];
 
@@ -20,6 +21,9 @@ const getLocalizedHref = (href: string) => {
   }
   if (currentLocale === 'en' && href === '/courses') {
     return '/en/courses';
+  }
+  if (currentLocale === 'en' && href === '/officers') {
+    return '/en/officers';
   }
   if (currentLocale === 'en' && href.startsWith('/#')) {
     return `/en${href}`;

@@ -23,3 +23,16 @@ export interface Course {
   speaker: string;
   order?: number;
 }
+
+export interface Officer {
+  name: string;
+  position_zh: string;
+  position_en: string;
+}
+
+export interface YearRecord {
+  year: string;
+  academicYear: string;
+  groupPhoto?: string;
+  officers: Officer[];
+}
