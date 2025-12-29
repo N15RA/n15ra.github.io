@@ -2,14 +2,14 @@
 
 ## Tech Stack
 
-| Category | Technology | Version |
-|----------|------------|---------|
-| Framework | Astro | 5.x |
-| Styling | Tailwind CSS | 4.x |
-| UI Components | DaisyUI | 5.x |
-| Language | TypeScript | - |
-| Deployment | GitHub Pages | - |
-| CI/CD | GitHub Actions | - |
+| Category      | Technology     | Version |
+| ------------- | -------------- | ------- |
+| Framework     | Astro          | 5.x     |
+| Styling       | Tailwind CSS   | 4.x     |
+| UI Components | DaisyUI        | 5.x     |
+| Language      | TypeScript     | -       |
+| Deployment    | GitHub Pages   | -       |
+| CI/CD         | GitHub Actions | -       |
 
 ## Project Structure
 
@@ -56,7 +56,9 @@ n15ra.github.io/
 ## Component Overview
 
 ### Layout.astro
+
 Main page layout providing:
+
 - HTML document structure
 - SEO meta tags
 - Open Graph tags
@@ -64,7 +66,9 @@ Main page layout providing:
 - Header and Footer inclusion
 
 ### Header.astro
+
 Responsive navigation bar:
+
 - Logo with home link
 - Navigation menu (Home, About, Events, Join)
 - Mobile hamburger menu
@@ -72,25 +76,33 @@ Responsive navigation bar:
 - Fixed position with scroll behavior
 
 ### Footer.astro
+
 Page footer containing:
+
 - NISRA logo and name
 - Copyright information
 - Social media links (GitHub, Facebook)
 
 ### LanguageSwitcher.astro
+
 Dropdown language selector:
+
 - Current language display
 - Available language options
 - URL-based language switching
 
 ### EventCard.astro
+
 Reusable event display card:
+
 - Event image, title, description
 - Badge/tag display
 - Used in Events section
 
 ### CourseCard.astro
+
 Reusable course display card:
+
 - Course title, description
 - Date, time, speaker information
 - Used in Courses section
@@ -98,6 +110,7 @@ Reusable course display card:
 ## Internationalization (i18n)
 
 ### Routing Strategy
+
 - **Default language**: zh-TW (no URL prefix)
 - **English**: `/en/` prefix
 - Example: `/` (Chinese), `/en/` (English)
@@ -108,14 +121,15 @@ Reusable course display card:
 
 ```typescript
 export const ui = {
-  'zh-TW': {
-    'nav.home': '首頁',
-    'hero.subtitle': '輔仁大學資訊安全研究社',
+  "zh-TW": {
+    "nav.home": "首頁",
+    "hero.subtitle": "輔仁大學資訊安全研究社",
     // ...
   },
   en: {
-    'nav.home': 'Home',
-    'hero.subtitle': 'FJU Network and Information Security Research Association',
+    "nav.home": "Home",
+    "hero.subtitle":
+      "FJU Network and Information Security Research Association",
     // ...
   },
 };
@@ -125,21 +139,23 @@ export const ui = {
 
 **Location**: `src/i18n/utils.ts`
 
-| Function | Purpose |
-|----------|---------|
-| `getCurrentLocale()` | Get current language from URL |
-| `useTranslations()` | Get translation function for locale |
-| `getRelativeLocaleUrl()` | Generate localized URL |
-| `getAlternateUrl()` | Get URL for alternate language |
+| Function                 | Purpose                             |
+| ------------------------ | ----------------------------------- |
+| `getCurrentLocale()`     | Get current language from URL       |
+| `useTranslations()`      | Get translation function for locale |
+| `getRelativeLocaleUrl()` | Generate localized URL              |
+| `getAlternateUrl()`      | Get URL for alternate language      |
 
 ## Deployment
 
 ### Trigger Conditions
+
 1. Push to `main` branch
 2. Manual trigger (workflow_dispatch)
 3. Scheduled daily at UTC 22:00 (Taiwan 06:00)
 
 ### Workflow Steps
+
 1. Checkout repository
 2. Build with `withastro/action@v3`
    - Installs dependencies
@@ -148,6 +164,7 @@ export const ui = {
 3. Deploy to GitHub Pages
 
 ### Configuration
+
 - **Source**: GitHub Actions (not branch deployment)
 - **URL**: https://n15ra.github.io/
 
@@ -162,21 +179,21 @@ export const ui = {
   name: "nisra";
   default: true;
   color-scheme: dark;
-  --color-primary: oklch(90% 0.18 105);    /* #E4F46C yellow-green */
-  --color-base-100: oklch(18% 0.01 240);   /* Dark background */
-  --color-accent: oklch(70% 0.2 220);      /* Tech blue */
+  --color-primary: oklch(90% 0.18 105); /* #E4F46C yellow-green */
+  --color-base-100: oklch(18% 0.01 240); /* Dark background */
+  --color-accent: oklch(70% 0.2 220); /* Tech blue */
 }
 ```
 
 ### Color Palette
 
-| Token | Color | Usage |
-|-------|-------|-------|
-| primary | #E4F46C | Main accent, buttons, links |
-| base-100 | Dark gray | Page background |
-| base-200 | Slightly lighter | Section backgrounds |
-| base-300 | Even lighter | Card backgrounds |
-| accent | Cyan blue | Secondary highlights |
+| Token    | Color            | Usage                       |
+| -------- | ---------------- | --------------------------- |
+| primary  | #E4F46C          | Main accent, buttons, links |
+| base-100 | Dark gray        | Page background             |
+| base-200 | Slightly lighter | Section backgrounds         |
+| base-300 | Even lighter     | Card backgrounds            |
+| accent   | Cyan blue        | Secondary highlights        |
 
 ## Development
 
@@ -189,6 +206,7 @@ npm run preview  # Preview production build
 ```
 
 ### Local Development
+
 1. Clone repository
 2. Run `npm install`
 3. Run `npm run dev`
@@ -219,11 +237,13 @@ Google Sheets (Public)
 ### Configuration
 
 Environment variable required:
+
 - `PUBLIC_GOOGLE_SHEET_ID`: The Google Spreadsheet ID
 
 ### Data Types
 
 Defined in `src/types/content.ts`:
+
 - `Event`: id, title, description_zh, description_en, badge, image, date?, order?, visible
 - `Course`: id, semester, semester_label, title_zh, title_en, description_zh, description_en, date, time, speaker, order?
 
@@ -239,10 +259,12 @@ Defined in `src/types/content.ts`:
 The current implementation uses [OpenSheet](https://github.com/benborgers/opensheet), a community-hosted proxy for Google Sheets. While this simplifies the setup (no API key required), it introduces a dependency on a third-party service.
 
 **Risks**:
+
 - Service could become unavailable
 - No SLA or uptime guarantee
 
 **Mitigation**:
+
 - Fallback mechanism returns empty data if API fails
 - Build continues even if data fetch fails
 - Static fallback messages are displayed
