@@ -182,7 +182,7 @@ The website automatically:
 1. Open the Google Sheet
 2. Add or modify rows
 3. Set `visible` to `TRUE` for items to display
-4. Trigger a website rebuild (push to master or manual Actions trigger)
+4. Trigger a website rebuild (push to main or manual Actions trigger)
 
 ### Image Handling
 

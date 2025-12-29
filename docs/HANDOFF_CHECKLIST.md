@@ -95,7 +95,7 @@ Each officer should use their own GitHub account. Never share account credential
 When making significant changes, add a note in the commit message explaining what and why.
 
 ### Backup Before Major Changes
-If making large changes, consider creating a branch first to test before merging to master.
+If making large changes, consider creating a branch first to test before merging to main.
 
 ---
 
