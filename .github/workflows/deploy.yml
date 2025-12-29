@@ -10,7 +10,7 @@ on:
 
   # Scheduled rebuild (UTC 22:00 = Taiwan 06:00)
   schedule:
-    - cron: '0 22 * * *'
+    - cron: "0 22 * * *"
 
 # Allow only one concurrent deployment
 concurrency:
