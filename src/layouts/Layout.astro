@@ -12,6 +12,13 @@ interface Props {
 const { title, description = 'NISRA - 輔仁大學資訊安全研究社' } = Astro.props;
 const currentLocale = getCurrentLocale(Astro.url.pathname);
 const htmlLang = currentLocale === 'zh-TW' ? 'zh-Hant-TW' : 'en';
+
+// Calculate correct alternate language URLs
+const basePath = Astro.url.pathname.startsWith('/en')
+  ? Astro.url.pathname.replace(/^\/en/, '') || '/'
+  : Astro.url.pathname;
+const zhUrl = `${Astro.site}${basePath.startsWith('/') ? basePath.slice(1) : basePath}`;
+const enUrl = `${Astro.site}en${basePath === '/' ? '' : basePath}`;
 ---
 
 <!doctype html>
@@ -32,9 +39,9 @@ const htmlLang = currentLocale === 'zh-TW' ? 'zh-Hant-TW' : 'en';
     <meta property="og:locale" content={currentLocale === 'zh-TW' ? 'zh_TW' : 'en_US'} />
 
     <!-- Alternate language links -->
-    <link rel="alternate" hreflang="zh-TW" href={`${Astro.site}${Astro.url.pathname.replace('/en', '')}`} />
-    <link rel="alternate" hreflang="en" href={`${Astro.site}/en${Astro.url.pathname.replace('/en', '')}`} />
-    <link rel="alternate" hreflang="x-default" href={`${Astro.site}${Astro.url.pathname.replace('/en', '')}`} />
+    <link rel="alternate" hreflang="zh-TW" href={zhUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={zhUrl} />
 
     <title>{title}</title>
   </head>
