@@ -48,12 +48,12 @@ public/
 
 ## Documentation
 
-| Document | Description | Audience |
-|----------|-------------|----------|
-| [ARCHITECTURE.md](./docs/ARCHITECTURE.md) | Technical architecture and implementation details | Developers |
-| [REQUIREMENTS.md](./docs/REQUIREMENTS.md) | Functional and non-functional requirements | Everyone |
-| [CONTENT_GUIDE.md](./docs/CONTENT_GUIDE.md) | How to update website content | Content maintainers |
-| [HANDOFF_CHECKLIST.md](./docs/HANDOFF_CHECKLIST.md) | Officer transition checklist | Club officers |
+| Document                                            | Description                                       | Audience            |
+| --------------------------------------------------- | ------------------------------------------------- | ------------------- |
+| [ARCHITECTURE.md](./docs/ARCHITECTURE.md)           | Technical architecture and implementation details | Developers          |
+| [REQUIREMENTS.md](./docs/REQUIREMENTS.md)           | Functional and non-functional requirements        | Everyone            |
+| [CONTENT_GUIDE.md](./docs/CONTENT_GUIDE.md)         | How to update website content                     | Content maintainers |
+| [HANDOFF_CHECKLIST.md](./docs/HANDOFF_CHECKLIST.md) | Officer transition checklist                      | Club officers       |
 
 ## Deployment
 

@@ -1,41 +1,55 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { useTranslations } from '../i18n/utils';
-import YearCard from '../components/YearCard.astro';
-import { officerRecords } from '../data/officers';
+import Layout from "../layouts/Layout.astro";
+import { useTranslations } from "../i18n/utils";
+import YearCard from "../components/YearCard.astro";
+import { officerRecords } from "../data/officers";
 
-const t = useTranslations('zh-TW');
+const t = useTranslations("zh-TW");
 ---
 
-<Layout title={`${t('officers.title')} - NISRA`}>
+<Layout title={`${t("officers.title")} - NISRA`}>
   <section class="py-20 bg-base-200 min-h-screen">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">{t('officers.title')}</h1>
-        <p class="text-lg opacity-70">{t('officers.subtitle')}</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          {t("officers.title")}
+        </h1>
+        <p class="text-lg opacity-70">{t("officers.subtitle")}</p>
       </div>
 
       <div class="max-w-4xl mx-auto space-y-8">
-        {officerRecords.map((record) => (
-          <YearCard
-            year={record.year}
-            academicYear={record.academicYear}
-            groupPhoto={record.groupPhoto}
-            officers={record.officers.map((o) => ({
-              name: o.name,
-              position: o.position_zh,
-            }))}
-            noPhotoText={t('officers.noPhoto')}
-          />
-        ))}
+        {
+          officerRecords.map((record) => (
+            <YearCard
+              year={record.year}
+              academicYear={record.academicYear}
+              groupPhoto={record.groupPhoto}
+              officers={record.officers.map((o) => ({
+                name: o.name,
+                position: o.position_zh,
+              }))}
+              noPhotoText={t("officers.noPhoto")}
+            />
+          ))
+        }
       </div>
 
       <div class="text-center mt-12">
         <a href="/" class="btn btn-outline">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
-          {t('nav.home')}
+          {t("nav.home")}
         </a>
       </div>
     </div>

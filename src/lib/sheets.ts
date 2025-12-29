@@ -1,14 +1,14 @@
-import type { Event, Course } from '../types/content';
+import type { Event, Course } from "../types/content";
 
-const OPENSHEET_BASE_URL = 'https://opensheet.elk.sh';
+const OPENSHEET_BASE_URL = "https://opensheet.elk.sh";
 
 // Spreadsheet ID will be configured here once created
 // Format: https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit
-const SPREADSHEET_ID = import.meta.env.PUBLIC_GOOGLE_SHEET_ID || '';
+const SPREADSHEET_ID = import.meta.env.PUBLIC_GOOGLE_SHEET_ID || "";
 
 const SHEET_NAMES = {
-  events: 'Events',
-  courses: 'Courses',
+  events: "Events",
+  courses: "Courses",
 } as const;
 
 const FETCH_TIMEOUT_MS = 8000;
@@ -28,7 +28,9 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      console.error(`[sheets] Failed to fetch ${sheetName}: ${response.status}`);
+      console.error(
+        `[sheets] Failed to fetch ${sheetName}: ${response.status}`,
+      );
       return [];
     }
 
@@ -36,8 +38,10 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
     return data as T[];
   } catch (error) {
     clearTimeout(timeoutId);
-    if (error instanceof Error && error.name === 'AbortError') {
-      console.error(`[sheets] Timeout fetching ${sheetName} after ${FETCH_TIMEOUT_MS}ms`);
+    if (error instanceof Error && error.name === "AbortError") {
+      console.error(
+        `[sheets] Timeout fetching ${sheetName} after ${FETCH_TIMEOUT_MS}ms`,
+      );
     } else {
       console.error(`[sheets] Error fetching ${sheetName}:`, error);
     }
@@ -46,8 +50,8 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
 }
 
 function parseBoolean(value: string | boolean): boolean {
-  if (typeof value === 'boolean') return value;
-  return value?.toLowerCase() === 'true';
+  if (typeof value === "boolean") return value;
+  return value?.toLowerCase() === "true";
 }
 
 export async function fetchEvents(): Promise<Event[]> {
@@ -80,7 +84,7 @@ export function getCurrentSemesterCourses(courses: Course[]): Course[] {
 }
 
 export function groupCoursesBySemester(
-  courses: Course[]
+  courses: Course[],
 ): Map<string, { label: string; courses: Course[] }> {
   const grouped = new Map<string, { label: string; courses: Course[] }>();
 
@@ -97,7 +101,5 @@ export function groupCoursesBySemester(
   }
 
   // Sort by semester descending (newest first)
-  return new Map(
-    [...grouped.entries()].sort(([a], [b]) => b.localeCompare(a))
-  );
+  return new Map([...grouped.entries()].sort(([a], [b]) => b.localeCompare(a)));
 }

@@ -1,7 +1,7 @@
-import { ui, defaultLang, languages } from './ui';
+import { ui, defaultLang, languages } from "./ui";
 
 export function getLangFromUrl(url: URL) {
-  const [, lang] = url.pathname.split('/');
+  const [, lang] = url.pathname.split("/");
   if (lang in ui) return lang as keyof typeof ui;
   return defaultLang;
 }
@@ -13,7 +13,7 @@ export function useTranslations(lang: keyof typeof ui) {
 }
 
 export function getRelativeLocaleUrl(lang: keyof typeof ui, path: string) {
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
 
   if (lang === defaultLang) {
     return `/${cleanPath}`;
@@ -23,7 +23,7 @@ export function getRelativeLocaleUrl(lang: keyof typeof ui, path: string) {
 }
 
 export function getCurrentLocale(pathname: string): keyof typeof ui {
-  const segments = pathname.split('/').filter(Boolean);
+  const segments = pathname.split("/").filter(Boolean);
   const firstSegment = segments[0];
 
   if (firstSegment && firstSegment in languages) {
@@ -33,8 +33,10 @@ export function getCurrentLocale(pathname: string): keyof typeof ui {
   return defaultLang;
 }
 
-export function getAlternateLocale(currentLocale: keyof typeof ui): keyof typeof ui {
-  return currentLocale === 'zh-TW' ? 'en' : 'zh-TW';
+export function getAlternateLocale(
+  currentLocale: keyof typeof ui,
+): keyof typeof ui {
+  return currentLocale === "zh-TW" ? "en" : "zh-TW";
 }
 
 export function getAlternateUrl(pathname: string): string {
@@ -44,7 +46,7 @@ export function getAlternateUrl(pathname: string): string {
   // Remove current locale prefix if present
   let cleanPath = pathname;
   if (currentLocale !== defaultLang) {
-    cleanPath = pathname.replace(`/${currentLocale}`, '') || '/';
+    cleanPath = pathname.replace(`/${currentLocale}`, "") || "/";
   }
 
   // Add alternate locale prefix if not default
@@ -52,7 +54,7 @@ export function getAlternateUrl(pathname: string): string {
     return cleanPath;
   }
 
-  return `/${alternateLocale}${cleanPath === '/' ? '' : cleanPath}`;
+  return `/${alternateLocale}${cleanPath === "/" ? "" : cleanPath}`;
 }
 
 export { languages, defaultLang };

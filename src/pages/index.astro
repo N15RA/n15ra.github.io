@@ -1,11 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { useTranslations } from '../i18n/utils';
-import EventCard from '../components/EventCard.astro';
-import CourseCard from '../components/CourseCard.astro';
-import { fetchEvents, fetchAllCourses, getCurrentSemesterCourses } from '../lib/sheets';
+import Layout from "../layouts/Layout.astro";
+import { useTranslations } from "../i18n/utils";
+import EventCard from "../components/EventCard.astro";
+import CourseCard from "../components/CourseCard.astro";
+import {
+  fetchEvents,
+  fetchAllCourses,
+  getCurrentSemesterCourses,
+} from "../lib/sheets";
 
-const t = useTranslations('zh-TW');
+const t = useTranslations("zh-TW");
 
 const events = await fetchEvents();
 const allCourses = await fetchAllCourses();
@@ -26,15 +30,25 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
           <span class="text-gradient">NISRA</span>
         </h1>
         <p class="text-xl md:text-2xl mb-2 text-primary font-semibold">
-          {t('hero.subtitle')}
+          {t("hero.subtitle")}
         </p>
         <p class="text-lg mb-8 opacity-80">
-          {t('hero.description')}
+          {t("hero.description")}
         </p>
         <a href="#about" class="btn btn-primary btn-lg">
-          {t('hero.cta')}
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          {t("hero.cta")}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 ml-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
           </svg>
         </a>
       </div>
@@ -45,13 +59,13 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
   <section id="about" class="py-20 bg-primary text-primary-content">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('about.title')}</h2>
-        <p class="text-lg opacity-90">{t('about.subtitle')}</p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t("about.title")}</h2>
+        <p class="text-lg opacity-90">{t("about.subtitle")}</p>
       </div>
 
       <div class="max-w-4xl mx-auto">
         <p class="text-lg text-center mb-12 leading-relaxed">
-          {t('about.description')}
+          {t("about.description")}
         </p>
 
         <!-- Features Grid -->
@@ -59,33 +73,57 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
           <!-- Speech -->
           <div class="card bg-base-100 text-base-content shadow-xl">
             <figure class="px-10 pt-10">
-              <img src="/images/icons/ic_chat_bubble_outline.png" alt="Speech" class="h-16 w-16" />
+              <img
+                src="/images/icons/ic_chat_bubble_outline.png"
+                alt="Speech"
+                class="h-16 w-16"
+              />
             </figure>
             <div class="card-body items-center text-center">
-              <h3 class="card-title text-primary">{t('features.speech.title')}</h3>
-              <p class="text-sm opacity-80">{t('features.speech.description')}</p>
+              <h3 class="card-title text-primary">
+                {t("features.speech.title")}
+              </h3>
+              <p class="text-sm opacity-80">
+                {t("features.speech.description")}
+              </p>
             </div>
           </div>
 
           <!-- Security -->
           <div class="card bg-base-100 text-base-content shadow-xl">
             <figure class="px-10 pt-10">
-              <img src="/images/icons/ic_security.png" alt="Security" class="h-16 w-16" />
+              <img
+                src="/images/icons/ic_security.png"
+                alt="Security"
+                class="h-16 w-16"
+              />
             </figure>
             <div class="card-body items-center text-center">
-              <h3 class="card-title text-primary">{t('features.security.title')}</h3>
-              <p class="text-sm opacity-80">{t('features.security.description')}</p>
+              <h3 class="card-title text-primary">
+                {t("features.security.title")}
+              </h3>
+              <p class="text-sm opacity-80">
+                {t("features.security.description")}
+              </p>
             </div>
           </div>
 
           <!-- Share -->
           <div class="card bg-base-100 text-base-content shadow-xl">
             <figure class="px-10 pt-10">
-              <img src="/images/icons/ic_share.png" alt="Share" class="h-16 w-16" />
+              <img
+                src="/images/icons/ic_share.png"
+                alt="Share"
+                class="h-16 w-16"
+              />
             </figure>
             <div class="card-body items-center text-center">
-              <h3 class="card-title text-primary">{t('features.share.title')}</h3>
-              <p class="text-sm opacity-80">{t('features.share.description')}</p>
+              <h3 class="card-title text-primary">
+                {t("features.share.title")}
+              </h3>
+              <p class="text-sm opacity-80">
+                {t("features.share.description")}
+              </p>
             </div>
           </div>
         </div>
@@ -97,25 +135,27 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
   <section id="events" class="py-20 bg-base-200">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('events.title')}</h2>
-        <p class="text-lg opacity-70">{t('events.subtitle')}</p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t("events.title")}</h2>
+        <p class="text-lg opacity-70">{t("events.subtitle")}</p>
       </div>
 
       <div class="max-w-6xl mx-auto">
-        {events.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {events.map((event) => (
-              <EventCard
-                title={event.title}
-                description={event.description_zh}
-                badge={event.badge}
-                image={event.image}
-              />
-            ))}
-          </div>
-        ) : (
-          <p class="text-center text-lg opacity-70">{t('events.noEvents')}</p>
-        )}
+        {
+          events.length > 0 ? (
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {events.map((event) => (
+                <EventCard
+                  title={event.title}
+                  description={event.description_zh}
+                  badge={event.badge}
+                  image={event.image}
+                />
+              ))}
+            </div>
+          ) : (
+            <p class="text-center text-lg opacity-70">{t("events.noEvents")}</p>
+          )
+        }
       </div>
     </div>
   </section>
@@ -124,35 +164,41 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
   <section id="courses" class="py-20 bg-base-100">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('courses.title')}</h2>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+          {t("courses.title")}
+        </h2>
         <p class="text-lg opacity-70">
-          {currentSemesterLabel ? currentSemesterLabel : t('courses.subtitle')}
+          {currentSemesterLabel ? currentSemesterLabel : t("courses.subtitle")}
         </p>
       </div>
 
       <div class="max-w-6xl mx-auto">
-        {currentCourses.length > 0 ? (
-          <>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentCourses.map((course) => (
-                <CourseCard
-                  title={course.title_zh}
-                  description={course.description_zh}
-                  date={course.date}
-                  time={course.time}
-                  speaker={course.speaker}
-                />
-              ))}
-            </div>
-            <div class="text-center mt-8">
-              <a href="/courses" class="btn btn-outline btn-primary">
-                {t('courses.viewAll')}
-              </a>
-            </div>
-          </>
-        ) : (
-          <p class="text-center text-lg opacity-70">{t('courses.noCourses')}</p>
-        )}
+        {
+          currentCourses.length > 0 ? (
+            <>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {currentCourses.map((course) => (
+                  <CourseCard
+                    title={course.title_zh}
+                    description={course.description_zh}
+                    date={course.date}
+                    time={course.time}
+                    speaker={course.speaker}
+                  />
+                ))}
+              </div>
+              <div class="text-center mt-8">
+                <a href="/courses" class="btn btn-outline btn-primary">
+                  {t("courses.viewAll")}
+                </a>
+              </div>
+            </>
+          ) : (
+            <p class="text-center text-lg opacity-70">
+              {t("courses.noCourses")}
+            </p>
+          )
+        }
       </div>
     </div>
   </section>
@@ -161,8 +207,8 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
   <section id="join" class="py-20 bg-base-300">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('join.title')}</h2>
-        <p class="text-lg opacity-70">{t('join.subtitle')}</p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t("join.title")}</h2>
+        <p class="text-lg opacity-70">{t("join.subtitle")}</p>
       </div>
 
       <div class="max-w-4xl mx-auto">
@@ -171,10 +217,20 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
           <div class="card bg-base-200 shadow-xl">
             <div class="card-body">
               <h3 class="card-title text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                {t('join.time')}
+                {t("join.time")}
               </h3>
               <p>每週三 18:30 - 21:00</p>
             </div>
@@ -183,11 +239,26 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
           <div class="card bg-base-200 shadow-xl">
             <div class="card-body">
               <h3 class="card-title text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
-                {t('join.location')}
+                {t("join.location")}
               </h3>
               <p>輔仁大學 聖言樓</p>
             </div>
@@ -203,8 +274,7 @@ const currentSemesterLabel = currentCourses[0]?.semester_label || null;
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
