@@ -13,6 +13,7 @@ This checklist ensures smooth transition of website maintenance responsibilities
 - [ ] Ensure at least **2 people** have Admin access (to prevent single point of failure)
 
 **How to add member to organization:**
+
 1. Go to https://github.com/orgs/N15RA/people
 2. Click "Invite member"
 3. Enter their GitHub username
@@ -27,9 +28,9 @@ This checklist ensures smooth transition of website maintenance responsibilities
 
 ### 3. Account Handoff
 
-| Account | Action |
-|---------|--------|
-| GitHub Organization | Transfer admin access |
+| Account                 | Action                |
+| ----------------------- | --------------------- |
+| GitHub Organization     | Transfer admin access |
 | Google Sheets (if used) | Add editor permission |
 
 ### 4. Documentation Review
@@ -76,38 +77,42 @@ This checklist ensures smooth transition of website maintenance responsibilities
 
 If you encounter technical issues you cannot resolve:
 
-| Contact | Role | When to Contact |
-|---------|------|-----------------|
+| Contact                    | Role               | When to Contact                 |
+| -------------------------- | ------------------ | ------------------------------- |
 | Previous Technical Officer | First line support | General questions, minor issues |
-| Faculty Advisor | Escalation | Major issues, account problems |
+| Faculty Advisor            | Escalation         | Major issues, account problems  |
 
 ---
 
 ## Important Notes
 
 ### Keep Multiple Admins
+
 Always maintain at least 2 organization admins. This prevents lockout if one person leaves unexpectedly.
 
 ### Don't Share Passwords
+
 Each officer should use their own GitHub account. Never share account credentials.
 
 ### Document Changes
+
 When making significant changes, add a note in the commit message explaining what and why.
 
 ### Backup Before Major Changes
+
 If making large changes, consider creating a branch first to test before merging to main.
 
 ---
 
 ## Annual Timeline Suggestion
 
-| Month | Action |
-|-------|--------|
-| September | New officers onboarding, full handoff |
-| October | Shadow period, new officers observe |
-| November | New officers take primary responsibility |
-| June | Document any issues encountered |
-| July | Prepare handoff documentation |
+| Month     | Action                                   |
+| --------- | ---------------------------------------- |
+| September | New officers onboarding, full handoff    |
+| October   | Shadow period, new officers observe      |
+| November  | New officers take primary responsibility |
+| June      | Document any issues encountered          |
+| July      | Prepare handoff documentation            |
 
 ---
 

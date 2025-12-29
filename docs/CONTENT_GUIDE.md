@@ -7,7 +7,7 @@ This guide is for club members who need to update website content. No programmin
 | Task                          | Where to Edit                       |
 | ----------------------------- | ----------------------------------- |
 | Change text (Chinese/English) | `src/i18n/ui.ts`                    |
-| Update meeting time           | `src/pages/index.astro` (line ~162) |
+| Update meeting time           | `src/pages/index.astro` (line ~179) |
 | Add/replace images            | `public/images/` folder             |
 | Trigger website update        | GitHub Actions page                 |
 
@@ -50,7 +50,7 @@ export const ui = {
 
 #### Change Meeting Time
 
-**File**: `src/pages/index.astro` (around line 162)
+**File**: `src/pages/index.astro` (around line 179)
 
 Find:
 
@@ -64,7 +64,7 @@ Also update the English version in `src/pages/en/index.astro`.
 
 #### Change Location
 
-**File**: `src/pages/index.astro` (around line 175)
+**File**: `src/pages/index.astro` (around line 192)
 
 Find:
 
@@ -123,7 +123,6 @@ The website fetches Events and Courses data from Google Sheets using [OpenSheet 
 ### Setup Steps
 
 1. **Create a Google Sheet** with two sheets named exactly:
-
    - `Events`
    - `Courses`
 
@@ -160,17 +159,16 @@ The website fetches Events and Courses data from Google Sheets using [OpenSheet 
 **Note**: The `semester` field uses the format `YYYY-N` where YYYY is the year and N is the semester number (1 or 2).
 
 The website automatically:
+
 - Shows only the latest semester's courses on the homepage
 - Provides a "View All Courses" link to `/courses` page
 - Groups all courses by semester on the courses page
 
 4. **Make the sheet public**:
-
    - Click "Share" button
    - Change to "Anyone with the link can view"
 
 5. **Get the Spreadsheet ID**:
-
    - Copy from URL: `https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit`
 
 6. **Configure the website**:
@@ -179,10 +177,19 @@ The website automatically:
 
 ### Updating Content
 
+**For Events:**
+
 1. Open the Google Sheet
-2. Add or modify rows
+2. Add or modify rows in the `Events` sheet
 3. Set `visible` to `TRUE` for items to display
 4. Trigger a website rebuild (push to main or manual Actions trigger)
+
+**For Courses:**
+
+1. Open the Google Sheet
+2. Add or modify rows in the `Courses` sheet
+3. Set the correct `semester` value (e.g., `2025-1`)
+4. The website automatically shows the latest semester's courses
 
 ### Image Handling
 
