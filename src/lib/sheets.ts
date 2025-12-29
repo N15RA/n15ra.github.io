@@ -11,6 +11,8 @@ const SHEET_NAMES = {
   courses: 'Courses',
 } as const;
 
+const FETCH_TIMEOUT_MS = 8000;
+
 async function fetchSheet<T>(sheetName: string): Promise<T[]> {
   if (!SPREADSHEET_ID) {
     console.warn(`[sheets] No spreadsheet ID configured. Using empty data.`);
@@ -18,9 +20,12 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
   }
 
   const url = `${OPENSHEET_BASE_URL}/${SPREADSHEET_ID}/${sheetName}`;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       console.error(`[sheets] Failed to fetch ${sheetName}: ${response.status}`);
@@ -30,7 +35,12 @@ async function fetchSheet<T>(sheetName: string): Promise<T[]> {
     const data = await response.json();
     return data as T[];
   } catch (error) {
-    console.error(`[sheets] Error fetching ${sheetName}:`, error);
+    clearTimeout(timeoutId);
+    if (error instanceof Error && error.name === 'AbortError') {
+      console.error(`[sheets] Timeout fetching ${sheetName} after ${FETCH_TIMEOUT_MS}ms`);
+    } else {
+      console.error(`[sheets] Error fetching ${sheetName}:`, error);
+    }
     return [];
   }
 }
@@ -74,14 +84,20 @@ export function groupCoursesBySemester(
 ): Map<string, { label: string; courses: Course[] }> {
   const grouped = new Map<string, { label: string; courses: Course[] }>();
 
-  const semesters = [...new Set(courses.map((c) => c.semester))];
-  semesters.sort((a, b) => b.localeCompare(a));
-
-  for (const semester of semesters) {
-    const semesterCourses = courses.filter((c) => c.semester === semester);
-    const label = semesterCourses[0]?.semester_label || semester;
-    grouped.set(semester, { label, courses: semesterCourses });
+  for (const course of courses) {
+    const existing = grouped.get(course.semester);
+    if (existing) {
+      existing.courses.push(course);
+    } else {
+      grouped.set(course.semester, {
+        label: course.semester_label || course.semester,
+        courses: [course],
+      });
+    }
   }
 
-  return grouped;
+  // Sort by semester descending (newest first)
+  return new Map(
+    [...grouped.entries()].sort(([a], [b]) => b.localeCompare(a))
+  );
 }

@@ -224,11 +224,27 @@ Environment variable required:
 ### Data Types
 
 Defined in `src/types/content.ts`:
-- `Event`: id, title, description_zh, description_en, badge, image, date, order, visible
-- `Course`: id, title_zh, title_en, description_zh, description_en, date, time, speaker, order, visible
+- `Event`: id, title, description_zh, description_en, badge, image, date?, order?, visible
+- `Course`: id, semester, semester_label, title_zh, title_en, description_zh, description_en, date, time, speaker, order?
 
 ### Error Handling
 
 - If no spreadsheet ID is configured, empty arrays are returned
 - If API fails, errors are logged but build continues
 - Pages display "no events/courses" message as fallback
+- Fetch timeout: 8 seconds (prevents infinite build hangs)
+
+### OpenSheet API Limitation
+
+The current implementation uses [OpenSheet](https://github.com/benborgers/opensheet), a community-hosted proxy for Google Sheets. While this simplifies the setup (no API key required), it introduces a dependency on a third-party service.
+
+**Risks**:
+- Service could become unavailable
+- No SLA or uptime guarantee
+
+**Mitigation**:
+- Fallback mechanism returns empty data if API fails
+- Build continues even if data fetch fails
+- Static fallback messages are displayed
+
+**Future consideration**: If stability becomes an issue, consider migrating to the official Google Sheets API.
