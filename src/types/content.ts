@@ -6,7 +6,7 @@ export interface Event {
   badge: string;
   image: string;
   date?: string;
-  order: number;
+  order?: number;
   visible: string | boolean;
 }
 
@@ -21,5 +21,5 @@ export interface Course {
   date: string;
   time: string;
   speaker: string;
-  order: number;
+  order?: number;
 }
