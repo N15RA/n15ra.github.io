@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* NISRA Custom Theme */
+@plugin "daisyui/theme" {
+  name: "nisra";
+  default: true;
+  prefersdark: false;
+  color-scheme: dark;
+
+  /* Base colors - dark theme */
+  --color-base-100: oklch(18% 0.01 240);      /* #242528 - darkest background */
+  --color-base-200: oklch(22% 0.01 240);      /* #2E2E2E - medium dark */
+  --color-base-300: oklch(28% 0.01 240);      /* #3C3E43 - lighter dark */
+  --color-base-content: oklch(98% 0.01 240);  /* #FFFFFF - white text */
+
+  /* Primary - NISRA signature yellow-green */
+  --color-primary: oklch(90% 0.18 105);       /* #E4F46C - yellow-green */
+  --color-primary-content: oklch(18% 0.01 240); /* dark text on primary */
+
+  /* Secondary */
+  --color-secondary: oklch(28% 0.01 240);     /* #3C3E43 */
+  --color-secondary-content: oklch(98% 0.01 240);
+
+  /* Accent - tech blue */
+  --color-accent: oklch(70% 0.2 220);         /* cyan/tech blue */
+  --color-accent-content: oklch(18% 0.01 240);
+
+  /* Neutral */
+  --color-neutral: oklch(35% 0.02 240);
+  --color-neutral-content: oklch(95% 0.01 240);
+
+  /* Status colors */
+  --color-info: oklch(70% 0.15 220);
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: oklch(70% 0.2 145);
+  --color-success-content: oklch(18% 0.01 145);
+  --color-warning: oklch(85% 0.18 85);
+  --color-warning-content: oklch(20% 0.05 85);
+  --color-error: oklch(65% 0.25 25);
+  --color-error-content: oklch(98% 0.01 25);
+
+  /* Border radius */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+
+  /* Size */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* Border */
+  --border: 1px;
+
+  /* Effects */
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Custom utility classes */
+.text-gradient {
+  background: linear-gradient(135deg, oklch(90% 0.18 105), oklch(70% 0.2 220));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: oklch(90% 0.18 105 / 0.3);
+  color: oklch(98% 0.01 240);
+}

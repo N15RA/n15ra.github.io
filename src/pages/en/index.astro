@@ -1,0 +1,195 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<Layout title="NISRA - FJU Network and Information Security Research Association">
+  <!-- Hero Section -->
+  <section
+    class="hero min-h-[80vh] relative"
+    style="background-image: url('/images/backgrounds/stars.png');"
+  >
+    <div class="hero-overlay bg-base-100/70"></div>
+    <div class="hero-content text-center">
+      <div class="max-w-2xl">
+        <h1 class="text-6xl md:text-8xl font-bold mb-4">
+          <span class="text-gradient">NISRA</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-2 text-primary font-semibold">
+          {t('hero.subtitle')}
+        </p>
+        <p class="text-lg mb-8 opacity-80">
+          {t('hero.description')}
+        </p>
+        <a href="#about" class="btn btn-primary btn-lg">
+          {t('hero.cta')}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-primary text-primary-content">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('about.title')}</h2>
+        <p class="text-lg opacity-90">{t('about.subtitle')}</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <p class="text-lg text-center mb-12 leading-relaxed">
+          {t('about.description')}
+        </p>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Speech -->
+          <div class="card bg-base-100 text-base-content shadow-xl">
+            <figure class="px-10 pt-10">
+              <img src="/images/icons/ic_chat_bubble_outline.png" alt="Speech" class="h-16 w-16" />
+            </figure>
+            <div class="card-body items-center text-center">
+              <h3 class="card-title text-primary">{t('features.speech.title')}</h3>
+              <p class="text-sm opacity-80">{t('features.speech.description')}</p>
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="card bg-base-100 text-base-content shadow-xl">
+            <figure class="px-10 pt-10">
+              <img src="/images/icons/ic_security.png" alt="Security" class="h-16 w-16" />
+            </figure>
+            <div class="card-body items-center text-center">
+              <h3 class="card-title text-primary">{t('features.security.title')}</h3>
+              <p class="text-sm opacity-80">{t('features.security.description')}</p>
+            </div>
+          </div>
+
+          <!-- Share -->
+          <div class="card bg-base-100 text-base-content shadow-xl">
+            <figure class="px-10 pt-10">
+              <img src="/images/icons/ic_share.png" alt="Share" class="h-16 w-16" />
+            </figure>
+            <div class="card-body items-center text-center">
+              <h3 class="card-title text-primary">{t('features.share.title')}</h3>
+              <p class="text-sm opacity-80">{t('features.share.description')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="py-20 bg-base-200">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('events.title')}</h2>
+        <p class="text-lg opacity-70">{t('events.subtitle')}</p>
+      </div>
+
+      <div class="max-w-6xl mx-auto">
+        <!-- Event Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Enlightened Event -->
+          <div class="card bg-base-300 shadow-xl">
+            <figure>
+              <img
+                src="/images/photos/enlightened_2020_1.jpg"
+                alt="Enlightened"
+                class="w-full h-64 object-cover"
+              />
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title text-primary">Enlightened</h3>
+              <p class="opacity-80">
+                Annual security conference featuring industry experts sharing the latest technologies and trends, providing a platform for students and professionals to connect.
+              </p>
+              <div class="card-actions justify-end">
+                <div class="badge badge-outline">Annual Event</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Winter Training -->
+          <div class="card bg-base-300 shadow-xl">
+            <figure>
+              <img
+                src="/images/photos/photo-group.jpg"
+                alt="Winter Training"
+                class="w-full h-64 object-cover"
+              />
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title text-primary">Winter Training</h3>
+              <p class="opacity-80">
+                Intensive training courses during winter break covering network security, penetration testing, CTF competitions, and more.
+              </p>
+              <div class="card-actions justify-end">
+                <div class="badge badge-outline">Winter Break</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Section -->
+  <section id="join" class="py-20 bg-base-300">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">{t('join.title')}</h2>
+        <p class="text-lg opacity-70">{t('join.subtitle')}</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <!-- Info Cards -->
+          <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+              <h3 class="card-title text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {t('join.time')}
+              </h3>
+              <p>Wednesday 18:30 - 21:00</p>
+            </div>
+          </div>
+
+          <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+              <h3 class="card-title text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {t('join.location')}
+              </h3>
+              <p>Fu Jen Catholic University, Shengyan Building</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="w-full h-80 rounded-box overflow-hidden shadow-xl">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d903.5!2d121.43194!3d25.03528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7c0bfa8c1e3%3A0x28e8f3a5e0f7f4e8!2z6Lyv5LuB5aSn5a245qWt6KiA5qif!5e0!3m2!1sen!2stw!4v1703900000000"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
