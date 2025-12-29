@@ -38,6 +38,18 @@ export const ui = {
     'events.subtitle': '最新活動資訊',
     'events.noEvents': '目前沒有活動',
 
+    // Courses
+    'courses.title': '課程時程',
+    'courses.subtitle': '本學期課程安排',
+    'courses.noCourses': '目前沒有排定課程',
+    'courses.viewAll': '查看所有課程',
+    'courses.pageTitle': '課程歷史',
+    'courses.pageSubtitle': '歷屆課程紀錄',
+    'courses.currentSemester': '當學期',
+
+    // Navigation (additional)
+    'nav.courses': '課程',
+
     // Join
     'join.title': '加入我們',
     'join.subtitle': '一起探索資安世界',
@@ -83,6 +95,18 @@ export const ui = {
     'events.title': 'Events',
     'events.subtitle': 'Latest Event Information',
     'events.noEvents': 'No events at the moment',
+
+    // Courses
+    'courses.title': 'Course Schedule',
+    'courses.subtitle': "This Semester's Courses",
+    'courses.noCourses': 'No courses scheduled',
+    'courses.viewAll': 'View All Courses',
+    'courses.pageTitle': 'Course History',
+    'courses.pageSubtitle': 'Past Course Records',
+    'courses.currentSemester': 'Current Semester',
+
+    // Navigation (additional)
+    'nav.courses': 'Courses',
 
     // Join
     'join.title': 'Join Us',

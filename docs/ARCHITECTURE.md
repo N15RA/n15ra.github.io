@@ -30,18 +30,24 @@ n15ra.github.io/
 │   ├── components/
 │   │   ├── Header.astro        # Navigation bar
 │   │   ├── Footer.astro        # Page footer
-│   │   └── LanguageSwitcher.astro
+│   │   ├── LanguageSwitcher.astro
+│   │   ├── EventCard.astro     # Event display card
+│   │   └── CourseCard.astro    # Course display card
 │   ├── i18n/
 │   │   ├── ui.ts               # Translation strings
 │   │   └── utils.ts            # i18n utility functions
 │   ├── layouts/
 │   │   └── Layout.astro        # Main page layout
+│   ├── lib/
+│   │   └── sheets.ts           # Google Sheets data fetching
 │   ├── pages/
 │   │   ├── index.astro         # Chinese homepage
 │   │   └── en/
 │   │       └── index.astro     # English homepage
-│   └── styles/
-│       └── global.css          # Global styles & theme
+│   ├── styles/
+│   │   └── global.css          # Global styles & theme
+│   └── types/
+│       └── content.ts          # TypeScript type definitions
 ├── astro.config.mjs
 ├── package.json
 └── tsconfig.json
@@ -76,6 +82,18 @@ Dropdown language selector:
 - Current language display
 - Available language options
 - URL-based language switching
+
+### EventCard.astro
+Reusable event display card:
+- Event image, title, description
+- Badge/tag display
+- Used in Events section
+
+### CourseCard.astro
+Reusable course display card:
+- Course title, description
+- Date, time, speaker information
+- Used in Courses section
 
 ## Internationalization (i18n)
 
@@ -175,3 +193,58 @@ npm run preview  # Preview production build
 2. Run `npm install`
 3. Run `npm run dev`
 4. Open http://localhost:4321
+
+## Google Sheets Integration
+
+### Data Flow
+
+```
+Google Sheets (Public)
+        │
+        ▼
+  OpenSheet API
+  (opensheet.elk.sh)
+        │
+        ▼
+  src/lib/sheets.ts
+  (fetchEvents, fetchCourses)
+        │
+        ▼
+  index.astro (build time)
+        │
+        ▼
+  Static HTML (deployed)
+```
+
+### Configuration
+
+Environment variable required:
+- `PUBLIC_GOOGLE_SHEET_ID`: The Google Spreadsheet ID
+
+### Data Types
+
+Defined in `src/types/content.ts`:
+- `Event`: id, title, description_zh, description_en, badge, image, date?, order?, visible
+- `Course`: id, semester, semester_label, title_zh, title_en, description_zh, description_en, date, time, speaker, order?
+
+### Error Handling
+
+- If no spreadsheet ID is configured, empty arrays are returned
+- If API fails, errors are logged but build continues
+- Pages display "no events/courses" message as fallback
+- Fetch timeout: 8 seconds (prevents infinite build hangs)
+
+### OpenSheet API Limitation
+
+The current implementation uses [OpenSheet](https://github.com/benborgers/opensheet), a community-hosted proxy for Google Sheets. While this simplifies the setup (no API key required), it introduces a dependency on a third-party service.
+
+**Risks**:
+- Service could become unavailable
+- No SLA or uptime guarantee
+
+**Mitigation**:
+- Fallback mechanism returns empty data if API fails
+- Build continues even if data fetch fails
+- Static fallback messages are displayed
+
+**Future consideration**: If stability becomes an issue, consider migrating to the official Google Sheets API.

@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/utils';
+import CourseCard from '../components/CourseCard.astro';
+import { fetchAllCourses, groupCoursesBySemester, getLatestSemester } from '../lib/sheets';
+
+const t = useTranslations('zh-TW');
+
+const allCourses = await fetchAllCourses();
+const groupedCourses = groupCoursesBySemester(allCourses);
+const latestSemester = getLatestSemester(allCourses);
+---
+
+<Layout title={`${t('courses.pageTitle')} - NISRA`}>
+  <section class="py-20 bg-base-200 min-h-screen">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{t('courses.pageTitle')}</h1>
+        <p class="text-lg opacity-70">{t('courses.pageSubtitle')}</p>
+      </div>
+
+      <div class="max-w-6xl mx-auto">
+        {groupedCourses.size > 0 ? (
+          <div class="space-y-12">
+            {[...groupedCourses.entries()].map(([semester, { label, courses }]) => (
+              <div class="collapse collapse-arrow bg-base-100 shadow-xl">
+                <input type="checkbox" checked={semester === latestSemester} />
+                <div class="collapse-title text-xl font-medium flex items-center gap-2">
+                  <span>{label}</span>
+                  {semester === latestSemester && (
+                    <span class="badge badge-primary badge-sm">{t('courses.currentSemester')}</span>
+                  )}
+                  <span class="text-sm opacity-60">({courses.length} 堂)</span>
+                </div>
+                <div class="collapse-content">
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+                    {courses.map((course) => (
+                      <CourseCard
+                        title={course.title_zh}
+                        description={course.description_zh}
+                        date={course.date}
+                        time={course.time}
+                        speaker={course.speaker}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="text-center text-lg opacity-70">{t('courses.noCourses')}</p>
+        )}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/" class="btn btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          {t('nav.home')}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
