@@ -1,8 +1,0 @@
-dist
-node_modules
-.astro
-package-lock.json
-
-# Vendored 壓縮資產，勿格式化
-scripts/bootstrap.bundle.min.js
-scripts/*.map
