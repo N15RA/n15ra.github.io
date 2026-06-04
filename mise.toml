@@ -1,0 +1,5 @@
+# 工具與 runtime 版本統一由 mise 管理（commit 進版本控制）。
+# 本專案為純 Node/Astro 站，僅需 node；無 Python/Go runtime。
+# 初始化：mise install && npm install
+[tools]
+node = "22"
