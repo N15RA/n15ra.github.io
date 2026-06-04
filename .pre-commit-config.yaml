@@ -1,5 +1,9 @@
 # 提交前自動執行的 formatter / 基礎檢查。
 # 安裝：pre-commit install；手動全跑：pre-commit run --all-files
+
+# 排除 vendored / 壓縮資產與 source map（產物，勿格式化或修改）
+exclude: '(\.min\.(js|css)|\.map)$'
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
