@@ -41,7 +41,8 @@
       "Read(.claude/settings.json)",
       "Read(**/*.yaml)",
       "Read(**/*.yml)",
-      "Read(**/*.toml)"
+      "Read(**/*.toml)",
+      "mcp__playwright__*"
     ],
     "ask": ["Bash(curl *)", "Bash(wget *)"],
     "deny": [
