@@ -1,73 +1,44 @@
 # NISRA Official Website
 
-NISRA (Network and Information Security Research Association) official website for Fu Jen Catholic University.
+Official website for NISRA (Network and Information Security Research
+Association), Fu Jen Catholic University.
 
-**Live Site**: https://n15ra.github.io/
+## Status
 
-## Tech Stack
+The project is being migrated off Wix to a pure-static solution hosted on
+GitHub Pages. The repository has been **reset to a clean slate**: the
+previous (half-finished) framework was removed, and only the faithful
+backup of the existing Wix site is kept as the source of truth for the
+rebuild.
 
-- **Framework**: [Astro](https://astro.build/) 5.x
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) 4 + [DaisyUI](https://daisyui.com/) 5
-- **Deployment**: GitHub Pages via GitHub Actions
-- **Languages**: Chinese (Traditional) & English
+**The new static framework has not been chosen yet.**
 
-## Quick Start
+Roadmap:
+
+1. Faithfully refactor the existing site into the new framework, using
+   `old-website/` as the reference.
+2. Redesign the site and the maintenance setup.
+
+## Repository Layout
+
+| Path                      | Purpose                                                        |
+| ------------------------- | ------------------------------------------------------------- |
+| `old-website/`            | Faithful archival dump of the existing Wix site (do not edit) |
+| `.claude/`, `CLAUDE.md`   | Development guidelines and Claude Code configuration          |
+| `AGENTS.md`               | General usage guidelines                                       |
+| `mise.toml`               | Runtime version management (Node)                             |
+| `.pre-commit-config.yaml` | Pre-commit base checks                                        |
+
+## Getting Started
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+mise install        # provision the managed runtime
+pre-commit install  # enable commit-time checks
 ```
 
-## Project Structure
-
-```
-src/
-├── components/     # Reusable components
-├── i18n/           # Internationalization
-├── layouts/        # Page layouts
-├── pages/          # Route pages
-│   └── en/         # English pages
-└── styles/         # Global styles
-
-public/
-└── images/         # Static assets
-    ├── logos/
-    ├── photos/
-    ├── icons/
-    └── backgrounds/
-```
-
-## Documentation
-
-| Document                                            | Description                                       | Audience            |
-| --------------------------------------------------- | ------------------------------------------------- | ------------------- |
-| [ARCHITECTURE.md](./docs/ARCHITECTURE.md)           | Technical architecture and implementation details | Developers          |
-| [REQUIREMENTS.md](./docs/REQUIREMENTS.md)           | Functional and non-functional requirements        | Everyone            |
-| [CONTENT_GUIDE.md](./docs/CONTENT_GUIDE.md)         | How to update website content                     | Content maintainers |
-| [HANDOFF_CHECKLIST.md](./docs/HANDOFF_CHECKLIST.md) | Officer transition checklist                      | Club officers       |
-
-## Deployment
-
-The website automatically deploys when pushing to the `main` branch.
-
-**Manual deployment**: Go to Actions > "Deploy to GitHub Pages" > "Run workflow"
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Submit a pull request
-4. Wait for review and merge
+A build/dev workflow will be added once the new static framework is
+selected.
 
 ## License
 
-This project is maintained by NISRA, Fu Jen Catholic University.
+Maintained by NISRA, Fu Jen Catholic University.
