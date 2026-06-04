@@ -1,8 +1,8 @@
 # 提交前自動執行的 formatter / 基礎檢查。
 # 安裝：pre-commit install；手動全跑：pre-commit run --all-files
 
-# 排除 vendored / 壓縮資產與 source map（產物，勿格式化或修改）
-exclude: '(\.min\.(js|css)|\.map)$'
+# 排除：old-website/ 為忠實的舊站備份（archival dump），須逐字保留、勿格式化。
+exclude: '^old-website/'
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -14,13 +14,5 @@ repos:
       - id: check-json
       - id: check-merge-conflict
       - id: mixed-line-ending
-
-  # 以 local hook 呼叫專案自帶 Prettier，才能載入 prettier-plugin-astro
-  # 與專案 .prettierrc / .prettierignore；不使用已封存的 mirrors-prettier。
-  - repo: local
-    hooks:
-      - id: prettier
-        name: prettier
-        entry: npx prettier --write --ignore-unknown
-        language: system
-        types_or: [astro, ts, javascript, css, markdown, json, yaml]
+# Prettier 已隨 Astro 應用移除；待新框架選定後，連同其 package.json 與 pinned
+# 版本以 local hook 重新導入。清理期間僅保留與框架無關的 base hooks。
