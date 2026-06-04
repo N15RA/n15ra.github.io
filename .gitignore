@@ -107,10 +107,9 @@ GitHub.sublime-settings
 
 # ------------------------------------------------------------
 
-# -------- Astro gitignore --------
+# -------- Build output / Node / misc --------
 # Build output
 dist/
-.astro/
 
 # Dependencies
 node_modules/
@@ -155,16 +154,10 @@ nbproject
 Thumbs.db
 /.vscode/
 
-# Local Netlify folder
-.netlify
-
 # Komodo
 .komodotools
 *.komodoproject
 
-# Legacy folders to ignore
-/dist-sass/
+# Generated / coverage folders
 /js/coverage/
-/_site/
 /resources/
-/.hugo_build.lock
