@@ -150,7 +150,6 @@ scripts/        # vendored 前端資產（bootstrap bundle）
 - 不自行決定繞過問題的 workaround 或臨時方案
 - 不引入與當前任務無關的變更（No drive-by refactoring）；發現其他問題另開 issue
 - 大型任務先拆解為子任務清單再實作；完成後執行 formatter
-- Planner/Executor 分工慣例與 Codex 選配流程見 `.claude/rules/planner-executor.md`
 
 ### Code Review
 
