@@ -5,7 +5,7 @@
 
 ## 專案資訊
 
-- **專案名稱**: NISRA 官方網站（repo `n15ra.github.io`；npm package `nisra-site`）
+- **專案名稱**: NISRA 官方網站（repo `n15ra.github.io`）
 - **專案簡述**: NISRA 社團官方網站。正全面退出 Wix，改以純靜態方案 + GitHub Pages 維護。目前已清理至乾淨起點：僅保留既有 Wix 站的忠實備份 `old-website/` 作為重構來源，**新靜態框架尚未選定（待選）**
 - **技術棧**: 待選定。清理後暫無應用框架；環境以 mise 管理 Node、pre-commit 管理提交檢查。新框架（框架 / 樣式 / i18n / 部署）選定後於此補上
 - **專案結構**（清理後現況）:
