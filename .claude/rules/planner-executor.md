@@ -21,11 +21,11 @@
 
 採用層級由低到高，視團隊實際痛點漸進啟用：
 
-| 層 | 機制 | 觸發 | 強制力 |
-| --- | --- | --- | --- |
-| 1 | 普通 `claude` session | session 預設 | settings.json permissions + 使用者模型設定 |
-| 2 | Manager-Executor 雙 agent | `claude --agent manager` | tools allowlist + `Agent(manager)` deny；專案編輯靠 prompt convention |
-| 3 | Codex external executor | manager 偵測後詢問使用者 | skill 包裝 + worktree 隔離 |
+| 層  | 機制                      | 觸發                     | 強制力                                                                |
+| --- | ------------------------- | ------------------------ | --------------------------------------------------------------------- |
+| 1   | 普通 `claude` session     | session 預設             | settings.json permissions + 使用者模型設定                            |
+| 2   | Manager-Executor 雙 agent | `claude --agent manager` | tools allowlist + `Agent(manager)` deny；專案編輯靠 prompt convention |
+| 3   | Codex external executor   | manager 偵測後詢問使用者 | skill 包裝 + worktree 隔離                                            |
 
 ## 第 1 層：普通 `claude` session（預設）
 

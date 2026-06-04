@@ -28,15 +28,15 @@ model: opus
 
 基於 `code.claude.com/docs/en/memory` 與 `code.claude.com/docs/en/best-practices`：
 
-| 檢查點 | 標準 |
-| --- | --- |
-| CLAUDE.md 行數 | soft ceiling 200 / hard cap 220（與 upstream dev-guidelines `MAINTAINER.md` 行數規範一致；雙讀者原則下不為砍幾行做章節重組） |
-| 具體性 | 「Use 2-space indentation」>「Format code properly」 |
-| IMPORTANT / CRITICAL | 關鍵條款可加強，但不濫用（3 個以內為宜） |
-| `@import` 使用 | 只在真的需要額外載入時用（`.claude/rules/` 已自動載入，不需再 @） |
-| Rules `paths:` frontmatter | 檔案類型特定規則應加（如 testing 只對測試檔） |
-| 避免 prose-heavy | 條列而非段落 |
-| 避免 Claude 已知 | **但雙讀者原則下，團隊想表態的即使 Claude 已知也保留** |
+| 檢查點                     | 標準                                                                                                                         |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| CLAUDE.md 行數             | soft ceiling 200 / hard cap 220（與 upstream dev-guidelines `MAINTAINER.md` 行數規範一致；雙讀者原則下不為砍幾行做章節重組） |
+| 具體性                     | 「Use 2-space indentation」>「Format code properly」                                                                         |
+| IMPORTANT / CRITICAL       | 關鍵條款可加強，但不濫用（3 個以內為宜）                                                                                     |
+| `@import` 使用             | 只在真的需要額外載入時用（`.claude/rules/` 已自動載入，不需再 @）                                                            |
+| Rules `paths:` frontmatter | 檔案類型特定規則應加（如 testing 只對測試檔）                                                                                |
+| 避免 prose-heavy           | 條列而非段落                                                                                                                 |
+| 避免 Claude 已知           | **但雙讀者原則下，團隊想表態的即使 Claude 已知也保留**                                                                       |
 
 ### 3. 稀釋檢查
 
@@ -58,23 +58,29 @@ model: opus
 ## claude-md-reviewer 審查報告
 
 ### 變更摘要
+
 <列出你看到的檔案與變更要點>
 
 ### 三面向影響評估
+
 **Template users:** <影響評估>
 **Team onboarding:** <影響評估>
 **Claude behavior:** <影響評估>
 
 ### Best Practice 對照
+
 <逐項列 pass / warn / fail 與理由>
 
 ### 稀釋風險
+
 <有無意外刪除團隊共識內容？>
 
 ### 建議行動
+
 - <具體修改 / 補充 / 確認項目>
 
 ### PR description 補充建議
+
 <若 description 缺少某面向評估，給出建議補充內容>
 ```
 

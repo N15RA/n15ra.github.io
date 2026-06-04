@@ -99,31 +99,39 @@ grep -cE '\*\*IMPORTANT\*\*|\*\*CRITICAL\*\*' CLAUDE.md
 ## writing-quality-checker 報告
 
 ### 檢查摘要
+
 - 檢查檔案：<list>
 - Fail: N
 - Warn: M
 - Info: K
 
 ### 1. 句長違規
+
 <file>:<line>: FAIL (XX chars): <原句>
 <file>:<line>: WARN (XX chars): <原句>
 
 ### 2. 巢狀括號
+
 <file>:<line>: <原句>
 
 ### 3. 並列串連過多
+
 <file>:<line>: <原句>
 
 ### 4. 近義規則（需人工判斷）
+
 <CLAUDE.md section> vs <rules file>: <差異摘要>
 
 ### 5. 中英混用
+
 <file>:<line>: <術語列表>
 
 ### 6. IMPORTANT/CRITICAL 計數
+
 <file>: N 次（建議 ≤ 3）
 
 ### 建議修復順序
+
 1. 先修 Fail（句長 > 80）
 2. 再修巢狀括號與並列串連
 3. 最後處理 Warn 層級

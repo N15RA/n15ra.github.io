@@ -189,13 +189,13 @@ scripts/        # vendored 前端資產（bootstrap bundle）
 
 以下規則由文件層（本檔）與配置層（`.claude/settings.json`、hooks、scripts）共同執行。此表讓讀者快速理解「哪些規則有實際強制機制」。配置層若與文件層矛盾，以實際生效的配置為準。
 
-| 規則 | 文件層位置 | 配置層強制 |
-| --- | --- | --- |
-| 不含 AI 歸屬標記 | 「回應與品質規範」CRITICAL | `settings.json` `attribution` 留空（官方 setting） |
-| 不 force-push | 「工作流程 > Branch 與 PR」 | `settings.json` `deny` 列表 |
-| 不 `rm -rf *` / `git reset --hard` / 跳過 pre-commit | 「執行原則」 | 文件層 + Claude 遵從 + 使用者 review（官方自述 argument-constraining 自寫 hook fragile） |
-| 敏感檔案讀取 | 「資安要求」 | `settings.json` Read deny |
-| Commit 格式與 subject 雙門檻 | 「Commit 規範」 | 文件層 + PR review（v3.4.1 起改雙門檻：≤72 ideal / ≤80 warn / >80 fail；v3.3.0 起無自動化檢查） |
-| CLAUDE.md / rules 敘述品質 | upstream dev-guidelines `MAINTAINER.md`「寫作規範」 | `writing-quality-checker` agent（手動觸發，非強制） + PR review |
-| Planner/Executor 慣例 | `.claude/rules/planner-executor.md` | `--agent manager` per-session；專案編輯靠 prompt convention 約束 |
-| 程式碼漏洞自動審查 | 「資安要求」 | 選配 `security-guidance` plugin（opt-in，啟用後 hooks 全自動；本 repo 不啟用，套用見 `.claude/templates/security-guidance/`） |
+| 規則                                                 | 文件層位置                                          | 配置層強制                                                                                                                    |
+| ---------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 不含 AI 歸屬標記                                     | 「回應與品質規範」CRITICAL                          | `settings.json` `attribution` 留空（官方 setting）                                                                            |
+| 不 force-push                                        | 「工作流程 > Branch 與 PR」                         | `settings.json` `deny` 列表                                                                                                   |
+| 不 `rm -rf *` / `git reset --hard` / 跳過 pre-commit | 「執行原則」                                        | 文件層 + Claude 遵從 + 使用者 review（官方自述 argument-constraining 自寫 hook fragile）                                      |
+| 敏感檔案讀取                                         | 「資安要求」                                        | `settings.json` Read deny                                                                                                     |
+| Commit 格式與 subject 雙門檻                         | 「Commit 規範」                                     | 文件層 + PR review（v3.4.1 起改雙門檻：≤72 ideal / ≤80 warn / >80 fail；v3.3.0 起無自動化檢查）                               |
+| CLAUDE.md / rules 敘述品質                           | upstream dev-guidelines `MAINTAINER.md`「寫作規範」 | `writing-quality-checker` agent（手動觸發，非強制） + PR review                                                               |
+| Planner/Executor 慣例                                | `.claude/rules/planner-executor.md`                 | `--agent manager` per-session；專案編輯靠 prompt convention 約束                                                              |
+| 程式碼漏洞自動審查                                   | 「資安要求」                                        | 選配 `security-guidance` plugin（opt-in，啟用後 hooks 全自動；本 repo 不啟用，套用見 `.claude/templates/security-guidance/`） |
