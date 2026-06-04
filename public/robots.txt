@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://n15ra.github.io/sitemap-index.xml
