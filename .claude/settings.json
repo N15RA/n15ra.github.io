@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "_doc": "n15ra.github.io（nisra-site）專案 Claude Code 設定：attribution 留空阻擋 AI 歸屬標記、最小化 permissions（deny 優先保護 force-push 與敏感檔）、啟用 security-guidance plugin、允許 Playwright MCP。",
+  "_doc": "n15ra.github.io 專案 Claude Code 設定：attribution 留空阻擋 AI 歸屬標記、最小化 permissions（deny 優先保護 force-push 與敏感檔）、啟用 security-guidance plugin、允許 Playwright MCP。",
   "attribution": {
     "commit": "",
     "pr": ""

@@ -5,40 +5,32 @@
 
 ## 專案資訊
 
-- **專案名稱**: NISRA 官方網站（repo `n15ra.github.io`；npm package `nisra-site`）
-- **專案簡述**: NISRA 社團官方網站，以 Astro 建置的多語（zh-TW / en）靜態站，部署於 GitHub Pages
-- **技術棧**: Astro 5 + TypeScript（strict）；Tailwind CSS 4 + DaisyUI 5；i18n（zh-TW 預設、`/en/` 前綴）；@astrojs/sitemap；Prettier（含 prettier-plugin-astro）；環境以 mise 管理 Node、pre-commit 管理提交檢查
-- **專案結構**:
+- **專案名稱**: NISRA 官方網站（repo `n15ra.github.io`）
+- **專案簡述**: NISRA 社團官方網站。正全面退出 Wix，改以純靜態方案 + GitHub Pages 維護。目前已清理至乾淨起點：僅保留既有 Wix 站的忠實備份 `old-website/` 作為重構來源，**新靜態框架尚未選定（待選）**
+- **技術棧**: 待選定。清理後暫無應用框架；環境以 mise 管理 Node、pre-commit 管理提交檢查。新框架（框架 / 樣式 / i18n / 部署）選定後於此補上
+- **專案結構**（清理後現況）:
 
 ```
-src/
-  components/   # 可重用 Astro 元件
-  layouts/      # 頁面 layout 模板
-  pages/        # 路由頁面（zh-TW 與 /en/ 兩語）
-  data/         # 內容資料檔
-  i18n/         # 多語字串與設定
-  lib/          # 工具函式
-  styles/       # 樣式
-  types/        # TypeScript 型別定義
-public/         # 靜態資產
-images/         # 圖片資產
-scripts/        # vendored 前端資產（bootstrap bundle）
-.github/workflows/deploy.yml   # GitHub Actions：build + 部署 GitHub Pages
+old-website/             # 既有 Wix 站的忠實備份（archival dump，逐字保留，重構來源）
+.claude/                 # Claude Code 設定與規則（settings.json、rules/）
+CLAUDE.md                # 本檔：dev guidelines（session context + 團隊 onboarding）
+AGENTS.md                # 通用使用指南
+mise.toml                # runtime 版本（Node）
+.pre-commit-config.yaml  # 提交前 base hooks
+.mcp.json                # MCP（Playwright）
 ```
 
 ## 常用指令
 
-- **建置**: `npm run build`（輸出至 `dist/`）
-- **開發 / 預覽**: `npm run dev`（熱更新）；`npm run preview`（預覽 production 建置）
-- **測試**: 目前無測試 runner（導入測試框架後補上）
-- **Lint / 型別檢查**: 無獨立 linter；型別檢查由 `npm run build`（Astro + tsc strict）涵蓋
-- **格式化**: `npm run format`（Prettier）；檢查 `npm run format:check`
+- 清理期間暫無應用框架，故無 build / dev / preview 指令；待新框架選定後於此補上
+- **格式化 / 檢查**: `pre-commit run --all-files`（目前僅 base hooks；Prettier 隨新框架重新導入）
+- **測試**: 尚無測試 runner（導入測試框架後補上）
 
 ## 環境管理
 
 - **工具管理**: mise（配置檔: `mise.toml`，管理 Node 22）
-- **初始化**: `mise install` 後 `npm install`
-- **虛擬環境**: 無（純 Node 專案，不使用 Python venv）
+- **初始化**: `mise install`（清理後暫無 Node 專案，待新框架引入 `package.json` 後再 `npm install`）
+- **虛擬環境**: 無（不使用 Python venv）
 
 ### 原則
 
@@ -161,12 +153,12 @@ scripts/        # vendored 前端資產（bootstrap bundle）
 ## 專案特殊規範
 
 - **context7-first**: 撰寫、審查或調整程式碼前，優先以 context7 MCP 查證套件 API 與當前 Best Practice，不依賴記憶（延續舊版專案指南，較通用區段「不確定時才查」更主動）。
-- **i18n 雙語同步**: 新增或修改頁面內容時，須同步維護 zh-TW（預設）與 `/en/` 兩個語系版本，避免單語遺漏。
+- **i18n 雙語（新站需求）**: 既有站以繁中為主、含英文內容；新站重構時須規劃並同步維護 zh-TW 與 en 雙語，避免單語遺漏（具體路由策略待框架選定後定義）。
 
 ## Formatter & Linter
 
-- 唯一 formatter 為 Prettier（含 `prettier-plugin-astro`），經 local pre-commit hook 處理 `.astro` / `.ts` / `.css` / `.md` / `.json` / `.yaml`
-- pre-commit-hooks 負責 trailing-whitespace / end-of-file / yaml / json 等基礎檢查；vendored 壓縮資產與 source map 經 `exclude` 排除
+- 清理期間 pre-commit 僅執行與框架無關的 base hooks（trailing-whitespace / end-of-file / yaml / json / merge-conflict / mixed-line-ending）；Prettier 已隨 Astro 應用移除，待新框架選定後連同 pinned 版本以 local hook 重新導入
+- `old-website/` 為忠實備份，經 `exclude` 排除，不受任何 hook 格式化
 
 ### pre-commit
 
