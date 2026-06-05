@@ -2,20 +2,36 @@
 import { getCollection } from "astro:content";
 import Tabs from "./Tabs.astro";
 import Timeline from "./Timeline.astro";
+import Badge from "./Badge.astro";
+import {
+  CHARTER_INTRO,
+  CHARTER_PREAMBLE,
+  CHARTER,
+  OB_TRIBUTE,
+  OB_FOUNDER,
+  OB_ELDERS,
+} from "../data/culture";
 
+// 沿革：最新在上（貼合設計最終定案，order 降冪）。
 const history = (await getCollection("history"))
-  .sort((a, b) => a.data.order - b.data.order)
+  .sort((a, b) => b.data.order - a.data.order)
   .map((e) => ({ term: e.data.date, desc: e.data.text }));
 
+// 歷屆夥伴：會長任期由新到舊；附「歷屆合照」照片佔位（待真照片）。
 const members = (await getCollection("members"))
   .sort((a, b) => b.data.order - a.data.order)
-  .map((e) => ({ term: e.data.range, desc: e.data.desc }));
+  .map((e) => ({ term: e.data.range, desc: e.data.desc, photo: true }));
 
 const tabs = [
   { id: "summary", label: "Summary 簡介" },
   { id: "history", label: "History 沿革" },
   { id: "members", label: "Members 歷屆夥伴" },
+  { id: "ob", label: "O.B. 元老" },
+  { id: "charter", label: "Charter 忠憲" },
 ];
+
+// 條案以中文數字編號，貼合「忠憲」仿憲法體例。
+const CN = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
 ---
 
 <section class="section">
@@ -59,7 +75,7 @@ const tabs = [
         hidden
       >
         <p class="ds-lead" style="margin-bottom:8px; max-width:60ch">
-          從 2006 年的 RumorTeam 到今天的 NISRA，這是我們一路走來的一些足跡。
+          從 2006 年的 RumorTeam 到今天的 NISRA，這是我們一路走來的足跡（最新在上）。
         </p>
         <Timeline items={history} />
       </div>
@@ -74,9 +90,80 @@ const tabs = [
       >
         <p class="ds-lead">
           NISRA
-          一代帶一代。以下為歷屆幹部名單（取自舊站，依會長任期由新到舊排序）；各屆對應的學年度待社團確認後補上。
+          一代帶一代。以下為歷屆幹部名單（取自舊站，依會長任期由新到舊排序）；各屆對應的學年度與合照待社團確認後補上。
         </p>
         <Timeline items={members} />
+      </div>
+
+      <div
+        class="subtab-panel"
+        role="tabpanel"
+        id="panel-ob"
+        aria-labelledby="tab-ob"
+        data-panel="ob"
+        hidden
+      >
+        <p class="ds-lead" style="max-width:60ch">
+          NISRA 一路走來，靠的是一代又一代前輩的累積。這頁向歷代元老（O.B.）致敬。
+        </p>
+        <div class="creed" style="margin-top:20px">
+          <p
+            class="creed__zh"
+            style="font-size:clamp(1.05rem, 0.9rem + 0.6vw, 1.4rem); line-height:1.9; font-weight:500"
+            set:html={OB_TRIBUTE.join("<br />")}
+          />
+        </div>
+        <div style="margin-top:24px">
+          <p class="kicker">// 創始與元老</p>
+          <div class="card__tags" style="margin-top:12px">
+            <Badge variant="lime">創辦人 · {OB_FOUNDER}</Badge>
+            {OB_ELDERS.map((n) => <Badge variant="soft">{n}</Badge>)}
+          </div>
+          <p class="ds-caption" style="margin-top:12px">
+            歷代元老名單以社團為準；此處取自舊站存檔。
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="subtab-panel"
+        role="tabpanel"
+        id="panel-charter"
+        aria-labelledby="tab-charter"
+        data-panel="charter"
+        hidden
+      >
+        <p class="ds-lead" style="max-width:64ch">{CHARTER_INTRO}</p>
+        <div class="creed" style="margin:20px 0 8px">
+          <p class="creed__zh">
+            NISRA 的最高信條是<span class="creed__hl">「愛」</span>。
+          </p>
+        </div>
+        <p
+          class="prose"
+          style="max-width:64ch; color:var(--fg-muted); font-family:var(--font-mono); font-size:14px; line-height:1.9"
+          set:html={CHARTER_PREAMBLE.join("<br />")}
+        />
+        {
+          CHARTER.map((code) => (
+            <section style="margin-top:28px">
+              <h3 style="margin:0 0 4px">{code.code}</h3>
+              {code.chapters.map((ch) => (
+                <div style="margin-top:14px">
+                  <p class="kicker">{ch.chapter}</p>
+                  <div style="margin-top:8px">
+                    {ch.articles.map((a, i) => (
+                      <div class="article">
+                        <p class="article__n">第 {CN[i]} 條</p>
+                        <p class="article__t">{a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </section>
+          ))
+        }
       </div>
     </Tabs>
   </div>
