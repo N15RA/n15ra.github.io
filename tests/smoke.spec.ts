@@ -79,6 +79,13 @@ test("about Charter tab shows the creed and 忠憲條案", async ({ page }) => {
   await expect(charter).toContainText("忠憲條案");
 });
 
+test("event page shows refreshed KKTIX events through 2025", async ({ page }) => {
+  await page.goto("/event");
+  await expect(page.locator("#panel-news")).toContainText("Enlightened 2025");
+  await page.getByRole("tab", { name: /活動 Events/ }).click();
+  await expect(page.locator("#panel-events")).toContainText("Hackathon");
+});
+
 test("lesson semester selector switches archives", async ({ page }) => {
   await page.goto("/lesson");
   await expect(page.locator("#sem-108-1")).toBeVisible();
