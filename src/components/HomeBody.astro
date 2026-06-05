@@ -14,9 +14,12 @@ const locale = getLocale(Astro.currentLocale);
 const lessonHref = localizePath("/lesson", locale);
 const aboutHref = localizePath("/about", locale);
 
+// 動態取「最新、非示意、且有課程」的學期作為首頁近期社課，避免硬編學期 id。
 const semesters = await getCollection("semesters");
-const recent = semesters.find((s) => s.id === "111-2");
-const recentCourses = recent?.data.courses ?? [];
+const recent = [...semesters]
+  .sort((a, b) => b.data.order - a.data.order)
+  .find((s) => !s.data.scaffold && s.data.courses.length > 0);
+const recentCourses = recent?.data.courses.slice(0, 3) ?? [];
 ---
 
 <header class="hero" data-theme="dark">
@@ -61,23 +64,31 @@ const recentCourses = recent?.data.courses ?? [];
   </div>
 </section>
 
-<section class="section section--sunk">
-  <div class="wrap">
-    <div
-      class="section__head"
-      style="display:flex; justify-content:space-between; align-items:flex-end; max-width:none"
-    >
-      <div>
-        <p class="kicker">// Lesson · 111-2</p>
-        <h2 style="margin:6px 0 0">近期社課</h2>
+{
+  recent && (
+    <section class="section section--sunk">
+      <div class="wrap">
+        <div
+          class="section__head"
+          style="display:flex; justify-content:space-between; align-items:flex-end; max-width:none"
+        >
+          <div>
+            <p class="kicker">// Lesson · {recent.id}</p>
+            <h2 style="margin:6px 0 0">近期社課</h2>
+          </div>
+          <Button variant="ghost" href={lessonHref}>
+            所有課程 →
+          </Button>
+        </div>
+        <div class="grid grid--3">
+          {recentCourses.map((c) => (
+            <CourseCard course={c} />
+          ))}
+        </div>
       </div>
-      <Button variant="ghost" href={lessonHref}>所有課程 →</Button>
-    </div>
-    <div class="grid grid--3">
-      {recentCourses.map((c) => <CourseCard course={c} />)}
-    </div>
-  </div>
-</section>
+    </section>
+  )
+}
 
 <section class="section">
   <div class="wrap">

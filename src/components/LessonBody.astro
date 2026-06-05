@@ -3,7 +3,8 @@ import { getCollection } from "astro:content";
 import CourseCard from "./CourseCard.astro";
 
 const semesters = (await getCollection("semesters")).sort((a, b) => b.data.order - a.data.order);
-const defaultId = "108-1";
+// 預設選最新「有課程」的學期，fallback 為最新學期；避免硬編 id。
+const defaultId = (semesters.find((s) => s.data.courses.length) ?? semesters[0])?.id ?? "";
 ---
 
 <section class="section">
