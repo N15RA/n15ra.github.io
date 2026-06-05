@@ -14,7 +14,9 @@ function isActive(href: string): boolean {
   return h === "/" ? here === "/" : here === h || here.startsWith(h + "/");
 }
 const homeHref = localizePath("/", locale);
-const joinHref = `${homeHref === "/" ? "" : homeHref}#join` || "#join";
+// 一律指向「該語言首頁的 #join」：zh → /#join、en → /en/#join。
+// 在首頁時同路徑只跳 hash（原地捲動），在非首頁則導回首頁再捲動。
+const joinHref = `${homeHref}#join`;
 ---
 
 <nav class="nav" data-theme="dark">
