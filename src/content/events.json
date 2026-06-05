@@ -1,0 +1,56 @@
+[
+  {
+    "id": "hitcon-2022-village",
+    "category": "最新消息",
+    "title": "HITCON 2022 Village",
+    "date": "2022.08.16",
+    "desc": "在 HITCON 擺攤，準備了與會眾互動的小遊戲，歡迎來找我們。",
+    "href": "https://www.facebook.com/N15RA/",
+    "order": 3
+  },
+  {
+    "id": "ais3-club-2022-news",
+    "category": "最新消息",
+    "title": "2022 AIS3 CLUB",
+    "date": "2022.08.13",
+    "desc": "與 AIS3 合作的暑期社團活動。",
+    "href": "https://www.facebook.com/N15RA/",
+    "order": 2
+  },
+  {
+    "id": "enlightened-2022-news",
+    "category": "最新消息",
+    "title": "Enlightened 2022",
+    "date": "2022.06.28",
+    "desc": "今年由 NISRA 協助舉辦，歡迎大家來輔大交流。",
+    "href": "https://www.facebook.com/N15RA/",
+    "order": 1
+  },
+  {
+    "id": "enlightened-summer",
+    "category": "活動 Events",
+    "title": "Enlightened 暑期密訓",
+    "date": "2019.08",
+    "desc": "暑期密集訓練，從基礎打到實戰。",
+    "href": "https://www.facebook.com/N15RA/",
+    "order": 1
+  },
+  {
+    "id": "hitcon-community",
+    "category": "合作 Partnerships",
+    "title": "HITCON Community",
+    "date": "2022.08",
+    "desc": "社群擺攤合作，獲頒優秀社群。",
+    "href": "https://www.facebook.com/N15RA/",
+    "order": 2
+  },
+  {
+    "id": "ais3-club-2022-partner",
+    "category": "合作 Partnerships",
+    "title": "2022 AIS3 CLUB",
+    "date": "2022.08",
+    "desc": "跨組織合作，推廣資安教育。",
+    "href": "https://www.facebook.com/N15RA/",
+    "order": 1
+  }
+]

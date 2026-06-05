@@ -1,0 +1,18 @@
+---
+import Hex from "./Hex.astro";
+
+interface Props {
+  event: { title: string; date: string; desc: string; href: string };
+}
+const { event } = Astro.props;
+---
+
+<article class="card">
+  <div class="card__thumb"><Hex /></div>
+  <div class="card__body">
+    <p class="course__date">{event.date}</p>
+    <h3 class="card__title">{event.title}</h3>
+    <p class="card__desc">{event.desc}</p>
+    <a class="card__more" href={event.href} target="_blank" rel="noreferrer">更多 →</a>
+  </div>
+</article>

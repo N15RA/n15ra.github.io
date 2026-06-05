@@ -1,0 +1,86 @@
+---
+import { getCollection } from "astro:content";
+import CourseCard from "./CourseCard.astro";
+
+const semesters = (await getCollection("semesters")).sort((a, b) => b.data.order - a.data.order);
+const defaultId = "111-2";
+---
+
+<section class="section">
+  <div class="wrap">
+    <p class="kicker">// Lesson</p>
+    <h1 style="margin-top:8px">課程</h1>
+    <p class="ds-lead" style="margin-top:12px; margin-bottom:28px; max-width:60ch">
+      每週二晚上，我們聚在一起讀一個主題、動手做一次。歷年社課依學期保存，隨時都能回顧。
+    </p>
+
+    <div class="lessons">
+      <div class="lessons__nav" aria-label="選擇學期">
+        {
+          semesters.map((s) => (
+            <button
+              class={"sem-btn" + (s.id === defaultId ? " is-active" : "")}
+              data-sem={s.id}
+              aria-pressed={s.id === defaultId ? "true" : "false"}
+              aria-controls={`sem-${s.id}`}
+              type="button"
+            >
+              <span class="sem-btn__id">{s.id}</span>
+              <span class="sem-btn__n">{s.data.courses.length || "—"}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="lessons__main">
+        {
+          semesters.map((s) => (
+            <div
+              class="sem-panel"
+              id={`sem-${s.id}`}
+              data-sempanel={s.id}
+              hidden={s.id !== defaultId}
+            >
+              <div class="lessons__head">
+                <h2 style="margin:0">{s.data.label}</h2>
+                <span class="lessons__count">{s.data.courses.length} 堂社課</span>
+              </div>
+              {s.data.courses.length ? (
+                <div class="grid grid--2">
+                  {s.data.courses.map((c) => (
+                    <CourseCard course={c} />
+                  ))}
+                </div>
+              ) : (
+                <div class="lessons__empty">
+                  <p class="kicker" style="margin-bottom:8px">
+                    // 整理中
+                  </p>
+                  <p style="margin:0; color:var(--fg-muted)">本學期社課紀錄整理中，敬請期待。</p>
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".lessons").forEach((root) => {
+    const btns = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-sem]"));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>("[data-sempanel]"));
+    const select = (id: string) => {
+      btns.forEach((b) => {
+        const on = b.dataset.sem === id;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-pressed", String(on));
+      });
+      panels.forEach((p) => {
+        p.hidden = p.dataset.sempanel !== id;
+      });
+    };
+    btns.forEach((b) => b.addEventListener("click", () => select(b.dataset.sem!)));
+  });
+</script>

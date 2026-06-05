@@ -1,0 +1,99 @@
+[
+  {
+    "id": "112-1",
+    "label": "112 學年度 · 第 1 學期",
+    "order": 6,
+    "scaffold": true,
+    "courses": []
+  },
+  {
+    "id": "111-2",
+    "label": "111 學年度 · 第 2 學期",
+    "order": 5,
+    "scaffold": false,
+    "courses": [
+      {
+        "title": "X86 Assembly & Reverse",
+        "by": "sicc",
+        "date": "2023.03.07",
+        "desc": "從 x86 組語讀起，踏進逆向工程的大門。",
+        "tags": ["Reverse"]
+      },
+      {
+        "title": "從資安新手村到職業工會",
+        "by": "Shaolin Hsu",
+        "date": "2023.03.14",
+        "desc": "在 NISRA 的修煉之路——一位學長的資安成長故事。",
+        "tags": ["分享"]
+      },
+      {
+        "title": "你所不知道的 excel 用法",
+        "by": "zhen",
+        "date": "2023.03.22",
+        "desc": "把試算表玩出新高度的實用社課。",
+        "tags": ["雜談"]
+      }
+    ]
+  },
+  {
+    "id": "111-1",
+    "label": "111 學年度 · 第 1 學期",
+    "order": 4,
+    "scaffold": true,
+    "courses": [
+      {
+        "title": "Web 安全入門",
+        "date": "2022.10.04",
+        "desc": "OWASP Top 10、SQLi、XSS，搭配實戰 CTF 題目。",
+        "tags": ["Web", "CTF"]
+      },
+      {
+        "title": "認證與 Session",
+        "date": "2022.10.18",
+        "desc": "從登入機制看常見漏洞與防禦思路。",
+        "tags": ["Web", "Auth"]
+      }
+    ]
+  },
+  {
+    "id": "110-2",
+    "label": "110 學年度 · 第 2 學期",
+    "order": 3,
+    "scaffold": true,
+    "courses": [
+      {
+        "title": "Linux 基礎與權限",
+        "date": "2022.03.08",
+        "desc": "環境、權限與提權概念，打底系統安全。",
+        "tags": ["Linux", "Pwn"]
+      },
+      {
+        "title": "二進位逆向入門",
+        "date": "2022.03.22",
+        "desc": "從組語讀起，動手拆解小程式。",
+        "tags": ["Reverse"]
+      }
+    ]
+  },
+  {
+    "id": "110-1",
+    "label": "110 學年度 · 第 1 學期",
+    "order": 2,
+    "scaffold": true,
+    "courses": [
+      {
+        "title": "密碼學概論",
+        "date": "2021.10.05",
+        "desc": "對稱、非對稱、雜湊，與常見誤用情境。",
+        "tags": ["Crypto"]
+      }
+    ]
+  },
+  {
+    "id": "109-2",
+    "label": "109 學年度 · 第 2 學期",
+    "order": 1,
+    "scaffold": true,
+    "courses": []
+  }
+]

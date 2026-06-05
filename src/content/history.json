@@ -1,0 +1,26 @@
+[
+  {
+    "id": "2006-rumorteam",
+    "date": "2006.03.23",
+    "text": "於創辦人 allenown 的板上成立 RumorTeam",
+    "order": 1
+  },
+  {
+    "id": "2007-rename",
+    "date": "2007.05.25",
+    "text": "RumorTeam 正式更名為 Network and Information Security Research Association",
+    "order": 2
+  },
+  {
+    "id": "2019-enlightened",
+    "date": "2019.08",
+    "text": "Enlightened 暑期密訓",
+    "order": 3
+  },
+  {
+    "id": "2022-hitcon-village",
+    "date": "2022.08",
+    "text": "HITCON 2022 Village 擺攤交流",
+    "order": 4
+  }
+]
