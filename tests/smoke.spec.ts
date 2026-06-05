@@ -48,11 +48,11 @@ test("about sub-tabs switch panels", async ({ page }) => {
 
 test("lesson semester selector switches archives", async ({ page }) => {
   await page.goto("/lesson");
-  await expect(page.locator("#sem-111-2")).toBeVisible();
-  await expect(page.locator("#sem-110-1")).toBeHidden();
-  await page.locator('[data-sem="110-1"]').click();
-  await expect(page.locator("#sem-110-1")).toBeVisible();
-  await expect(page.locator("#sem-111-2")).toBeHidden();
+  await expect(page.locator("#sem-108-1")).toBeVisible();
+  await expect(page.locator("#sem-106-1")).toBeHidden();
+  await page.locator('[data-sem="106-1"]').click();
+  await expect(page.locator("#sem-106-1")).toBeVisible();
+  await expect(page.locator("#sem-108-1")).toBeHidden();
 });
 
 test("keyboard Tab reveals the skip-to-content link (focus-visible)", async ({ page }) => {

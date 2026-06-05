@@ -1,30 +1,93 @@
 [
   {
-    "id": "term-111",
-    "range": "111 學年度",
-    "desc": "會長、副會長與學術／活動／資訊幹部，主導當屆社課與對外交流。",
+    "id": "term-theo",
+    "range": "會長 Theo",
+    "desc": "會記 PYC · 紀錄 HTS · 總務 小學生",
+    "order": 13,
+    "scaffold": false
+  },
+  {
+    "id": "term-wangxinjia",
+    "range": "會長 王薪嘉",
+    "desc": "課記 洪苡禎 · 文宣 朱柏瑞 · 會記 黃信憲 · 紀錄 許登傑、陳玟君、吳紹瑋 · 總務 許家維 · 網管 洪苡禎、蛛子珣",
+    "order": 12,
+    "scaffold": false
+  },
+  {
+    "id": "term-caspar",
+    "range": "會長 Caspar",
+    "desc": "課記 Andrew · 會記 ukaze · 紀錄 Teresa · 總務 許家維 · 網管 webberwu",
+    "order": 11,
+    "scaffold": false
+  },
+  {
+    "id": "term-oe",
+    "range": "會長 OE",
+    "desc": "文宣 洪苡禎 · 課記 馬各 · 會記 黃信憲 · 紀錄 Sexy · 總務 昱璇 · 網管 銘佐",
+    "order": 10,
+    "scaffold": false
+  },
+  {
+    "id": "term-sy",
+    "range": "會長 SY",
+    "desc": "文宣 Gary · 教室 Sexy · 課記 玠均 · 會記 韋伽 · 拍照 OE · 錄影 允禎 · 總務 昱璇 · 網管 銘佐",
+    "order": 9,
+    "scaffold": false
+  },
+  {
+    "id": "term-xiaolin-a",
+    "range": "會長 小林",
+    "desc": "文宣 溫祥 · 紀錄 燒肉、蜘子珣、貴妃、SY、柔瑄 · 宣傳 Snake · 網管 鴨鴨 · 生活 琮皓、昱璇 · 課記 韋伽",
+    "order": 8,
+    "scaffold": false
+  },
+  {
+    "id": "term-zhizixun",
+    "range": "會長 蜘子珣",
+    "desc": "總務 Snake · 網管 鴨鴨 · 紀錄 昱璇、柔瑄、Bell、SY · 課記 韋伽 · 生活 琮皓",
+    "order": 7,
+    "scaffold": false
+  },
+  {
+    "id": "term-snake",
+    "range": "會長 Snake",
+    "desc": "副會長 小林、溫祥 · 紀錄 燒肉、貴妃、蜘子珣 · 網管 鴨鴨 · 生活 鈴木",
+    "order": 6,
+    "scaffold": false
+  },
+  {
+    "id": "term-wenxiang",
+    "range": "會長 溫祥",
+    "desc": "副會長 小林 · 紀錄 燒肉 · 活動 蝦仁 · 網管 宇君 · 生活 鈴木",
+    "order": 5,
+    "scaffold": false
+  },
+  {
+    "id": "term-xiaolin-b",
+    "range": "會長 小林",
+    "desc": "紀錄 燒肉 · 活動 蝦仁 · 網管 宇君 · 生活 鈴木",
     "order": 4,
-    "scaffold": true
+    "scaffold": false
   },
   {
-    "id": "term-110",
-    "range": "110 學年度",
-    "desc": "延續寒暑假密訓與 CTF 練題的傳統，帶領新血入門。",
+    "id": "term-dawei",
+    "range": "會長 大維",
+    "desc": "活動 彩虹 · 紀錄 大頭 · 主管 日成 · 顧問 Orange",
     "order": 3,
-    "scaffold": true
+    "scaffold": false
   },
   {
-    "id": "term-109",
-    "range": "109 學年度",
-    "desc": "維持社課節奏與資源整理，線上線下並行。",
+    "id": "term-haowei",
+    "range": "會長 浩維",
+    "desc": "副會長 大維 · 公關 威厲、聰麗 · 活動 奕穎、羽欣、文寬、儀潔 · 主管 銘均、家琦 · 總務 宏澤 · 宣傳 耀彬",
     "order": 2,
-    "scaffold": true
+    "scaffold": false
   },
   {
-    "id": "term-108",
-    "range": "108 學年度",
-    "desc": "持續經營社課、競賽與社群擺攤交流。",
+    "id": "term-lihao",
+    "range": "會長 立豪",
+    "desc": "公關 威達 · 總務 一恩 · 文宣 銘均、家琦 · 網管 惠翔 · 教學 Banana",
     "order": 1,
-    "scaffold": true
+    "scaffold": false
   }
 ]

@@ -2,25 +2,125 @@
   {
     "id": "2006-rumorteam",
     "date": "2006.03.23",
-    "text": "於創辦人 allenown 的板上成立 RumorTeam",
+    "text": "於創辦人 allenown 的板上正式成立 RumorTeam",
     "order": 1
   },
+  { "id": "2006-rumor-radio", "date": "2006.09.27", "text": "設置 Rumor Radio", "order": 2 },
+  {
+    "id": "2006-gss-1",
+    "date": "2006.12.22",
+    "text": "參加第一屆全國大專院校資安技能金盾獎 - 隊伍「GRAMARY」得到冠軍！",
+    "order": 3
+  },
+  { "id": "2007-charter", "date": "2007.01.04", "text": "決定章程 v0.1 Beta 的內容", "order": 4 },
   {
     "id": "2007-rename",
     "date": "2007.05.25",
     "text": "RumorTeam 正式更名為 Network and Information Security Research Association",
-    "order": 2
+    "order": 5
   },
   {
-    "id": "2019-enlightened",
-    "date": "2019.08",
-    "text": "Enlightened 暑期密訓",
-    "order": 3
+    "id": "2007-hit",
+    "date": "2007.06.25",
+    "text": "參加第三屆台灣駭客年會 (HIT 2007) - 得到第三名！",
+    "order": 6
   },
   {
-    "id": "2022-hitcon-village",
-    "date": "2022.08",
-    "text": "HITCON 2022 Village 擺攤交流",
-    "order": 4
-  }
+    "id": "2007-gss-2",
+    "date": "2007.12.07",
+    "text": "參加第二屆全國大專院校資安技能金盾獎 - 隊伍「我們自備餐具」得到第五名！",
+    "order": 7
+  },
+  { "id": "2008-charter", "date": "2008.02.16", "text": "一次草擬 NISRA 章程與內容", "order": 8 },
+  {
+    "id": "2008-courses",
+    "date": "2008.02.27",
+    "text": "開設初階及進階班之專業資訊交流課程 v0.1",
+    "order": 9
+  },
+  {
+    "id": "2008-hit",
+    "date": "2008.07.20",
+    "text": "參加第四屆台灣駭客年會 (HIT 2008) - 得到第三名！",
+    "order": 10
+  },
+  {
+    "id": "2008-takming",
+    "date": "2008.11.26",
+    "text": "Takming University Information Security Simulation Contest, 1st, 2nd, 6th place.",
+    "order": 11
+  },
+  {
+    "id": "2008-gss-3",
+    "date": "2008.12.05",
+    "text": "參加第三屆全國大專院校資安技能金盾獎 複賽 - 隊伍「ARSIN」得到第三名！",
+    "order": 12
+  },
+  { "id": "2009-timhsu", "date": "2009.03.24", "text": "Timhsu 資安講座 - 駭客趨勢", "order": 13 },
+  {
+    "id": "2009-gss-4",
+    "date": "2009.12.04",
+    "text": "參加第四屆全國大專院校資安技能金盾獎 複賽 - 隊伍「卡到陰大食團、NISRA」得到第四名！",
+    "order": 14
+  },
+  {
+    "id": "2010-linux",
+    "date": "2010.01.19",
+    "text": "寒假特訓 - Linux (1/19、20、22、23)",
+    "order": 15
+  },
+  { "id": "2010-aav", "date": "2010.01.26", "text": "寒假特訓 - AAV (1/26、27、30)", "order": 16 },
+  { "id": "2010-owasp", "date": "2010.02.02", "text": "寒假特訓 - OWASP (2/2、2/3)", "order": 17 },
+  {
+    "id": "2010-gss-5",
+    "date": "2010.12.10",
+    "text": "參加第五屆全國大專院資安技能金盾獎 - 隊伍「NISRA 台科大分舵」得到亞軍！",
+    "order": 18
+  },
+  { "id": "2011-hit", "date": "2011.07.23", "text": "參加第七屆駭客年會", "order": 19 },
+  {
+    "id": "2011-gss-6",
+    "date": "2011.12.19",
+    "text": "參加第六屆全國大專院校資安技能金盾獎 - 隊伍「[NISRA]台科大分舵」得到冠軍！",
+    "order": 20
+  },
+  { "id": "2012-hit", "date": "2012.07.21", "text": "參加第八屆駭客年會", "order": 21 },
+  { "id": "2012-summer", "date": "2012.09.06", "text": "暑訓 - 搞什麼競賽第一屆發表", "order": 22 },
+  {
+    "id": "2012-gss-7",
+    "date": "2012.12.21",
+    "text": "參加第七屆全國大專院校資安技能金盾獎 - 隊伍「【NISRA】金盾大食團」得到冠軍！",
+    "order": 23
+  },
+  {
+    "id": "2013-wargame-train",
+    "date": "2013.01.28",
+    "text": "寒假特訓 - The Wargame (至 1/31)",
+    "order": 24
+  },
+  {
+    "id": "2013-wargame-contest",
+    "date": "2013.02.01",
+    "text": "寒假特訓 - The Wargame 競賽",
+    "order": 25
+  },
+  { "id": "2013-site-draft", "date": "2013.04.30", "text": "草擬新官網初稿", "order": 26 },
+  { "id": "2013-site-live", "date": "2013.07.07", "text": "本站官網，正式運作", "order": 27 },
+  { "id": "2013-hit", "date": "2013.07.19", "text": "參加第九屆駭客年會", "order": 28 },
+  { "id": "2013-summer", "date": "2013.09.02", "text": "暑訓 - 搞甚麼競賽第二屆發表", "order": 29 },
+  { "id": "2014-winter", "date": "2014.01.20", "text": "寒假特訓 (至 1/22)", "order": 30 },
+  { "id": "2014-hackathon-1", "date": "2014.01.24", "text": "第一屆 NISRA Hackathon", "order": 31 },
+  {
+    "id": "2014-hackathon-news",
+    "date": "2014.03.04",
+    "text": "NISRA Hackathon 登上輔大新聞網",
+    "order": 32
+  },
+  {
+    "id": "2014-hitcon",
+    "date": "2014.08.21",
+    "text": "參加 HITCON 社群擺攤並獲得優秀社群",
+    "order": 33
+  },
+  { "id": "2014-fsecure", "date": "2014.12.17", "text": "參加 F-Secure 榮獲第三名", "order": 34 }
 ]

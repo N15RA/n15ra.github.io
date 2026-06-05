@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import CourseCard from "./CourseCard.astro";
 
 const semesters = (await getCollection("semesters")).sort((a, b) => b.data.order - a.data.order);
-const defaultId = "111-2";
+const defaultId = "108-1";
 ---
 
 <section class="section">
@@ -11,7 +11,8 @@ const defaultId = "111-2";
     <p class="kicker">// Lesson</p>
     <h1 style="margin-top:8px">課程</h1>
     <p class="ds-lead" style="margin-top:12px; margin-bottom:28px; max-width:60ch">
-      每週二晚上，我們聚在一起讀一個主題、動手做一次。歷年社課依學期保存，隨時都能回顧。
+      每週二晚上，我們聚在一起讀一個主題、動手做一次。歷年社課依學期保存，隨時都能回顧（線上社課紀錄自
+      106 學年度起）。
     </p>
 
     <div class="lessons">

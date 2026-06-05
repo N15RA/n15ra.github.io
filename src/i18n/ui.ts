@@ -22,6 +22,7 @@ export const ui = {
     "lang.ariaSwitch": "切換語言",
     "footer.navLabel": "頁尾導覽",
     "footer.dept": "輔仁大學 資訊工程學系",
+    "footer.addr": "新北市新莊區中正路 510 號",
     "footer.room": "聖言樓 SF645",
     "footer.hackathon": "Hackathon",
     "skip.toContent": "跳到主要內容",
@@ -41,6 +42,7 @@ export const ui = {
     "footer.navLabel": "Footer navigation",
     "footer.dept":
       "Dept. of Computer Science & Information Engineering, Fu Jen Catholic University",
+    "footer.addr": "510 Zhongzheng Rd., Xinzhuang Dist., New Taipei City",
     "footer.room": "Room SF645, Shengyan Hall",
     "footer.hackathon": "Hackathon",
     "skip.toContent": "Skip to main content",
