@@ -1,0 +1,42 @@
+# 部署到 GitHub Pages（user/org pages repo，服務於根網域）。
+# 一次性設定：Repo → Settings → Pages → Build and deployment → Source = "GitHub Actions"。
+# 自訂網域 nisra.net cutover 時：把 astro.config 的 site 改為 https://www.nisra.net，
+# 並在 public/ 加入 CNAME 檔（內容為網域）。本 workflow 不需更動。
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# 最小權限：只給 Pages 部署所需。
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一時間只跑一個部署，但不取消進行中的（避免半成品上線）。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build with Astro
+        uses: withastro/action@v6
+        with:
+          node-version: 22 # 對齊 mise.toml
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
