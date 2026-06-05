@@ -1,0 +1,16 @@
+# 忠實的舊站備份，逐字保留、勿格式化
+old-website/
+
+# 建置產物與相依
+dist/
+node_modules/
+.astro/
+.cache/
+test-results/
+playwright-report/
+
+# 自架字體（二進位 / 子集產物）
+public/fonts/
+
+# lockfile 由 npm 維護
+package-lock.json
