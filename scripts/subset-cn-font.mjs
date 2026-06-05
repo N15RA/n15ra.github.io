@@ -43,8 +43,10 @@ function collectChars() {
   for (const ch of BASE_CHARS) set.add(ch);
   for (const file of walk(SRC_DIR)) {
     for (const ch of readFileSync(file, "utf8")) {
-      // 收集所有非拉丁字元（CJK 統一表意、擴充、全形標點、箭頭、破折號等）。
-      if (ch.codePointAt(0) > 0x2000) set.add(ch);
+      const cp = ch.codePointAt(0);
+      // 收集所有非拉丁字元（CJK 統一表意、擴充、全形標點、箭頭、破折號等），
+      // 並補上希臘/西里爾字母（如舊站原文顏文字 ヾ(*ΦωΦ)ツ 的 Φ、ω）。
+      if (cp > 0x2000 || (cp >= 0x0370 && cp <= 0x04ff)) set.add(ch);
     }
   }
   return [...set].sort().join("");

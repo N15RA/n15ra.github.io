@@ -1094,3 +1094,97 @@ img {
 .footer__contact a:hover {
   color: var(--accent);
 }
+
+/* ---- Course card (clickable) + detail modal ---- */
+.course-card {
+  position: relative;
+}
+.course-card--clickable {
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.course-card--clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.course-card__open {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+/* stretched button：讓整張卡可點，唯一可聚焦控制為標題按鈕（accessible name＝標題） */
+.course-card__open::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-lg);
+}
+.course-card__open:focus-visible {
+  outline: none;
+}
+.course-card__open:focus-visible::after {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.course-modal {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: min(640px, calc(100% - 40px));
+  max-width: 640px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  color: var(--fg);
+}
+.course-modal::backdrop {
+  background: rgba(22, 22, 22, 0.55);
+  backdrop-filter: blur(2px);
+}
+.course-modal__panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 30px;
+}
+.course-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--fg-muted);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+.course-modal__close:hover {
+  color: var(--fg);
+  border-color: var(--border-strong);
+}
+.course-modal__title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--fg-strong);
+  margin: 6px 40px 12px 0;
+}
+.course-modal__text {
+  font-size: var(--t-body);
+  line-height: 1.8;
+  color: var(--fg);
+  margin: 0;
+  white-space: pre-line;
+  text-wrap: pretty;
+}
