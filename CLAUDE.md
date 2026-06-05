@@ -6,30 +6,45 @@
 ## 專案資訊
 
 - **專案名稱**: NISRA 官方網站（repo `n15ra.github.io`）
-- **專案簡述**: NISRA 社團官方網站。正全面退出 Wix，改以純靜態方案 + GitHub Pages 維護。目前已清理至乾淨起點：僅保留既有 Wix 站的忠實備份 `old-website/` 作為重構來源，**新靜態框架尚未選定（待選）**
-- **技術棧**: 待選定。清理後暫無應用框架；環境以 mise 管理 Node、pre-commit 管理提交檢查。新框架（框架 / 樣式 / i18n / 部署）選定後於此補上
-- **專案結構**（清理後現況）:
+- **專案簡述**: NISRA 社團官方網站。已全面退出 Wix，改以 **Astro + GitHub Pages** 的純靜態方案重構；視覺忠於新設計系統，中英雙語（zh-TW 為主、英文 scaffold），字體全自架（無第三方 CDN）。`old-website/` 為既有 Wix 站的忠實備份（read-only，不再作為框架來源）。
+- **技術棧**: **Astro 6**（元件化 SSG、預設零 JS）+ **純 CSS design tokens**（`src/styles/`，不使用 Tailwind）+ Astro 內建 **i18n**（`/` 繁中、`/en/` 英文）+ 自架字體（Maple Mono 拉丁 + Maple Mono NF CN 中文子集 + Noto Sans TC 保底）。環境以 **mise** 管理 Node 22、**Prettier**（pre-commit）格式化、**Playwright** 冒煙/無障礙測試、**GitHub Actions** 部署到 GitHub Pages。
+- **專案結構**:
 
 ```
-old-website/             # 既有 Wix 站的忠實備份（archival dump，逐字保留，重構來源）
+src/                     # Astro 源碼
+  pages/                 #   路由（/ 繁中、/en/ 英文 scaffold）
+  layouts/               #   BaseLayout（head、字體、Nav/Footer）
+  components/            #   共用元件 + 各頁 *Body
+  styles/                #   tokens.css / kit.css / fonts.css（設計 tokens，逐字移植）
+  i18n/                  #   雙語字典 ui.ts + utils.ts（型別守門防單語遺漏）
+  data/                  #   穩定常數（site / pillars）
+  content/               #   社團可編輯 JSON（Zod 驗證）+ content.config.ts
+  assets/                #   走 <Image> 最佳化的影像
+public/                  # 根目錄靜態資產（logo、favicon、自架字體 woff2）
+scripts/                 # subset-cn-font.mjs（中文字體子集化）
+tests/                   # Playwright 冒煙 + 無障礙測試
+.github/workflows/       # deploy.yml（Pages）、ci.yml（check/build/audit/e2e）
+astro.config.mjs         # site/base、i18n、sitemap
+old-website/             # 既有 Wix 站的忠實備份（archival dump，read-only，勿編輯）
 .claude/                 # Claude Code 設定與規則（settings.json、rules/）
-CLAUDE.md                # 本檔：dev guidelines（session context + 團隊 onboarding）
-AGENTS.md                # 通用使用指南
-mise.toml                # runtime 版本（Node）
-.pre-commit-config.yaml  # 提交前 base hooks
+CLAUDE.md / AGENTS.md    # dev guidelines / 通用使用指南
+mise.toml                # runtime 版本（Node 22）
+.pre-commit-config.yaml  # base hooks + Prettier + astro check
 .mcp.json                # MCP（Playwright）
 ```
 
 ## 常用指令
 
-- 清理期間暫無應用框架，故無 build / dev / preview 指令；待新框架選定後於此補上
-- **格式化 / 檢查**: `pre-commit run --all-files`（目前僅 base hooks；Prettier 隨新框架重新導入）
-- **測試**: 尚無測試 runner（導入測試框架後補上）
+- **開發 / 建置**: `npm run dev`（http://localhost:4321）、`npm run build`（→ `dist/`）、`npm run preview`
+- **型別檢查**: `npm run check`（`astro check`：型別 + content schema + i18n key 完整性）
+- **格式化**: `npm run format`（Prettier）／`pre-commit run --all-files`（base hooks + Prettier + astro check）
+- **測試**: `npm run test:e2e`（Playwright 冒煙 + `@axe-core` 無障礙）
+- **字體子集**: `npm run font:subset`（新增中文字後重跑；見 `scripts/subset-cn-font.mjs`）
 
 ## 環境管理
 
 - **工具管理**: mise（配置檔: `mise.toml`，管理 Node 22）
-- **初始化**: `mise install`（清理後暫無 Node 專案，待新框架引入 `package.json` 後再 `npm install`）
+- **初始化**: `mise install` → `npm install`（Node 22 由 mise 管理；所有 node / npm 指令均透過 mise 執行的 Node 22 跑）
 - **虛擬環境**: 無（不使用 Python venv）
 
 ### 原則
@@ -157,8 +172,9 @@ mise.toml                # runtime 版本（Node）
 
 ## Formatter & Linter
 
-- 清理期間 pre-commit 僅執行與框架無關的 base hooks（trailing-whitespace / end-of-file / yaml / json / merge-conflict / mixed-line-ending）；Prettier 已隨 Astro 應用移除，待新框架選定後連同 pinned 版本以 local hook 重新導入
-- `old-website/` 為忠實備份，經 `exclude` 排除，不受任何 hook 格式化
+- pre-commit 執行：base hooks（trailing-whitespace / end-of-file / yaml / json / merge-conflict / mixed-line-ending）+ **Prettier**（`prettier-plugin-astro`，pinned 於 `package.json`，以 local `language: system` hook 執行）+ **`astro check`**（型別 / content schema）。版本以 lockfile 釘住。
+- `old-website/` 為忠實備份，經頂層 `exclude` 排除，不受任何 hook 格式化；`public/fonts/`（二進位字體）與 `package-lock.json` 亦排除於 Prettier 之外（見 `.prettierignore`）。
+- ESLint 暫不導入（`astro check` + Prettier 已足；KISS）。日後若出現實質 client-side JS 邏輯再評估 `eslint-plugin-astro`。
 
 ### pre-commit
 
