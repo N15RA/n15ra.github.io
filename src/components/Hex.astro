@@ -1,0 +1,20 @@
+---
+// 六角形描邊標記（pointy-top）。用於 hero 浮水印與卡片縮圖。幾何取自設計原型。
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+const HEX_OUTLINE =
+  "M290.185 259.443l-141.093 83.296L8 259.443V92.639L149.092 9.343l141.093 83.296v166.804z";
+---
+
+<span class={"hex " + (className ?? "")} aria-hidden="true">
+  <svg viewBox="0 0 298.185 352.082">
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-width="18"
+      stroke-linejoin="round"
+      d={HEX_OUTLINE}></path>
+  </svg>
+</span>

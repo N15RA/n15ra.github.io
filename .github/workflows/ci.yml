@@ -1,0 +1,40 @@
+# PR 檢查：型別、建置、相依漏洞掃描、以及 Playwright 冒煙 / 無障礙測試。
+# 與 deploy.yml 分離，讓檢查失敗能擋住 PR 而不影響 Pages 環境。
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Type-check, build & audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - name: Audit dependencies (fail on high+)
+        run: npm audit --audit-level=high
+
+  e2e:
+    name: Smoke & accessibility (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npx playwright test

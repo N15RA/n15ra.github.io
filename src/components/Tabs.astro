@@ -1,0 +1,61 @@
+---
+// 無障礙子頁籤（About / Event）。tablist 由 tabs 動態產生；面板由呼叫端以 default slot
+// 提供（class="subtab-panel" data-panel=<id>，第一個顯示、其餘 hidden）。所有面板皆渲染
+// 進 HTML（利 SEO）。漸進增強：無 JS 時第一面板可見；有 JS 時可點擊與方向鍵切換。
+interface Props {
+  tabs: { id: string; label: string }[];
+  ariaLabel?: string;
+}
+const { tabs, ariaLabel } = Astro.props;
+---
+
+<div class="tabs-root">
+  <div class="subtabs" role="tablist" aria-label={ariaLabel}>
+    {
+      tabs.map((tb, i) => (
+        <button
+          class={"subtab" + (i === 0 ? " is-active" : "")}
+          role="tab"
+          id={`tab-${tb.id}`}
+          aria-controls={`panel-${tb.id}`}
+          aria-selected={i === 0 ? "true" : "false"}
+          tabindex={i === 0 ? 0 : -1}
+          data-tab={tb.id}
+          type="button"
+        >
+          {tb.label}
+        </button>
+      ))
+    }
+  </div>
+  <slot />
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".tabs-root").forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+    const select = (id: string) => {
+      tabs.forEach((t) => {
+        const on = t.dataset.tab === id;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach((p) => {
+        p.hidden = p.dataset.panel !== id;
+      });
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(tab.dataset.tab!));
+      tab.addEventListener("keydown", (e) => {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        e.preventDefault();
+        const dir = e.key === "ArrowRight" ? 1 : -1;
+        const next = tabs[(i + dir + tabs.length) % tabs.length];
+        next.focus();
+        select(next.dataset.tab!);
+      });
+    });
+  });
+</script>

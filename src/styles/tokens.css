@@ -1,0 +1,287 @@
+/* ============================================================================
+   NISRA Design System — Colors & Type
+   Network and Information Security Research Association · Fu Jen Catholic University
+   ----------------------------------------------------------------------------
+   Source of truth: old-website/ (Wix dump) brand palette + a modernized,
+   WCAG-checked role mapping. See README.md for derivation & rationale.
+
+   Fonts: the PRIMARY typeface is the open-source Maple Mono super-family (SIL OFL) —
+   an all-monospace, round-cornered terminal/infosec identity with 2:1 CJK width.
+   All font loading is SELF-HOSTED (no third-party CDN) and declared in
+   src/styles/fonts.css — Latin via @fontsource/maple-mono, Traditional Chinese
+   via a content-driven subset of "Maple Mono NF CN", Noto Sans TC as fallback.
+   The originals (Helvetica W01/W02, Proxima Nova, DIN Next) were Wix-licensed.
+   ============================================================================ */
+
+/* --- Type loading --------------------------------------------------------
+   字體載入已移至 src/styles/fonts.css（自架 self-host，無第三方 CDN）：
+   · 拉丁 Maple Mono：@fontsource/maple-mono（於 BaseLayout 以 JS import 載入）
+   · 繁體中文 Maple Mono NF CN：自架精簡子集 woff2（scripts/subset-cn-font.mjs 產生）
+   · 保底 Noto Sans TC：@fontsource/noto-sans-tc
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* ---------------------------------------------------------------------
+     1. BRAND PALETTE  (raw values lifted verbatim from the Wix theme-vars)
+     --------------------------------------------------------------------- */
+  --brand-lime: #e7ff6e; /* color_17 — the signature accent (logotype on dark) */
+  --brand-lime-grass: #b5d12a; /* color_18 — deeper lime-green               */
+  --brand-charcoal: #2f2e2e; /* color_15 — primary dark surface / ink      */
+  --brand-gray-dim: #605e5e; /* color_14 — footer wordmark gray            */
+  --brand-gray: #727272; /* color_6  — neutral text                    */
+  --brand-gray-soft: #b0b0b0; /* color_7  — muted / dividers                */
+  --brand-red: #ed1c24; /* color_3                                    */
+  --brand-blue: #0088cb; /* color_4                                    */
+  --brand-yellow: #ffcb05; /* color_5                                    */
+
+  /* ---------------------------------------------------------------------
+     2. NEUTRAL RAMP  (charcoal-biased, warm-neutral)
+     --------------------------------------------------------------------- */
+  --ink-950: #161616;
+  --ink-900: #1c1b1b;
+  --ink-800: #232222;
+  --ink-700: #2f2e2e; /* = brand charcoal */
+  --ink-600: #444242;
+  --ink-500: #605e5e;
+  --ink-400: #828080;
+  --ink-300: #b0b0b0;
+  --ink-200: #d7d6d3;
+  --ink-150: #e6e5e1;
+  --ink-100: #f1f0ec; /* warm off-white paper */
+  --ink-50: #f8f8f5;
+  --paper: #ffffff;
+
+  /* ---------------------------------------------------------------------
+     3. ACCENT — derived for accessible use on EACH background
+        Lime is light: brilliant on dark, illegible as text on white.
+        So we keep brand-lime for dark surfaces and add a dark "lime-ink"
+        for text/links on light surfaces.
+     --------------------------------------------------------------------- */
+  --accent: #e7ff6e; /* brand lime — fills, on-dark text, focus glow   */
+  --accent-strong: #d8f84a; /* button face / hover (slightly saturated)        */
+  --accent-ink: #4c6b00; /* lime-derived dark — links/text on light (AA)     */
+  --accent-ink-deep: #3a5200; /* headings / large emphasis on light               */
+  --on-accent: #1c1b1b; /* text placed ON a lime fill (near-black)          */
+
+  /* ---------------------------------------------------------------------
+     4. SEMANTIC STATUS  (brand hues, contrast-tuned)
+     --------------------------------------------------------------------- */
+  --success: #3f8a2e;
+  --success-bg: #eaf6e6;
+  --danger: #d92d20;
+  --danger-bg: #fcebea; /* modernized from brand red */
+  --info: #0e7fb8;
+  --info-bg: #e5f3fb; /* modernized from brand blue */
+  --warning: #b7791f;
+  --warning-bg: #fbf1dd; /* readable amber from yellow */
+
+  /* ---------------------------------------------------------------------
+     5. SEMANTIC ROLES — LIGHT THEME (default: content pages)
+     --------------------------------------------------------------------- */
+  --bg: var(--paper);
+  --surface: var(--paper);
+  --surface-2: var(--ink-50);
+  --surface-sunk: var(--ink-100);
+  --fg: var(--ink-800); /* body text — 13.4:1 on white */
+  --fg-strong: var(--ink-950); /* headings */
+  --fg-muted: var(--ink-500); /* secondary text — 5.7:1 */
+  --fg-subtle: #706e6e; /* captions / meta — darkened from ink-400 (#828080, 3.9:1) to pass WCAG AA on white (~5:1) */
+  --link: var(--accent-ink);
+  --link-hover: var(--accent-ink-deep);
+  --border: var(--ink-200);
+  --border-strong: var(--ink-300);
+  --ring: #6e8f00; /* focus ring on light (AA non-text) */
+
+  /* ---------------------------------------------------------------------
+     6. RADII / ELEVATION / SPACING  (8pt-based, slightly tight = technical)
+     --------------------------------------------------------------------- */
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(22, 22, 22, 0.06);
+  --shadow-sm: 0 1px 3px rgba(22, 22, 22, 0.08), 0 1px 2px rgba(22, 22, 22, 0.04);
+  --shadow-md: 0 4px 12px rgba(22, 22, 22, 0.1), 0 2px 4px rgba(22, 22, 22, 0.06);
+  --shadow-lg: 0 12px 32px rgba(22, 22, 22, 0.14), 0 4px 8px rgba(22, 22, 22, 0.06);
+  --shadow-glow: 0 0 0 3px rgba(216, 248, 74, 0.45); /* lime focus glow on dark */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --maxw: 1120px; /* content column */
+  --maxw-prose: 68ch;
+
+  /* ---------------------------------------------------------------------
+     7. TYPE TOKENS
+     --------------------------------------------------------------------- */
+  --font-sans:
+    "Maple Mono", "Maple Mono NF CN", "Noto Sans TC", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+  --font-mono:
+    "Maple Mono", "Maple Mono NF CN", "Noto Sans TC", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* fluid type scale — clamp(min, vw, max) */
+  --t-display: clamp(2.6rem, 1.4rem + 4.4vw, 4.5rem);
+  --t-h1: clamp(2rem, 1.3rem + 2.6vw, 3.1rem);
+  --t-h2: clamp(1.55rem, 1.15rem + 1.5vw, 2.25rem);
+  --t-h3: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
+  --t-h4: 1.15rem;
+  --t-body-lg: 1.1875rem;
+  --t-body: 1.0625rem;
+  --t-sm: 0.9375rem;
+  --t-xs: 0.8125rem;
+
+  --lh-tight: 1.12;
+  --lh-snug: 1.3;
+  --lh-body: 1.7; /* generous for CJK readability */
+
+  --tracking-wordmark: 0.1em;
+  --tracking-label: 0.16em;
+}
+
+/* ============================================================================
+   DARK THEME — apply [data-theme="dark"] on a section/root.
+   This is the brand's "home" mode: charcoal surfaces, electric lime accents.
+   ============================================================================ */
+[data-theme="dark"] {
+  --bg: var(--ink-950);
+  --surface: var(--ink-900);
+  --surface-2: var(--ink-800);
+  --surface-sunk: var(--ink-950);
+  --fg: #ededea;
+  --fg-strong: #ffffff;
+  --fg-muted: #adaba8;
+  --fg-subtle: #828080;
+  --link: var(--accent);
+  --link-hover: #f2ffa6;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --ring: var(--accent);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================================================
+   ELEMENT BASELINE  (semantic defaults — opt-in via .ds-scope or :root)
+   ============================================================================ */
+.ds-scope,
+.ds-type {
+  font-family: var(--font-sans);
+  color: var(--fg);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.ds-display {
+  font-size: var(--t-display);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  color: var(--fg-strong);
+  text-wrap: balance;
+}
+h1,
+.ds-h1 {
+  font-size: var(--t-h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.015em;
+  color: var(--fg-strong);
+  text-wrap: balance;
+}
+h2,
+.ds-h2 {
+  font-size: var(--t-h2);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+  color: var(--fg-strong);
+  text-wrap: balance;
+}
+h3,
+.ds-h3 {
+  font-size: var(--t-h3);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  color: var(--fg-strong);
+}
+h4,
+.ds-h4 {
+  font-size: var(--t-h4);
+  font-weight: 600;
+  color: var(--fg-strong);
+}
+
+.ds-lead {
+  font-size: var(--t-body-lg);
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+p,
+.ds-p {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--fg);
+  text-wrap: pretty;
+}
+.ds-sm {
+  font-size: var(--t-sm);
+}
+.ds-caption {
+  font-size: var(--t-xs);
+  color: var(--fg-subtle);
+}
+
+/* Mono label / kicker — the "technical" voice of the brand */
+.ds-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+[data-theme="dark"] .ds-kicker {
+  color: var(--accent);
+}
+
+.ds-wordmark {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wordmark);
+  text-transform: none;
+}
+
+code,
+.ds-code,
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+a,
+.ds-link {
+  color: var(--link);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+a:hover,
+.ds-link:hover {
+  color: var(--link-hover);
+}

@@ -1,5 +1,5 @@
 # 工具與 runtime 版本統一由 mise 管理（commit 進版本控制）。
-# 清理後暫無應用框架；保留 Node 供日後新靜態框架沿用。
-# 初始化：mise install（新框架引入 package.json 後再 npm install）。
+# Astro 靜態站以 Node 22 建置；CI（GitHub Actions）亦使用 Node 22。
+# 初始化：mise install → npm install。
 [tools]
 node = "22"

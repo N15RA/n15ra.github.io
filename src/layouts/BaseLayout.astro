@@ -1,0 +1,92 @@
+---
+// 自架字體（無第三方 CDN）：Fontsource 拉丁 + Noto 保底由 Vite 打包並 hash；
+// Maple Mono NF CN 中文子集由 src/styles/fonts.css 指向 public/fonts/ 的自架 woff2。
+import "@fontsource/maple-mono/latin-400.css";
+import "@fontsource/maple-mono/latin-500.css";
+import "@fontsource/maple-mono/latin-600.css";
+import "@fontsource/maple-mono/latin-700.css";
+import "@fontsource/maple-mono/latin-400-italic.css";
+import "@fontsource/noto-sans-tc/400.css";
+import "@fontsource/noto-sans-tc/500.css";
+import "@fontsource/noto-sans-tc/700.css";
+import "../styles/fonts.css";
+import "../styles/tokens.css";
+import "../styles/kit.css";
+
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { getLocale, htmlLang, useTranslations } from "../i18n/utils";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = "NISRA — 輔仁大學資訊安全研究會。一群由輔仁大學資工系學生組成的資安社團，致力於研究與推廣資訊安全相關知識。",
+} = Astro.props;
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const lang = htmlLang(locale);
+// Astro.site 為選填（URL | undefined）；未設定時回退至當頁 URL，避免 build 期丟錯。
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/maple-mono-cn/MapleMonoNFCN-Regular.subset.woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t("skip.toContent")}</a>
+    <Nav />
+    <main id="main"><slot /></main>
+    <Footer />
+
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      .skip-link {
+        position: absolute;
+        left: 8px;
+        top: -52px;
+        z-index: 100;
+        background: var(--accent);
+        color: var(--on-accent);
+        padding: 9px 16px;
+        border-radius: var(--r-sm);
+        font-family: var(--font-mono);
+        font-size: 14px;
+        text-decoration: none;
+        transition: top 0.16s ease;
+      }
+      .skip-link:focus-visible {
+        top: 8px;
+      }
+    </style>
+  </body>
+</html>
