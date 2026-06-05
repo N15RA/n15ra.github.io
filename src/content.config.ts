@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro:schema";
+import { z } from "astro/zod";
 import { file } from "astro/loaders";
 
 // 社團可編輯的清單資料，以 JSON 儲存、Zod 驗證、build 時自動產生型別。
@@ -34,7 +34,7 @@ const events = defineCollection({
     title: z.string(),
     date: z.string(),
     desc: z.string(),
-    href: z.string().url(),
+    href: z.url(),
     order: z.number(),
   }),
 });
