@@ -1,0 +1,27 @@
+/* ============================================================================
+   NISRA — Self-hosted fonts（無第三方 CDN）
+
+   - 拉丁 'Maple Mono' 與保底 'Noto Sans TC' 由 @fontsource 套件於 BaseLayout
+     以 JS import 載入（Vite 會 hash 並自架 woff2）。
+   - 繁體中文 'Maple Mono NF CN' 採「內容驅動的精簡子集」：scripts/subset-cn-font.mjs
+     掃描 src/ 實際用到的 CJK 字元，從 Maple Mono NF CN 原始字檔產生小 woff2。
+     刻意「不設 unicode-range」——讓子集未涵蓋的字以 glyph 層級 fallback 到
+     Noto Sans TC，而非顯示豆腐字（tofu）。
+   - 字族順序（見 tokens.css --font-sans/--font-mono）：
+       'Maple Mono'（拉丁）→ 'Maple Mono NF CN'（中文子集）→ 'Noto Sans TC'（保底）
+   ============================================================================ */
+
+@font-face {
+  font-family: "Maple Mono NF CN";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/maple-mono-cn/MapleMonoNFCN-Regular.subset.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Maple Mono NF CN";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/maple-mono-cn/MapleMonoNFCN-Bold.subset.woff2") format("woff2");
+}

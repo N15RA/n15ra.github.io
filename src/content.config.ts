@@ -1,0 +1,62 @@
+import { defineCollection } from "astro:content";
+import { z } from "astro:schema";
+import { file } from "astro/loaders";
+
+// 社團可編輯的清單資料，以 JSON 儲存、Zod 驗證、build 時自動產生型別。
+// 社團幹部只需編輯 src/content/*.json，不必動 .astro 元件。
+// `scaffold: true` 標記「示意資料，待社團補正」（課表、歷屆幹部）。
+
+const course = z.object({
+  title: z.string(),
+  by: z.string().optional(),
+  date: z.string().optional(),
+  desc: z.string(),
+  tags: z.array(z.string()).default([]),
+});
+
+const semesters = defineCollection({
+  loader: file("src/content/semesters.json"),
+  schema: z.object({
+    id: z.string(), // 例：111-2
+    label: z.string(), // 例：111 學年度 · 第 2 學期
+    order: z.number(), // 排序（大者在前）
+    scaffold: z.boolean().default(false),
+    courses: z.array(course).default([]),
+  }),
+});
+
+const events = defineCollection({
+  loader: file("src/content/events.json"),
+  schema: z.object({
+    id: z.string(),
+    category: z.enum(["最新消息", "活動 Events", "合作 Partnerships"]),
+    title: z.string(),
+    date: z.string(),
+    desc: z.string(),
+    href: z.string().url(),
+    order: z.number(),
+  }),
+});
+
+const history = defineCollection({
+  loader: file("src/content/history.json"),
+  schema: z.object({
+    id: z.string(),
+    date: z.string(),
+    text: z.string(),
+    order: z.number(),
+  }),
+});
+
+const members = defineCollection({
+  loader: file("src/content/members.json"),
+  schema: z.object({
+    id: z.string(),
+    range: z.string(),
+    desc: z.string(),
+    order: z.number(),
+    scaffold: z.boolean().default(false),
+  }),
+});
+
+export const collections = { semesters, events, history, members };

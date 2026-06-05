@@ -1,0 +1,40 @@
+---
+import Hex from "./Hex.astro";
+import Badge from "./Badge.astro";
+
+interface Props {
+  course: {
+    title: string;
+    by?: string;
+    date?: string;
+    desc: string;
+    tags: string[];
+  };
+}
+const { course } = Astro.props;
+---
+
+<article class="card">
+  <div class="card__thumb"><Hex /></div>
+  <div class="card__body">
+    <p class="course__date">{course.date ?? "日期未定"}</p>
+    <h3 class="card__title">{course.title}</h3>
+    {
+      course.by && (
+        <p class="ds-caption" style="margin:0">
+          講師 · {course.by}
+        </p>
+      )
+    }
+    <p class="card__desc">{course.desc}</p>
+    {
+      course.tags.length > 0 && (
+        <div class="card__tags">
+          {course.tags.map((tg) => (
+            <Badge variant="out">{tg}</Badge>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</article>

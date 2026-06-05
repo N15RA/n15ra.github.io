@@ -1,0 +1,68 @@
+---
+import Button from "./Button.astro";
+import LangSwitcher from "./LangSwitcher.astro";
+import { NAV_ITEMS } from "../data/site";
+import { getLocale, useTranslations, localizePath, stripLocale } from "../i18n/utils";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+// 以「去語言前綴」的邏輯路徑判斷 active；尾斜線正規化。
+const here = (stripLocale(Astro.url.pathname).replace(/\/+$/, "") || "/") as string;
+function isActive(href: string): boolean {
+  const h = href.replace(/\/+$/, "") || "/";
+  return h === "/" ? here === "/" : here === h || here.startsWith(h + "/");
+}
+const homeHref = localizePath("/", locale);
+const joinHref = `${homeHref === "/" ? "" : homeHref}#join` || "#join";
+---
+
+<nav class="nav" data-theme="dark">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href={homeHref} aria-label="NISRA home">
+      <img class="nav__logo" src="/logo-nisra.svg" alt="NISRA" width="37" height="42" />
+      <span class="nav__name">Network and Information Security<br />Research Association</span>
+    </a>
+    <button
+      class="nav__burger"
+      aria-label={t("nav.menu")}
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__links" id="nav-links">
+      {
+        NAV_ITEMS.map((it) => (
+          <a
+            class={"nav__link" + (isActive(it.href) ? " is-active" : "")}
+            href={localizePath(it.href, locale)}
+            aria-current={isActive(it.href) ? "page" : undefined}
+          >
+            {it.label}
+          </a>
+        ))
+      }
+      <LangSwitcher />
+      <span class="nav__cta">
+        <Button variant="primary" href={joinHref}>{t("nav.join")}</Button>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>(".nav__burger");
+  const links = document.getElementById("nav-links");
+  if (burger && links) {
+    const close = () => {
+      links.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+    };
+    burger.addEventListener("click", () => {
+      const open = links.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", String(open));
+    });
+    links.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
+  }
+</script>

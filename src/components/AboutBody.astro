@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+import Tabs from "./Tabs.astro";
+import Timeline from "./Timeline.astro";
+
+const history = (await getCollection("history"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((e) => ({ term: e.data.date, desc: e.data.text }));
+
+const members = (await getCollection("members"))
+  .sort((a, b) => b.data.order - a.data.order)
+  .map((e) => ({ term: e.data.range, desc: e.data.desc, photo: true }));
+
+const tabs = [
+  { id: "summary", label: "Summary 簡介" },
+  { id: "history", label: "History 沿革" },
+  { id: "members", label: "Members 歷屆夥伴" },
+];
+---
+
+<section class="section">
+  <div class="wrap">
+    <p class="kicker">// About us</p>
+    <h1 style="margin:8px 0 22px">關於 NISRA</h1>
+
+    <Tabs tabs={tabs} ariaLabel="關於 NISRA 子頁">
+      <div
+        class="subtab-panel"
+        role="tabpanel"
+        id="panel-summary"
+        aria-labelledby="tab-summary"
+        data-panel="summary"
+      >
+        <div class="prose" style="max-width:68ch">
+          <p class="ds-lead">
+            NISRA 是由輔仁大學資工系學生於 2007 年 5
+            月自主發起、以資訊安全為研究主軸的自學團體。我們熱烈期待校園裡志同道合的同學加入，也與校外資安團體持續交流、切磋。
+          </p>
+          <div style="margin-top:32px">
+            <p class="kicker">// 宗旨 Purpose</p>
+            <h2 style="margin:8px 0 14px">為什麼有 NISRA</h2>
+            <p>
+              我們身處沙灘，面臨這個世代的資訊海嘯——這世界上有九成的資料，產生於最近這幾年。當科技越來越聰明，資訊被濫用的隱憂也隨之而來，隱私的界線開始變得模糊。
+            </p>
+            <p>2007 年五月，翁浩正學長預見資訊安全終將是每個人都要面對的課題，於是發起了 NISRA。</p>
+            <p>
+              我們的宗旨，不只是提升自己的資訊能力，更希望藉由這個社團，培養更多專業資安人才——一代帶一代，延續精神，專精素養。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="subtab-panel"
+        role="tabpanel"
+        id="panel-history"
+        aria-labelledby="tab-history"
+        data-panel="history"
+        hidden
+      >
+        <p class="ds-lead" style="margin-bottom:8px; max-width:60ch">
+          從 2006 年的 RumorTeam 到今天的 NISRA，這是我們一路走來的一些足跡。
+        </p>
+        <Timeline items={history} />
+      </div>
+
+      <div
+        class="subtab-panel"
+        role="tabpanel"
+        id="panel-members"
+        aria-labelledby="tab-members"
+        data-panel="members"
+        hidden
+      >
+        <p class="ds-lead">
+          NISRA
+          一代帶一代，由歷屆的幹部與成員共同累積。下面以時間軸呈現歷屆的組成；實際幹部名單由社團逐屆補上。
+        </p>
+        <Timeline items={members} />
+      </div>
+    </Tabs>
+  </div>
+</section>
