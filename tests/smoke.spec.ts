@@ -61,8 +61,29 @@ test("keyboard Tab reveals the skip-to-content link (focus-visible)", async ({ p
   await expect(page.locator(".skip-link")).toBeFocused();
 });
 
+test("course card opens a detail modal with the full verbatim text; Esc closes", async ({
+  page,
+}) => {
+  await page.goto("/lesson");
+  await page.locator('[data-sem="106-2"]').click();
+  await page.getByRole("button", { name: "不可不知的 Web Security" }).click();
+  const dialog = page.locator("dialog.course-modal[open]");
+  await expect(dialog).toBeVisible();
+  // 完整原文（含 IoT 段落）只在彈窗，不在卡面精簡版
+  await expect(dialog).toContainText("IoT 裝置的管理介面");
+  await page.keyboard.press("Escape");
+  await expect(page.locator("dialog.course-modal[open]")).toHaveCount(0);
+});
+
+test("Nav 加入我們 from a non-home page targets the home #join, not the current page", async ({
+  page,
+}) => {
+  await page.goto("/about");
+  await expect(page.locator(".nav__cta a")).toHaveAttribute("href", "/#join");
+});
+
 test.describe("accessibility — no serious/critical axe violations", () => {
-  for (const route of ["/", "/about", "/lesson", "/event"]) {
+  for (const route of ["/", "/about", "/lesson", "/event", "/en/", "/en/about"]) {
     test(`axe: ${route}`, async ({ page }) => {
       await page.goto(route);
       const results = await new AxeBuilder({ page })
