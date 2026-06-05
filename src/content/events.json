@@ -1,39 +1,120 @@
 [
   {
-    "id": "hitcon-2022-village",
+    "id": "enlightened-2025",
     "category": "最新消息",
-    "title": "HITCON 2022 Village",
-    "date": "2022.08.16",
-    "desc": "在 HITCON 擺攤，準備了與會眾互動的小遊戲，歡迎來找我們。",
-    "href": "https://www.facebook.com/N15RA/",
-    "order": 3
+    "title": "NISRA Enlightened 2025",
+    "date": "2025.08.25",
+    "desc": "守護數位世界的英雄，從踏出第一步開始！暑期資安入門系列課程。",
+    "href": "https://nisra.kktix.cc/events/2025enlightened",
+    "order": 20250825
   },
   {
-    "id": "ais3-club-2022-news",
+    "id": "enlightened-2024",
     "category": "最新消息",
-    "title": "2022 AIS3 CLUB",
-    "date": "2022.08.13",
-    "desc": "與 AIS3 合作的暑期社團活動。",
-    "href": "https://www.facebook.com/N15RA/",
-    "order": 2
+    "title": "NISRA Enlightened 2024",
+    "date": "2024.08.26",
+    "desc": "大神也不是天生的，但只有開始行動才能成為大神。",
+    "href": "https://nisra.kktix.cc/events/2024enlightened",
+    "order": 20240826
   },
   {
-    "id": "enlightened-2022-news",
-    "category": "最新消息",
-    "title": "Enlightened 2022",
-    "date": "2022.06.28",
-    "desc": "今年由 NISRA 協助舉辦，歡迎大家來輔大交流。",
-    "href": "https://www.facebook.com/N15RA/",
-    "order": 1
-  },
-  {
-    "id": "enlightened-summer",
+    "id": "enlightened-2023",
     "category": "活動 Events",
-    "title": "Enlightened 暑期密訓",
-    "date": "2019.08",
-    "desc": "暑期密集訓練，從基礎打到實戰。",
-    "href": "https://www.facebook.com/N15RA/",
-    "order": 1
+    "title": "NISRA Enlightened 2023",
+    "date": "2023.08.28",
+    "desc": "從零開始，你也能成為大神。",
+    "href": "https://nisra.kktix.cc/events/2023enlightened",
+    "order": 20230828
+  },
+  {
+    "id": "enlightened-2022",
+    "category": "活動 Events",
+    "title": "NISRA Enlightened 2022",
+    "date": "2022.08.22",
+    "desc": "今年夏天最後機會，成為大神的第一步。",
+    "href": "https://nisra.kktix.cc/events/2022enlightened",
+    "order": 20220822
+  },
+  {
+    "id": "enlightened-2020",
+    "category": "活動 Events",
+    "title": "NISRA Enlightened 2020",
+    "date": "2020.08.24",
+    "desc": "沒有人一開始就是強者，但你必須先開始才能變強。",
+    "href": "https://nisra.kktix.cc/events/2020enlightened",
+    "order": 20200824
+  },
+  {
+    "id": "enlightened-2019",
+    "category": "活動 Events",
+    "title": "NISRA Enlightened 2019",
+    "date": "2019.08.26",
+    "desc": "沒有人一開始就是強者，但你必須先開始才能變強。",
+    "href": "https://nisra.kktix.cc/events/2019enlightened",
+    "order": 20190826
+  },
+  {
+    "id": "enlightened-2018",
+    "category": "活動 Events",
+    "title": "NISRA Enlightened 2018",
+    "date": "2018.08.27",
+    "desc": "沒有人一開始就是強者，但你必須先開始才能變強。",
+    "href": "https://nisra.kktix.cc/events/2018enlightened",
+    "order": 20180827
+  },
+  {
+    "id": "enlightened-2017",
+    "category": "活動 Events",
+    "title": "NISRA Enlightened 2017",
+    "date": "2017.09.04",
+    "desc": "暑期資安入門系列課程，銜接開學後每週社課。",
+    "href": "https://nisra.kktix.cc/events/2017enlightened",
+    "order": 20170904
+  },
+  {
+    "id": "hackathon-2018",
+    "category": "活動 Events",
+    "title": "輔大 NISRA Hackathon 2018",
+    "date": "2018.01.27",
+    "desc": "所謂的「駭客精神」，就是實際上動手解決我們所遇到的問題。",
+    "href": "https://nisra.kktix.cc/events/hackathon2018",
+    "order": 20180127
+  },
+  {
+    "id": "hackathon-2017",
+    "category": "活動 Events",
+    "title": "輔大 NISRA Hackathon 2017",
+    "date": "2017.01.21",
+    "desc": "Talk is cheap. Show me the code.",
+    "href": "https://nisra.kktix.cc/events/hackathon2017",
+    "order": 20170121
+  },
+  {
+    "id": "hackathon-2016",
+    "category": "活動 Events",
+    "title": "輔大 NISRA Hackathon 2016",
+    "date": "2016.01.23",
+    "desc": "CODEING is our tool. HACKING is our task.",
+    "href": "https://nisra.kktix.cc/events/hackathon2016",
+    "order": 20160123
+  },
+  {
+    "id": "hackathon-2015",
+    "category": "活動 Events",
+    "title": "NISRA Hackathon 2015",
+    "date": "2015.02.27",
+    "desc": "CODE is the only thing we use, HACK is the only thing we do。",
+    "href": "https://nisra.kktix.cc/events/2015hackathon",
+    "order": 20150227
+  },
+  {
+    "id": "hackathon-2014",
+    "category": "活動 Events",
+    "title": "NISRA Hackathon",
+    "date": "2014.01.23",
+    "desc": "CODE is the only thing we use, HACK is the only thing we do.",
+    "href": "https://nisra.kktix.cc/events/5d69a1",
+    "order": 20140123
   },
   {
     "id": "hitcon-community",
@@ -42,15 +123,15 @@
     "date": "2022.08",
     "desc": "社群擺攤合作，獲頒優秀社群。",
     "href": "https://www.facebook.com/N15RA/",
-    "order": 2
+    "order": 20220816
   },
   {
-    "id": "ais3-club-2022-partner",
+    "id": "ais3-club-2022",
     "category": "合作 Partnerships",
     "title": "2022 AIS3 CLUB",
     "date": "2022.08",
     "desc": "跨組織合作，推廣資安教育。",
     "href": "https://www.facebook.com/N15RA/",
-    "order": 1
+    "order": 20220813
   }
 ]
