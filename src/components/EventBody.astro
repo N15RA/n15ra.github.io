@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import Tabs from "./Tabs.astro";
+import EventCard from "./EventCard.astro";
+
+const all = await getCollection("events");
+const cats = [
+  { id: "news", label: "最新消息", cat: "最新消息" as const },
+  { id: "events", label: "活動 Events", cat: "活動 Events" as const },
+  { id: "partners", label: "合作 Partnerships", cat: "合作 Partnerships" as const },
+];
+const byCat = (c: string) =>
+  all.filter((e) => e.data.category === c).sort((a, b) => b.data.order - a.data.order);
+const tabs = cats.map((c) => ({ id: c.id, label: c.label }));
+---
+
+<section class="section">
+  <div class="wrap">
+    <p class="kicker">// Event</p>
+    <h1 style="margin:8px 0 22px">活動</h1>
+    <Tabs tabs={tabs} ariaLabel="活動分類">
+      {
+        cats.map((c, i) => (
+          <div
+            class="subtab-panel"
+            role="tabpanel"
+            id={`panel-${c.id}`}
+            aria-labelledby={`tab-${c.id}`}
+            data-panel={c.id}
+            hidden={i !== 0}
+          >
+            <div class="grid grid--3">
+              {byCat(c.cat).map((e) => (
+                <EventCard event={e.data} />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </Tabs>
+  </div>
+</section>

@@ -1,0 +1,98 @@
+---
+import Hex from "./Hex.astro";
+import Badge from "./Badge.astro";
+
+interface Props {
+  course: {
+    title: string;
+    by?: string;
+    date?: string;
+    desc: string;
+    detail?: string;
+    tags: string[];
+  };
+}
+const { course } = Astro.props;
+const full = course.detail ?? course.desc; // 詳情顯示完整原文（有 detail 用 detail，否則用 desc）
+const clickable = !!(course.desc || course.detail); // 有內容才可點開詳情
+const dateLabel = course.date ?? "日期未定";
+---
+
+<article class={"card course-card" + (clickable ? " course-card--clickable" : "")}>
+  <div class="card__thumb"><Hex /></div>
+  <div class="card__body">
+    <p class="course__date">{dateLabel}</p>
+    <h3 class="card__title">
+      {
+        clickable ? (
+          <button type="button" class="course-card__open" aria-haspopup="dialog">
+            {course.title}
+          </button>
+        ) : (
+          course.title
+        )
+      }
+    </h3>
+    {
+      course.by && (
+        <p class="ds-caption" style="margin:0">
+          講師 · {course.by}
+        </p>
+      )
+    }
+    {course.desc && <p class="card__desc">{course.desc}</p>}
+    {
+      course.tags.length > 0 && (
+        <div class="card__tags">
+          {course.tags.map((tg) => (
+            <Badge variant="out">{tg}</Badge>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  {
+    clickable && (
+      <dialog class="course-modal" aria-label={course.title}>
+        <div class="course-modal__panel">
+          <button type="button" class="course-modal__close" aria-label="關閉">
+            ✕
+          </button>
+          <p class="course__date">{dateLabel}</p>
+          <h3 class="course-modal__title">{course.title}</h3>
+          {course.by && (
+            <p class="ds-caption" style="margin:0 0 14px">
+              講師 · {course.by}
+            </p>
+          )}
+          <p class="course-modal__text">{full}</p>
+          {course.tags.length > 0 && (
+            <div class="card__tags" style="margin-top:16px">
+              {course.tags.map((tg) => (
+                <Badge variant="out">{tg}</Badge>
+              ))}
+            </div>
+          )}
+        </div>
+      </dialog>
+    )
+  }
+</article>
+
+<script>
+  // 課程卡詳情彈窗：整張卡可點（stretched button）→ 原生 <dialog> showModal()。
+  // focus-trap / Esc / 聚焦返還由瀏覽器原生處理；額外綁定 ✕ 與點背景關閉。
+  document.querySelectorAll<HTMLElement>(".course-card--clickable").forEach((card) => {
+    const open = card.querySelector<HTMLButtonElement>(".course-card__open");
+    const dialog = card.querySelector<HTMLDialogElement>(".course-modal");
+    if (!open || !dialog) return;
+    open.addEventListener("click", () => dialog.showModal());
+    dialog
+      .querySelector<HTMLButtonElement>(".course-modal__close")
+      ?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close(); // 點背景（非內容面板）關閉
+    });
+  });
+</script>

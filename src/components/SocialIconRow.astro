@@ -1,0 +1,14 @@
+---
+import SocialIcon from "./SocialIcon.astro";
+import { SOCIALS } from "../data/site";
+---
+
+<div class="socialrow">
+  {
+    SOCIALS.map((s) => (
+      <a href={s.href} target="_blank" rel="noreferrer" aria-label={s.name} title={s.label}>
+        <SocialIcon name={s.name} />
+      </a>
+    ))
+  }
+</div>

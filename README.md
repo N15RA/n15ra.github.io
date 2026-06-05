@@ -3,41 +3,73 @@
 Official website for NISRA (Network and Information Security Research
 Association), Fu Jen Catholic University.
 
-## Status
+Rebuilt off Wix as a pure-static site on **Astro** + **GitHub Pages** — faithful
+to the new design system, bilingual-ready (zh-TW primary, English scaffold), with
+self-hosted fonts (no third-party CDN).
 
-The project is being migrated off Wix to a pure-static solution hosted on
-GitHub Pages. The repository has been **reset to a clean slate**: the
-previous (half-finished) framework was removed, and only the faithful
-backup of the existing Wix site is kept as the source of truth for the
-rebuild.
+## Tech stack
 
-**The new static framework has not been chosen yet.**
+- **Astro 6** — component-based static site generator, zero JS by default
+- **Plain CSS design tokens** (no Tailwind) — `src/styles/{tokens,kit,fonts}.css`,
+  ported verbatim from the design system
+- **Built-in i18n** — zh-TW at `/`, English scaffold at `/en/`
+- **Self-hosted fonts** — Maple Mono (Latin) + a content-driven subset of Maple
+  Mono NF CN (Traditional Chinese) + Noto Sans TC fallback
+- **GitHub Pages** via GitHub Actions; **Playwright** smoke + axe a11y tests
+- Runtime via **mise** (Node 22); formatting via **Prettier** (pre-commit)
 
-Roadmap:
-
-1. Faithfully refactor the existing site into the new framework, using
-   `old-website/` as the reference.
-2. Redesign the site and the maintenance setup.
-
-## Repository Layout
-
-| Path                      | Purpose                                                        |
-| ------------------------- | ------------------------------------------------------------- |
-| `old-website/`            | Faithful archival dump of the existing Wix site (do not edit) |
-| `.claude/`, `CLAUDE.md`   | Development guidelines and Claude Code configuration          |
-| `AGENTS.md`               | General usage guidelines                                       |
-| `mise.toml`               | Runtime version management (Node)                             |
-| `.pre-commit-config.yaml` | Pre-commit base checks                                        |
-
-## Getting Started
+## Getting started
 
 ```bash
-mise install        # provision the managed runtime
-pre-commit install  # enable commit-time checks
+mise install          # provision Node 22
+npm install           # install dependencies
+npm run dev           # dev server (http://localhost:4321)
+npm run build         # production build -> dist/
+npm run preview       # preview the production build
+npm run check         # astro check (types + content schema)
+npm run test:e2e      # Playwright smoke + accessibility
+pre-commit install    # enable commit-time checks (Prettier + astro check)
 ```
 
-A build/dev workflow will be added once the new static framework is
-selected.
+### Updating content
+
+Club officers edit JSON under `src/content/` (`semesters`, `events`, `history`,
+`members`) — Zod-validated at build time. Entries flagged `"scaffold": true` are
+placeholders pending real data. See `src/content/README.md`.
+
+### Fonts
+
+The Traditional Chinese subset is generated from the characters actually used on
+the site:
+
+```bash
+# one-time: download the source font (OFL) — see scripts/subset-cn-font.mjs header
+npm run font:subset   # regenerate after adding new Chinese characters
+```
+
+## Repository layout
+
+| Path                      | Purpose                                                       |
+| ------------------------- | ------------------------------------------------------------- |
+| `src/`                    | Astro source — pages, components, layouts, styles, i18n, data |
+| `src/content/`            | Club-editable JSON content (Zod-validated)                    |
+| `public/`                 | Static assets served at root (logo, favicon, self-host fonts) |
+| `scripts/`                | Build helpers (Traditional Chinese font subsetting)           |
+| `tests/`                  | Playwright smoke + accessibility tests                        |
+| `.github/workflows/`      | `deploy.yml` (Pages) + `ci.yml` (check / build / audit / e2e) |
+| `old-website/`            | Faithful archival dump of the existing Wix site (do not edit) |
+| `.claude/`, `CLAUDE.md`   | Development guidelines and Claude Code configuration          |
+| `AGENTS.md`               | General usage guidelines                                      |
+| `mise.toml`               | Runtime version management (Node 22)                          |
+| `.pre-commit-config.yaml` | Pre-commit checks (base hooks + Prettier + astro check)       |
+
+## Deployment
+
+Pushes to `main` deploy to GitHub Pages via `.github/workflows/deploy.yml`
+(set Settings → Pages → Source = "GitHub Actions"). The site serves at
+`https://n15ra.github.io/`. A custom-domain (`nisra.net`) cutover is a later DNS
+step — update `site` in `astro.config.mjs` and add `public/CNAME`; do not cut over
+until the build is verified and content-complete.
 
 ## License
 

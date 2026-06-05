@@ -2,7 +2,7 @@
 # 安裝：pre-commit install；手動全跑：pre-commit run --all-files
 
 # 排除：old-website/ 為忠實的舊站備份（archival dump），須逐字保留、勿格式化。
-exclude: '^old-website/'
+exclude: "^old-website/"
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -14,5 +14,21 @@ repos:
       - id: check-json
       - id: check-merge-conflict
       - id: mixed-line-ending
-# Prettier 已隨 Astro 應用移除；待新框架選定後，連同其 package.json 與 pinned
-# 版本以 local hook 重新導入。清理期間僅保留與框架無關的 base hooks。
+
+  # 框架（Astro）相關 hooks：以 repo 安裝的 pinned 版本執行
+  # （language: system → 走 mise 管理的 Node + 專案 node_modules；版本 pin 於
+  # package.json / package-lock.json）。old-website/ 由頂層 exclude 排除。
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: npx prettier --write --ignore-unknown
+        language: system
+        files: \.(astro|ts|js|mjs|cjs|md|json|css|ya?ml)$
+        exclude: ^(public/fonts/|package-lock\.json$)
+      - id: astro-check
+        name: astro check
+        entry: npx astro check
+        language: system
+        pass_filenames: false
+        files: ^src/.*\.(astro|ts)$

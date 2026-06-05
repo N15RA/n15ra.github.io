@@ -1,0 +1,23 @@
+---
+// 按鈕：有 href 時渲染為 <a>，否則為 <button>。樣式 class 沿用設計 kit.css。
+interface Props {
+  variant?: "primary" | "outline" | "ghost";
+  size?: "lg";
+  href?: string;
+  class?: string;
+}
+const { variant = "primary", size, href, class: extra } = Astro.props;
+const cls = `btn btn--${variant}` + (size ? ` btn--${size}` : "") + (extra ? ` ${extra}` : "");
+---
+
+{
+  href ? (
+    <a class={cls} href={href}>
+      <slot />
+    </a>
+  ) : (
+    <button class={cls} type="button">
+      <slot />
+    </button>
+  )
+}
