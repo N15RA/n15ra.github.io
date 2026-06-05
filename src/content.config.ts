@@ -10,7 +10,8 @@ const course = z.object({
   title: z.string(),
   by: z.string().optional(),
   date: z.string().optional(),
-  desc: z.string(),
+  desc: z.string(), // 卡面精簡版
+  detail: z.string().optional(), // 點卡片彈窗顯示的完整原文（逐字，取自舊站學期頁）
   tags: z.array(z.string()).default([]),
 });
 
