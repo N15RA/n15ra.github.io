@@ -154,7 +154,7 @@ const CN = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"
                   <div style="margin-top:8px">
                     {ch.articles.map((a, i) => (
                       <div class="article">
-                        <p class="article__n">第 {CN[i]} 條</p>
+                        <p class="article__n">第 {CN[i] ?? String(i + 1)} 條</p>
                         <p class="article__t">{a}</p>
                       </div>
                     ))}
