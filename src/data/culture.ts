@@ -1,12 +1,15 @@
-// NISRA 社團文化內容（穩定常數，逐字取自 old-website/about.html、o-b.html）。
+// NISRA 社團文化內容（穩定常數）。
 // 「忠憲」是社團以仿《憲法》體例寫成的自我規範，帶著刻意的自嘲與玩味——
 // 重構時保留其精神與語氣，不消毒、不改寫（見設計 README「內容基本原則」）。
 //
-// 來源：old-website/about.html（Purpose / Rules 區塊）、old-website/o-b.html（Who are we?）。
-// 原則：用字逐字保留，不增刪/改寫任何文字內容；僅做最小幅度標點正規化
-//（補齊句末句號、半形括號改全形、Latin 詞前後加空格）。不確定處於下方以註解標記。
+// 來源與性質（重要：逐字 vs 新撰要分清）：
+//  - 逐字取自 old-website：CHARTER_PREAMBLE、CHARTER（忠憲/忠民/忠政）、OB_TRIBUTE、OB_FOUNDER、OB_ELDERS。
+//    （來源：about.html「Purpose / Rules」、o-b.html「Who are we?」）
+//  - 新撰站內導讀文案（非舊站原文）：CHARTER_INTRO。
+// 逐字部分僅做最小標點正規化（補句末句號、半形括號改全形、Latin 詞前後加空格），不增刪文字；
+// 不確定處於下方以註解標記。
 
-/** 忠憲一案的框架說明（提示讀者：認真，但別太認真）。 */
+/** 忠憲一案的框架說明（**新撰** UI 導讀文案，非舊站原文）。 */
 export const CHARTER_INTRO =
   "本會以仿《憲法》體例自我規範，寫成一部帶著社團幽默的「忠憲」。認真，但別太認真——這份玩味，是 NISRA 的一部分。";
 
@@ -18,8 +21,8 @@ export const CHARTER_PREAMBLE = [
   "制定本法，頒行全會，永矢咸遵。",
 ] as const;
 
-/** 最高信條（忠憲 第一章 第四條）。 */
-export const CHARTER_CREED = "NISRA 的最高信條是「愛」。";
+// 註：最高信條「NISRA 的最高信條是『愛』。」即忠憲第一章第四條（見 CHARTER 內），
+// About 頁的強調區塊直接以該句呈現，故此處不另設常數。
 
 export interface CharterChapter {
   chapter: string;
