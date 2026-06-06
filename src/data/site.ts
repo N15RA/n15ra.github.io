@@ -4,7 +4,7 @@
 export const SITE = {
   shortName: "NISRA",
   fullName: "Network and Information Security Research Association",
-  fullNameZh: "資訊安全研究會",
+  fullNameZh: "資訊安全研究會", // 中文全名；保留供 SEO / 結構化資料，未必每頁渲染
   since: 2007,
   email: "nisra@nisra.net",
   domain: "www.nisra.net",
@@ -12,8 +12,6 @@ export const SITE = {
 } as const;
 
 export const SLOGAN = "Never Stop Learning.";
-
-export const JOIN_MOTTO = "「沒有人一開始就是強者，但你必須先開始才能變強」";
 
 // 導覽項目。label 在中英文設計皆為英文，故直接放這裡（CTA「加入我們」走 i18n 字典）。
 export const NAV_ITEMS = [

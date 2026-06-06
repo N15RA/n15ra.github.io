@@ -119,6 +119,9 @@ test-results/
 playwright-report/
 playwright/.cache/
 
+# Local scratch / collected source notes (not site content)
+/tmp/
+
 # Dependencies
 node_modules/
 
