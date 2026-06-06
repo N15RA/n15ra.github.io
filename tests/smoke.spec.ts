@@ -46,6 +46,46 @@ test("about sub-tabs switch panels", async ({ page }) => {
   await expect(page.locator("#panel-summary")).toBeHidden();
 });
 
+test("about History timeline is newest-first", async ({ page }) => {
+  await page.goto("/about");
+  await page.getByRole("tab", { name: /History/ }).click();
+  const terms = page.locator("#panel-history .mtl__term");
+  await expect(terms.first()).toHaveText("2014.12.17");
+  await expect(terms.last()).toHaveText("2006.03.23");
+});
+
+test("about Members cards show the 歷屆合照 photo placeholder", async ({ page }) => {
+  await page.goto("/about");
+  await page.getByRole("tab", { name: /Members/ }).click();
+  await expect(page.locator("#panel-members .mtl__photo").first()).toBeVisible();
+});
+
+test("about O.B. tab shows the founder tribute and roster", async ({ page }) => {
+  await page.goto("/about");
+  await page.getByRole("tab", { name: /O\.B\./ }).click();
+  const ob = page.locator("#panel-ob");
+  await expect(ob).toBeVisible();
+  await expect(ob).toContainText("在此獻上最高的敬意");
+  await expect(ob).toContainText("Allen Own");
+});
+
+test("about Charter tab shows the creed and 忠憲條案", async ({ page }) => {
+  await page.goto("/about");
+  await page.getByRole("tab", { name: /Charter/ }).click();
+  const charter = page.locator("#panel-charter");
+  await expect(charter).toBeVisible();
+  await expect(page.locator("#panel-ob")).toBeHidden();
+  await expect(charter).toContainText("最高信條是");
+  await expect(charter).toContainText("忠憲條案");
+});
+
+test("event page shows refreshed KKTIX events through 2025", async ({ page }) => {
+  await page.goto("/event");
+  await expect(page.locator("#panel-news")).toContainText("Enlightened 2025");
+  await page.getByRole("tab", { name: /活動 Events/ }).click();
+  await expect(page.locator("#panel-events")).toContainText("Hackathon");
+});
+
 test("lesson semester selector switches archives", async ({ page }) => {
   await page.goto("/lesson");
   await expect(page.locator("#sem-108-1")).toBeVisible();

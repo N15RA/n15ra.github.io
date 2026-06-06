@@ -7,7 +7,7 @@ import CourseCard from "./CourseCard.astro";
 import SocialList from "./SocialList.astro";
 import photoEnlightened from "../assets/photo-enlightened-2019.jpg";
 import { PILLARS } from "../data/pillars";
-import { SLOGAN, JOIN_INFO } from "../data/site";
+import { SITE, SLOGAN, JOIN_INFO } from "../data/site";
 import { getLocale, localizePath } from "../i18n/utils";
 
 const locale = getLocale(Astro.currentLocale);
@@ -25,7 +25,7 @@ const recentCourses = recent?.data.courses.slice(0, 3) ?? [];
 <header class="hero" data-theme="dark">
   <Hex class="hero__hexwatermark" />
   <div class="wrap hero__inner">
-    <p class="kicker">// Fu Jen Catholic University · since 2007</p>
+    <p class="kicker">// Fu Jen Catholic University · since {SITE.since}</p>
     <h1>資訊安全，<br />從動手開始。</h1>
     <p class="hero__slogan">{SLOGAN}</p>
     <p class="hero__lead">
