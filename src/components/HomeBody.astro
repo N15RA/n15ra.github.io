@@ -24,6 +24,13 @@ const recentCourses = recent?.data.courses.slice(0, 3) ?? [];
 
 <header class="hero" data-theme="dark">
   <Hex class="hero__hexwatermark" />
+  <div class="hero__constellation" aria-hidden="true">
+    <Hex class="hero__float hero__float--1" />
+    <Hex class="hero__float hero__float--2" />
+    <Hex class="hero__float hero__float--3" />
+    <Hex class="hero__float hero__float--4" />
+    <Hex class="hero__float hero__float--5" />
+  </div>
   <div class="wrap hero__inner">
     <p class="kicker">// Fu Jen Catholic University · since {SITE.since}</p>
     <h1>資訊安全，<br />從動手開始。</h1>
@@ -35,26 +42,49 @@ const recentCourses = recent?.data.courses.slice(0, 3) ?? [];
       <Button variant="primary" size="lg" href="#join">加入我們</Button>
       <Button variant="outline" size="lg" href={lessonHref}>看看課程</Button>
     </div>
+    <div class="hero__facts">
+      <div class="hero__fact">
+        <span class="hero__fact-k">時間</span>
+        <span class="hero__fact-v">每週二 19:00–21:00</span>
+        <span class="hero__fact-s">學期間．考試週前後不開課</span>
+      </div>
+      <div class="hero__fact">
+        <span class="hero__fact-k">地點</span>
+        <span class="hero__fact-v">輔大資工系 · 聖言樓 SF645</span>
+        <span class="hero__fact-s">新北市新莊區中正路 510 號</span>
+      </div>
+      <div class="hero__fact">
+        <span class="hero__fact-k">參加</span>
+        <span class="hero__fact-v">免費・自由參加</span>
+        <span class="hero__fact-s">不分學校學籍．直接來教室就行</span>
+      </div>
+    </div>
   </div>
 </header>
 
 <section class="section">
   <div class="wrap">
-    <div class="section__head" style="max-width:62ch">
-      <p class="kicker">// Who are we</p>
-      <h2>We are NISRA</h2>
-      <p>
-        是一群由輔仁大學資工系學生組成的資安社團，目的在於研究及推廣資訊安全相關知識。我們把學習拆成三件事：一起講、一起留下、一起把系統變得更安全。
-      </p>
+    <div class="section__split">
+      <div class="section__split-lead">
+        <p class="kicker">// Who are we</p>
+        <h2>We are NISRA</h2>
+      </div>
+      <div class="section__split-body">
+        <p>
+          是一群由輔仁大學資工系學生組成的資安社團，目的在於研究及推廣資訊安全相關知識。我們把學習拆成三件事——<strong
+            >一起講、一起留下、一起把系統變得更安全。</strong
+          >
+        </p>
+      </div>
     </div>
-    <div class="grid grid--3" style="margin-top:36px">
+    <div class="grid grid--3" style="margin-top:40px">
       {
         PILLARS.map((p) => (
-          <div class="card">
+          <div class="card pillar">
             <div class="card__accent" />
             <div class="card__body">
-              <p class="kicker">// {p.n}</p>
               <h3 class="card__title pillar__name">{p.k}</h3>
+              <p class="pillar__essence">{p.e}</p>
               <p class="card__desc">{p.d}</p>
             </div>
           </div>

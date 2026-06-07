@@ -65,14 +65,20 @@
 
   /* ---------------------------------------------------------------------
      4. SEMANTIC STATUS  (brand hues, contrast-tuned)
+     `*-text` = a darkened ink for SMALL text on the matching `*-bg`
+     (all ≥ 5.7:1, WCAG AA). Use the plain hue for fills / icons / large text.
      --------------------------------------------------------------------- */
   --success: #3f8a2e;
+  --success-text: #2c6420; /* 6.4:1 on --success-bg */
   --success-bg: #eaf6e6;
   --danger: #d92d20;
+  --danger-text: #b02013; /* 6.0:1 on --danger-bg */
   --danger-bg: #fcebea; /* modernized from brand red */
   --info: #0e7fb8;
+  --info-text: #0a5c85; /* 6.4:1 on --info-bg */
   --info-bg: #e5f3fb; /* modernized from brand blue */
   --warning: #b7791f;
+  --warning-text: #835515; /* 5.7:1 on --warning-bg */
   --warning-bg: #fbf1dd; /* readable amber from yellow */
 
   /* ---------------------------------------------------------------------
@@ -90,6 +96,7 @@
   --link-hover: var(--accent-ink-deep);
   --border: var(--ink-200);
   --border-strong: var(--ink-300);
+  --border-input: var(--ink-400); /* form-control boundary — 3.9:1 on white (WCAG 1.4.11) */
   --ring: #6e8f00; /* focus ring on light (AA non-text) */
 
   /* ---------------------------------------------------------------------
