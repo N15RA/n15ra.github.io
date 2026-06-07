@@ -2,15 +2,25 @@
 import Hex from "./Hex.astro";
 
 interface Props {
-  event: { title: string; date: string; desc: string; href: string };
+  event: { title: string; date: string; desc: string; href: string; category: string };
 }
 const { event } = Astro.props;
+
+// 卡面 kind chip 用精簡分類（與分頁籤的雙語標籤「活動 Events」區隔）。
+const KIND: Record<string, string> = {
+  最新消息: "最新消息",
+  "活動 Events": "活動",
+  "合作 Partnerships": "合作",
+};
+const kind = KIND[event.category] ?? "活動";
 ---
 
 <article class="card">
-  <div class="card__thumb"><Hex /></div>
   <div class="card__body">
-    <p class="course__date">{event.date}</p>
+    <div class="card__meta">
+      <span class="card__kind"><Hex /> {kind}</span>
+      <span class="card__date">{event.date}</span>
+    </div>
     <h3 class="card__title">{event.title}</h3>
     <p class="card__desc">{event.desc}</p>
     <a class="card__more" href={event.href} target="_blank" rel="noreferrer">更多 →</a>

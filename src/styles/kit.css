@@ -82,13 +82,17 @@ img {
 .btn:active {
   transform: translateY(1px);
 }
+/* Primary: on LIGHT surfaces it is a grounded charcoal pill with lime text
+   (keeps the lime+charcoal identity without a neon block on white); on DARK
+   surfaces — hero, nav, where「加入我們」lives — it becomes the signature
+   lime fill with charcoal text. */
 .btn--primary {
-  background: var(--accent-strong);
-  color: var(--on-accent);
-  border-color: var(--accent-ink);
+  background: var(--ink-900);
+  color: var(--accent);
+  border-color: var(--ink-900);
 }
 .btn--primary:hover {
-  background: var(--accent);
+  background: var(--ink-700);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
 }
@@ -122,7 +126,12 @@ img {
   color: var(--accent);
 }
 [data-theme="dark"] .btn--primary {
+  background: var(--accent-strong);
+  color: var(--on-accent);
   border-color: transparent;
+}
+[data-theme="dark"] .btn--primary:hover {
+  background: var(--accent);
 }
 [data-theme="dark"] .btn--ghost {
   color: var(--accent);
@@ -202,9 +211,10 @@ img {
   padding: 8px 12px;
   border-radius: var(--r-sm);
   text-decoration: none;
-  transition:
-    color 0.15s,
-    background 0.15s;
+  /* transition background only — interpolating `color` into a var() value
+     leaves stale paint on class toggle in Chromium, so the active-link colour
+     would not follow route changes. Colour switches instantly instead. */
+  transition: background 0.15s;
 }
 .nav__link:hover {
   color: #fff;
@@ -212,6 +222,11 @@ img {
 }
 .nav__link.is-active {
   color: var(--accent);
+  /* non-colour cue (WCAG 1.4.1): underline the active item so it does not
+     rely on the lime colour alone. */
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 .nav__cta {
   margin-left: 6px;
@@ -292,7 +307,93 @@ img {
       rgba(216, 248, 74, 0.18),
       transparent 60%
     ),
-    radial-gradient(440px 440px at -90px 116%, rgba(216, 248, 74, 0.06), transparent 62%);
+    radial-gradient(440px 440px at -90px 116%, rgba(216, 248, 74, 0.06), transparent 62%),
+    radial-gradient(620px 620px at 18% -10%, rgba(95, 211, 255, 0.05), transparent 58%);
+}
+
+/* ---- Hero hexagon constellation (sober-but-lively brand motif) ----------
+   A few outline hexagons of varying size/opacity drifting very slowly behind
+   the content. References the "network" in NISRA without busying the hero.
+   Decorative + reduced-motion aware. */
+.hero__constellation {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero__float {
+  position: absolute;
+  display: block;
+  color: rgba(231, 255, 110, 0.16);
+  animation: heroFloat 18s ease-in-out infinite;
+  will-change: transform;
+}
+.hero__float--1 {
+  width: 54px;
+  height: 64px;
+  top: 18%;
+  left: 8%;
+  color: rgba(231, 255, 110, 0.18);
+  animation-duration: 16s;
+}
+.hero__float--2 {
+  width: 32px;
+  height: 38px;
+  top: 64%;
+  left: 16%;
+  color: rgba(231, 255, 110, 0.13);
+  animation-duration: 21s;
+  animation-delay: -4s;
+}
+.hero__float--3 {
+  width: 88px;
+  height: 104px;
+  top: 30%;
+  left: 52%;
+  color: rgba(231, 255, 110, 0.07);
+  animation-duration: 26s;
+  animation-delay: -8s;
+}
+.hero__float--4 {
+  width: 24px;
+  height: 28px;
+  top: 22%;
+  left: 80%;
+  color: rgba(95, 211, 255, 0.16);
+  animation-duration: 19s;
+  animation-delay: -2s;
+}
+.hero__float--5 {
+  width: 42px;
+  height: 50px;
+  top: 72%;
+  left: 66%;
+  color: rgba(231, 255, 110, 0.1);
+  animation-duration: 23s;
+  animation-delay: -11s;
+}
+@media (max-width: 720px) {
+  .hero__float--3,
+  .hero__float--5 {
+    display: none;
+  }
+}
+@keyframes heroFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(8deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__float {
+    animation: none;
+  }
 }
 .hero__inner {
   padding-block: clamp(56px, 9vw, 120px);
@@ -336,23 +437,57 @@ img {
   color: rgba(255, 255, 255, 0.04);
   z-index: 0;
 }
-.hero__stats {
+.hero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+  width: 100%;
+  max-width: 720px;
+}
+@media (max-width: 680px) {
+  .hero__facts {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+.hero__fact {
+  display: grid;
+  gap: 4px;
+  padding: 15px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-md);
+}
+.hero__fact-k {
   display: flex;
-  flex-wrap: wrap;
-  gap: 28px;
-  margin-top: 12px;
-}
-.hero__stat .n {
-  font-size: 30px;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: -0.01em;
-}
-.hero__stat .l {
-  font-size: 13px;
-  color: #9c9a97;
+  align-items: center;
+  gap: 7px;
   font-family: var(--font-mono);
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.hero__fact-k::before {
+  content: "";
+  width: 9px;
+  height: 10px;
+  flex: none;
+  background: var(--accent);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+.hero__fact-v {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+}
+.hero__fact-s {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #9c9a97;
+  line-height: 1.45;
 }
 
 /* ---- Section ---- */
@@ -374,6 +509,56 @@ img {
 .section__head p {
   margin: 0;
   color: var(--fg-muted);
+}
+
+/* Editorial two-column section header — heading is the clear anchor (primary),
+   supporting copy sits to the right as secondary text. Both columns start from
+   the same top baseline so the hierarchy reads heading → supporting copy, not
+   a floating heading against heavier body text. Stacks on narrow screens. */
+.section__split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px 56px;
+  align-items: start;
+  margin-bottom: 8px;
+}
+.section__split-lead {
+  display: grid;
+  gap: 10px;
+}
+.section__split-lead h2 {
+  margin: 0;
+}
+.section__split-body {
+  max-width: 50ch;
+  /* nudge the supporting copy down to the heading's cap-height baseline */
+  padding-top: 6px;
+}
+.section__split-body p {
+  margin: 0;
+  font-size: var(--t-body);
+  line-height: 1.75;
+  color: var(--fg-muted);
+}
+.section__split-body p + p {
+  margin-top: 14px;
+}
+.section__split-body strong {
+  color: var(--fg-strong);
+  font-weight: 600;
+}
+/* prose variant — body is primary reading copy, so use full-strength ink */
+.section__split--prose .section__split-body p {
+  color: var(--fg);
+}
+@media (max-width: 760px) {
+  .section__split {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .section__split-body {
+    padding-top: 0;
+  }
 }
 
 /* ---- Cards / grid ---- */
@@ -418,55 +603,155 @@ img {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
-.card__thumb {
-  height: 132px;
-  background: var(--ink-900);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.card__thumb .hex {
-  width: 44px;
-  height: 52px;
-  color: var(--accent);
-}
+/* 4px lime accent bar (pillar identity). */
 .card__accent {
   height: 4px;
   background: var(--accent);
 }
 .card__body {
-  padding: 18px 20px;
+  padding: 16px 20px 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   flex: 1;
 }
+
+/* ---- Unified card anatomy ----------------------------------------------
+   Every card type shares the same skeleton so a grid of mixed cards reads
+   as one family:
+     [meta row]  →  [title]  →  [person?]  →  [desc]  →  [footer: tags|link]
+   ----------------------------------------------------------------------- */
+
+/* 1 · meta row — kind chip (left) + date or number (right) */
+.card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.card__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.card__kind .hex {
+  width: 15px;
+  height: 18px;
+  flex: none;
+  color: var(--accent-ink);
+}
+.card__date {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--fg-subtle);
+}
+.card__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent-ink);
+}
+[data-theme="dark"] .card__kind,
+[data-theme="dark"] .card__kind .hex,
+[data-theme="dark"] .card__num {
+  color: var(--accent);
+}
+
+/* 2 · title */
 .card__title {
   font-size: 19px;
   font-weight: 600;
+  line-height: 1.35;
   color: var(--fg-strong);
   margin: 0;
 }
+
+/* 3 · speaker credit — a modest one-line label (most lecturers have no avatar) */
+.course__by {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.course__by-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--fg-subtle);
+}
+
+/* 3b · person block — a distinct, instantly-scannable unit (O.B. founder) */
+.card__person {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 9px 12px;
+}
+.card__avatar {
+  width: 34px;
+  height: 39px;
+  flex: none;
+  background: var(--accent);
+  color: var(--on-accent);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.card__person-meta {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+.card__person-role {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+.card__person-name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--fg-strong);
+  line-height: 1.3;
+}
+
+/* 4 · description */
 .card__desc {
   font-size: 14.5px;
   color: var(--fg-muted);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.65;
 }
+
+/* 5 · footer — tags or action link, pinned to the bottom */
 .card__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
   margin-top: auto;
   padding-top: 4px;
-}
-.course__date {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--accent-ink);
-  margin: 0;
 }
 
 /* ---- Lessons (multi-semester archive) ---- */
@@ -564,6 +849,7 @@ img {
   padding: 4px 10px;
   border-radius: var(--r-pill);
   letter-spacing: 0.02em;
+  display: inline-block;
 }
 .badge--lime {
   background: var(--accent);
@@ -617,22 +903,37 @@ img {
   font-size: 15px;
 }
 
-/* ---- Constitution block (about) ---- */
+/* ---- Constitution / creed pull-quote (about) ----------------------------
+   A refined light pull-quote — warm surface, a centred lime-ink hex mark, and
+   generous space. Replaces the abrupt near-black slab so it sits calmly in the
+   light page while staying on-brand (mono + hex + lime-ink). */
 .creed {
-  background: var(--ink-950);
-  color: #fff;
+  position: relative;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  padding: 36px 32px;
+  padding: 38px 36px;
   text-align: center;
+}
+.creed::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 28px;
+  margin: 0 auto 18px;
+  background: var(--accent-ink);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 }
 .creed__zh {
   font-size: clamp(1.4rem, 1rem + 2vw, 2.2rem);
   font-weight: 700;
   line-height: 1.5;
   margin: 0;
+  color: var(--fg-strong); /* override global `p { color: var(--fg) }` */
+  text-wrap: balance;
 }
 .creed__hl {
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 .article {
   border-top: 1px solid var(--border);
@@ -701,22 +1002,6 @@ img {
 }
 
 /* ---- Footer ---- */
-.footer {
-  background: var(--ink-950);
-  color: #c9c8c5;
-  padding-block: 52px 36px;
-}
-.footer__top {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 32px;
-}
-@media (max-width: 720px) {
-  .footer__top {
-    grid-template-columns: 1fr;
-    gap: 26px;
-  }
-}
 .footer__brand {
   display: flex;
   align-items: center;
@@ -740,46 +1025,6 @@ img {
   margin-top: 12px;
   letter-spacing: 0.04em;
   line-height: 1.7;
-}
-.footer__slogan {
-  font-family: var(--font-mono);
-  color: #fff;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin: 14px 0 0;
-}
-.join-note {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 18px 20px;
-  margin-bottom: 26px;
-}
-.join-motto {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--fg-strong);
-  margin: 0;
-  line-height: 1.6;
-  text-wrap: balance;
-}
-.footer h4 {
-  color: #fff;
-  font-size: 14px;
-  margin: 0 0 12px;
-}
-.footer__col a,
-.footer__col p {
-  display: block;
-  color: #adaba8;
-  font-size: 14px;
-  text-decoration: none;
-  margin: 0 0 9px;
-  line-height: 1.5;
-}
-.footer__col a:hover {
-  color: var(--accent);
 }
 .footer__legal {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -821,6 +1066,21 @@ img {
 .pillar__name {
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
+}
+/* pillar essence — a one-line distillation that replaces the filler meta row */
+.pillar__essence {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--accent-ink);
+  margin: 0;
+  line-height: 1.5;
+}
+[data-theme="dark"] .pillar__essence {
+  color: var(--accent);
+}
+.pillar .card__desc {
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
 }
 .band-dark {
   background: var(--ink-950);
@@ -928,18 +1188,109 @@ img {
   background: var(--accent-ink);
   clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 }
-.mtl__photo {
-  aspect-ratio: 16 / 10;
-  background: var(--ink-100);
+/* dashed connector bridging the centre node to its offset card */
+.mtl__row::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  height: 0;
+  border-top: 1.5px dashed var(--border-strong);
+  pointer-events: none;
+}
+.mtl__row--left::after {
+  left: calc(50% - 42px);
+  width: 32px;
+}
+.mtl__row--right::after {
+  left: calc(50% + 10px);
+  width: 32px;
+}
+/* O.B. founder header — reuses the avatar + person-meta language */
+.founder-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 10px 16px 10px 12px;
+  background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
-  display: grid;
-  place-items: center;
-  color: var(--fg-subtle);
+}
+
+/* ---- Roster (歷屆夥伴) — cohorts on the History alternating spine -------- */
+.roster__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.roster__cohort {
   font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-ink);
+  white-space: nowrap;
+}
+.roster__cohort--tbd {
   font-size: 12px;
-  letter-spacing: 0.08em;
-  margin-bottom: 14px;
+  font-weight: 500;
+  color: var(--fg-subtle);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-pill);
+  padding: 3px 12px;
+  white-space: nowrap;
+}
+[data-theme="dark"] .roster__cohort {
+  color: var(--accent);
+}
+.roster__list {
+  margin: 0;
+}
+.roster__row {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--ink-100);
+}
+.roster__row:last-child {
+  border-bottom: 0;
+}
+.roster__role {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--fg-subtle);
+}
+.roster__name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg-strong);
+}
+/* 會長 row — a small lime hex marker + accent name to anchor each cohort */
+.roster__row--lead .roster__role {
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.roster__row--lead .roster__role::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 9px;
+  margin-right: 6px;
+  background: var(--accent-ink);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  vertical-align: middle;
+}
+[data-theme="dark"] .roster__row--lead .roster__role,
+[data-theme="dark"] .roster__row--lead .roster__role::before {
+  color: var(--accent);
+  background: var(--accent);
 }
 .mtl__term {
   font-family: var(--font-mono);
@@ -967,12 +1318,11 @@ img {
   .mtl__node {
     left: 13px;
   }
-}
-.footer__dept {
-  color: #828080;
-  font-size: 13px;
-  margin: 16px 0 0;
-  line-height: 1.5;
+  .mtl__row--left::after,
+  .mtl__row--right::after {
+    left: 23px;
+    width: 19px;
+  }
 }
 
 /* ---- Sub-tabs (About / Event) ---- */
