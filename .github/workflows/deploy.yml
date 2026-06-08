@@ -23,12 +23,24 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 明確步驟（取代 withastro/action）：插入 CN 字體還原步驟，讓 prebuild 能依
+    # 當前內容重新子集化（避免新中文字 fallback 成不同字體）。
     steps:
       - uses: actions/checkout@v6
-      - name: Build with Astro
-        uses: withastro/action@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 22 # 對齊 mise.toml
+          cache: npm
+      - uses: ./.github/actions/cn-fonts
+      - run: npm ci
+      - name: Build（prebuild 會先重新子集 CN 字體，再 astro build）
+        run: npm run build
+      # @v3 為 actions/upload-pages-artifact 官方 README 現行示範版本（非過時），
+      # 與 deploy-pages@v5 相容；日後官方改 recommended major 再升。
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
