@@ -35,10 +35,10 @@ jobs:
       - run: npm ci
       - name: Build（prebuild 會先重新子集 CN 字體，再 astro build）
         run: npm run build
-      # @v3 為 actions/upload-pages-artifact 官方 README 現行示範版本（非過時），
-      # 與 deploy-pages@v5 相容；日後官方改 recommended major 再升。
+      # @v5 內部使用 upload-artifact@v7（Node 24），取代 @v3 的 upload-artifact@v4
+      # （已棄用的 Node 20）；與 deploy-pages@v5 配對。
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
