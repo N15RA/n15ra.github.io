@@ -62,8 +62,6 @@ npm run font:subset   # regenerate after adding new Chinese characters
 | `tests/`                  | Playwright smoke + accessibility tests                        |
 | `.github/workflows/`      | `deploy.yml` (Pages) + `ci.yml` (check / build / audit / e2e) |
 | `old-website/`            | Faithful archival dump of the existing Wix site (do not edit) |
-| `.claude/`, `CLAUDE.md`   | Development guidelines and Claude Code configuration          |
-| `AGENTS.md`               | General usage guidelines                                      |
 | `mise.toml`               | Runtime version management (Node 22)                          |
 | `.pre-commit-config.yaml` | Pre-commit checks (base hooks + Prettier + astro check)       |
 
