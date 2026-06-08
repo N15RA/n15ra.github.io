@@ -3,9 +3,11 @@ import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
 // 社團可編輯的清單資料：每筆一個 JSON 檔，置於 src/content/<collection>/，
-// 以 Zod 驗證、build 時自動產生型別。一筆一檔（folder collection）讓 Sveltia CMS
-// 能以表單逐筆編輯（其不支援單檔 root-level 陣列）；entry id 以 generateId 鎖定
-// 為各檔的 `id` 欄位（與舊 file() loader 行為一致，如 LessonBody 的 s.id）。
+// 以 Zod 驗證、build 時自動產生型別。採一筆一檔（folder collection）是架構選擇——
+// 讓 Sveltia CMS 以「每筆獨立頁面」編輯（semesters/members 的巢狀 courses/officers
+// 尤其清楚）、git diff 以單筆為單位、且為 Decap/Sveltia 通用結構（不依賴 Sveltia 專屬的
+// root:true list field）。entry id 以 generateId 鎖定為各檔的 `id` 欄位（與舊 file()
+// loader 行為一致，如 LessonBody 的 s.id）。
 // `scaffold: true` 標記「示意資料，待社團補正」（課表、歷屆幹部）。
 const byId = ({ data }: { data: Record<string, unknown> }) => data.id as string;
 
