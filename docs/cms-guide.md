@@ -13,7 +13,7 @@
    - 建議 **Fine-grained token**：Repository 選 `N15RA/n15ra.github.io`，權限 **Contents → Read and write**。
    - （或用 classic token 勾 `repo`。）
 2. 開 `/admin/` → 點 **「Sign In Using Access Token」** → 貼上 token。
-   - token 只存在你的瀏覽器（localStorage），直接連 GitHub API、不經任何第三方伺服器。
+   - token 只存在你的瀏覽器（localStorage）；認證與內容讀寫**直接連 GitHub API**、不經 OAuth proxy 或我們的伺服器（後台 UI 另會載入 Google Fonts／unpkg 資產，與你的 token 無關）。
 
 ## 編輯內容
 
@@ -26,10 +26,16 @@
 | 歷屆幹部     | /about → 歷屆夥伴 | 每屆一筆，內含多位幹部（officers 巢狀清單）  |
 | 沿革         | /about → 沿革     | 年表，一事件一筆                             |
 
-- 改完按 **Save → Publish**：CMS 自動 commit 回 repo 的 `main`，GitHub Actions 數分鐘內自動重建並上線。
 - **新增一筆**：點分類右上「+」，填欄位——**ID 必填**（會成為檔名，如 `108-1`、`enlightened-2025`）。
 - **排序**：每筆有 `order`（數字），**數字大者顯示在前**（較新）。
 - **日期格式**：`YYYY.MM.DD`（少數活動只有 `YYYY.MM`）。
+
+## 發布與權限（重要）
+
+- 存檔（**Save → Publish**）會**直接 commit 回 `main` 並自動部署**——沒有額外的審查／核可關卡（這是讓幹部「存檔即上線」的刻意設計），通常數分鐘後上線。
+- 因此請用**最小權限**的 token：fine-grained PAT、只授權**本 repo** 的 **Contents: Read and write**（不要附帶 workflow／settings 等其他權限）。
+- 安全網：若內容格式錯誤，build 會失敗 → **不會部署**，線上維持上一個正常版本。
+- 日後若想「先審查再上線」，可改用 Sveltia 的 `editorial_workflow`（存檔時自動開 PR、需有人合併）或對 `main` 設 branch protection（會需要有人做合併，UX 較複雜）。
 
 ## 常見問題
 
@@ -40,6 +46,7 @@
 ## 維護（開發者）
 
 - CMS 設定：`public/admin/config.yml`——欄位需與 `src/content.config.ts` 的 Zod schema 保持一致（兩邊同步）。
-- CMS bundle 為**自架**（無 CDN）：`public/admin/sveltia-cms.js`。更新版本：
+- CMS **核心 bundle 自架**（不靠 CDN 載入 CMS 本體）：`public/admin/sveltia-cms.js`。更新版本：
   `npm i -D @sveltia/cms@latest && npm run admin:bundle`，再 commit 更新後的 bundle。
+  - 註：Sveltia 後台 runtime 仍會向 unpkg（版本檢查、prismjs 延遲載入）與 Google Fonts（後台 UI 字型）發出請求；此為 `/admin` 後台工具行為，**公開網站本身零第三方請求**。
 - 升級為 **OAuth**（免 PAT、多人友善）：部署 [`sveltia/sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth) 到 Cloudflare Worker、註冊 GitHub OAuth App，並在 `config.yml` 的 `backend` 加 `base_url` 指向該 Worker（其餘設定不變）。
