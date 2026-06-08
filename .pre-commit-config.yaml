@@ -1,8 +1,9 @@
 # 提交前自動執行的 formatter / 基礎檢查。
 # 安裝：pre-commit install；手動全跑：pre-commit run --all-files
 
-# 排除：old-website/ 為忠實的舊站備份（archival dump），須逐字保留、勿格式化。
-exclude: "^old-website/"
+# 排除：old-website/ 為忠實的舊站備份（archival dump），須逐字保留、勿格式化；
+# public/admin/sveltia-cms.js 為自架的 minified bundle（vendored），勿被任何 hook 改動。
+exclude: "^(old-website/|public/admin/sveltia-cms\\.js$)"
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

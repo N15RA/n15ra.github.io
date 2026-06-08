@@ -12,5 +12,8 @@ playwright-report/
 # 自架字體（二進位 / 子集產物）
 public/fonts/
 
+# 自架 Sveltia CMS bundle（vendored，由 npm run admin:bundle 產生，勿格式化）
+public/admin/sveltia-cms.js
+
 # lockfile 由 npm 維護
 package-lock.json

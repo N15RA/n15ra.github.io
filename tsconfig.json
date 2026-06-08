@@ -1,5 +1,5 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "old-website"]
+  "exclude": ["dist", "old-website", "public/admin/sveltia-cms.js"]
 }
