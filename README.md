@@ -7,6 +7,11 @@ Rebuilt off Wix as a pure-static site on **Astro** + **GitHub Pages** — faithf
 to the new design system, bilingual-ready (zh-TW primary, English scaffold), with
 self-hosted fonts (no third-party CDN).
 
+> **Design provenance.** The visual design comes from an external **Claude Design**
+> handoff ("NISRA Design System"), which was itself reverse-engineered from this
+> repo and is **not vendored** here. The production source of truth is this repo's
+> `src/styles/*` (tokens + component CSS) and `src/components/*`.
+
 ## Tech stack
 
 - **Astro 6** — component-based static site generator, zero JS by default
