@@ -8,8 +8,10 @@
     <title>NISRA CMS</title>
   </head>
   <body>
-    <!-- 自架 Sveltia CMS bundle（無第三方 CDN）；以 npm run admin:bundle 從
-         node_modules/@sveltia/cms/dist 複製更新。設定見同目錄 config.yml。 -->
+    <!-- 自架 Sveltia CMS 核心 bundle（不靠 CDN 載入 CMS 本體）；以 npm run admin:bundle
+         從 node_modules/@sveltia/cms/dist 複製更新。注意：Sveltia runtime 仍會向 unpkg
+         （版本檢查、prismjs）與 Google Fonts（後台 UI 字型）發出請求——屬後台工具行為，
+         公開網站本身零第三方請求。設定見同目錄 config.yml。 -->
     <script src="./sveltia-cms.js"></script>
   </body>
 </html>
