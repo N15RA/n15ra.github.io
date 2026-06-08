@@ -8,7 +8,7 @@ runs:
   using: composite
   steps:
     - name: Cache CN font sources
-      uses: actions/cache@v4
+      uses: actions/cache@v5 # Node 24 runtime（v4 為已棄用的 Node 20）
       with:
         path: .cache/fonts
         # key 含 -sha256 標記：使「未經 checksum 驗證」的舊 cache 失效，改用驗證過的下載。
