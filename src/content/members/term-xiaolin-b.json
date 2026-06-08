@@ -1,0 +1,28 @@
+{
+  "id": "term-xiaolin-b",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "小林"
+    },
+    {
+      "role": "紀錄",
+      "name": "燒肉"
+    },
+    {
+      "role": "活動",
+      "name": "蝦仁"
+    },
+    {
+      "role": "網管",
+      "name": "宇君"
+    },
+    {
+      "role": "生活",
+      "name": "鈴木"
+    }
+  ],
+  "order": 4,
+  "scaffold": false
+}

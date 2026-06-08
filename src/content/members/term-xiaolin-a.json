@@ -1,0 +1,36 @@
+{
+  "id": "term-xiaolin-a",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "小林"
+    },
+    {
+      "role": "文宣",
+      "name": "溫祥"
+    },
+    {
+      "role": "紀錄",
+      "name": "燒肉、蜘子珣、貴妃、SY、柔瑄"
+    },
+    {
+      "role": "宣傳",
+      "name": "Snake"
+    },
+    {
+      "role": "網管",
+      "name": "鴨鴨"
+    },
+    {
+      "role": "生活",
+      "name": "琮皓、昱璇"
+    },
+    {
+      "role": "課記",
+      "name": "韋伽"
+    }
+  ],
+  "order": 8,
+  "scaffold": false
+}

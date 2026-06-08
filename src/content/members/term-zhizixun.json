@@ -1,0 +1,32 @@
+{
+  "id": "term-zhizixun",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "蜘子珣"
+    },
+    {
+      "role": "總務",
+      "name": "Snake"
+    },
+    {
+      "role": "網管",
+      "name": "鴨鴨"
+    },
+    {
+      "role": "紀錄",
+      "name": "昱璇、柔瑄、Bell、SY"
+    },
+    {
+      "role": "課記",
+      "name": "韋伽"
+    },
+    {
+      "role": "生活",
+      "name": "琮皓"
+    }
+  ],
+  "order": 7,
+  "scaffold": false
+}

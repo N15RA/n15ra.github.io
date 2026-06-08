@@ -1,0 +1,24 @@
+{
+  "id": "term-theo",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "Theo"
+    },
+    {
+      "role": "會記",
+      "name": "PYC"
+    },
+    {
+      "role": "紀錄",
+      "name": "HTS"
+    },
+    {
+      "role": "總務",
+      "name": "小學生"
+    }
+  ],
+  "order": 13,
+  "scaffold": false
+}

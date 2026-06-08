@@ -1,0 +1,88 @@
+{
+  "id": "106-1",
+  "label": "106 學年度 · 第 1 學期",
+  "order": 1061,
+  "scaffold": false,
+  "courses": [
+    {
+      "title": "揭開駭客的神秘面紗",
+      "by": "Allen Own",
+      "date": "2017.09.24",
+      "desc": "究竟「駭客」是什麼？駭客都像新聞所說的那樣危險可怕嗎？打破傳統對於「駭客」這個名詞的負面印象，讓你對駭客有全新的看法，一起來暸解駭客的真實面貌。",
+      "tags": []
+    },
+    {
+      "title": "OWASP Training (Google Hacking)",
+      "by": "Theo",
+      "date": "2017.10.02",
+      "desc": "什麼！？ Google Hacking！？其實 Google 的進階搜尋指令能夠幫助駭客簡單快速地搜尋到一些敏感的資料，這堂課就讓我們來點滿 Google Hacking 的技能吧！",
+      "detail": "什麼！？ Google Hacking！？\n平常都是 google 問題、google 作業、\ngoogle 你想知道的事，輸入什麼它就把網際網路上的資訊呈現出來。其實 Google 的進階搜尋指令能夠幫助駭客簡單快速的搜尋到一些敏感的資料，這堂課就讓我們來點滿 Google Hacking 的技能吧！",
+      "tags": []
+    },
+    {
+      "title": "OWASP Training (File include)",
+      "by": "PS",
+      "date": "2017.10.16",
+      "desc": "我只是想講一個關於 File Include 跟它愉快的小夥伴 Local File Inclusion (LFI) 的故事 (?)。",
+      "detail": "我只是想講一個\n關於File Include\n跟它愉快的小夥伴Local File Inclusion (LFI)\n的故事 (?)",
+      "tags": []
+    },
+    {
+      "title": "OWASP Training (XSS / CSRF)",
+      "by": "HTS",
+      "date": "2017.10.23",
+      "desc": "想知道駭客如何使用 XSS 將惡意程式碼注入到網頁上嗎？想知道如何利用 CSRF 騙瀏覽器以別人的身分做一些壞事嗎？來學習一下基本的駭客手法吧！",
+      "tags": []
+    },
+    {
+      "title": "OWASP Training (SQL Injection)",
+      "by": "PYC",
+      "date": "2017.10.30",
+      "desc": "帶你初探資料庫系統，認識資料庫注入攻擊，學習保護你的資料庫不讓惡徒為所欲為。",
+      "tags": []
+    },
+    {
+      "title": "惡意程式在你家的各種姿勢",
+      "by": "Zero",
+      "date": "2017.11.20",
+      "desc": "利用實際案例剖析惡意程式行為蹤跡與各種注入方式，並針對事件處理較常利用的工具進行基本介紹與操作，透過實際埋入惡意程式的 Lab 實作練習。",
+      "tags": []
+    },
+    {
+      "title": "CTF 介紹",
+      "by": "Theo",
+      "date": "2017.11.27",
+      "desc": "第一部分介紹資訊安全領域中常見的競賽方式和類型，以及一些練習的管道和資源。第二部分將帶大家實際操作、複習前幾堂課的網頁攻擊手法。",
+      "tags": []
+    },
+    {
+      "title": "CVE Metasploit",
+      "by": "Theo",
+      "date": "2017.12.04",
+      "desc": "在茫茫的資安問題裡，要如何跟上最新揭露的漏洞資訊？這堂課將介紹你必須要知道的 CVE 是什麼，以及一套好用強大的滲透測試工具 Metasploit。",
+      "tags": []
+    },
+    {
+      "title": "研究分享",
+      "date": "2017.12.11",
+      "desc": "NISRA 學期研究分享，本次三個主題：1. PE File Format（HTS、PYC）；2. Struts2 漏洞分析（Theo、蕭又寧）；3. ECC（中學生、PS、太一）。",
+      "detail": "NISRA 學期研究分享，本次有以下三個分享主題：\n1. PE File Format by HTS、PYC\n2. Struts2 漏洞分析 by Theo、蕭又寧\n3. ECC by 中學生、PS、太一",
+      "tags": []
+    },
+    {
+      "title": "組合語言",
+      "by": "HTS x PYC",
+      "date": "2017.12.19",
+      "desc": "我都學過 C 語言了，為什麼還要學組合語言這麼「低階」的東西？一起來認識組合語言。",
+      "detail": "我都學過C語言了，\n為什麼還要學組合語言這麼「低階」的東西？\n一起來認識組合語言。",
+      "tags": []
+    },
+    {
+      "title": "Reverse 輕鬆談",
+      "by": "freetsubasa",
+      "date": "2017.12.25",
+      "desc": "在聖誕節的隔天，讓我們來輕鬆談談關於 Reverse 的那些事。",
+      "tags": []
+    }
+  ]
+}

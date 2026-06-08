@@ -1,0 +1,32 @@
+{
+  "id": "term-lihao",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "立豪"
+    },
+    {
+      "role": "公關",
+      "name": "威達"
+    },
+    {
+      "role": "總務",
+      "name": "一恩"
+    },
+    {
+      "role": "文宣",
+      "name": "銘均、家琦"
+    },
+    {
+      "role": "網管",
+      "name": "惠翔"
+    },
+    {
+      "role": "教學",
+      "name": "Banana"
+    }
+  ],
+  "order": 1,
+  "scaffold": false
+}
