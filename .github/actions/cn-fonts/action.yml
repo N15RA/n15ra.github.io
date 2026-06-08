@@ -1,0 +1,40 @@
+# 還原 Maple Mono NF CN 原始字檔（~20MB 各），讓 `npm run build` 的 prebuild
+# 能依當前內容重新子集化中文字體。原始字檔不 commit（見 scripts/subset-cn-font.mjs
+# 與 .gitignore 的 .cache）；此處 cache 命中為主、未命中才下載並 SHA-256 驗證。
+# deploy 與 ci 三個 job 共用，避免三處重複（DRY；換字體版本只改這裡）。
+name: "Restore CN font sources"
+description: "Cache or download & verify the Maple Mono NF CN source TTFs for font subsetting."
+runs:
+  using: composite
+  steps:
+    - name: Cache CN font sources
+      uses: actions/cache@v4
+      with:
+        path: .cache/fonts
+        # key 含 -sha256 標記：使「未經 checksum 驗證」的舊 cache 失效，改用驗證過的下載。
+        key: maple-mono-ttf-v7.9-sha256
+    - name: Restore CN font sources (download + verify on miss; assert both TTFs)
+      shell: bash
+      env:
+        # maple-font v7.9 之 MapleMono-NF-CN-unhinted.zip 的 SHA-256；與 GitHub release
+        # asset digest 一致（upstream 未另發佈 checksums，故以此釘版確保可重現）。
+        ZIP_SHA256: ab88522932cf4015dffeaef6dedc59a22a5fefecdcc6e583d9fcd997da5b7cac
+      run: |
+        set -euo pipefail
+        regular=.cache/fonts/MapleMono-NF-CN-Regular.ttf
+        bold=.cache/fonts/MapleMono-NF-CN-Bold.ttf
+        # 兩個 TTF 任一缺就下載（避免不完整 cache 只剩 Regular 而靜默繞過）。
+        if [ ! -f "$regular" ] || [ ! -f "$bold" ]; then
+          mkdir -p .cache/fonts
+          zip="$RUNNER_TEMP/maple-nf-cn.zip"
+          curl -fsSL --retry 3 -o "$zip" \
+            https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN-unhinted.zip
+          echo "${ZIP_SHA256}  ${zip}" | sha256sum -c -
+          unzip -o -j "$zip" \
+            "MapleMono-NF-CN-Regular.ttf" "MapleMono-NF-CN-Bold.ttf" -d .cache/fonts/
+        fi
+        # 不論 cache 命中或下載，兩個 TTF 都必須存在，否則 fail（杜絕 subset 沿用舊檔）。
+        if [ ! -f "$regular" ] || [ ! -f "$bold" ]; then
+          echo "::error::CN font TTF missing after restore (Regular and/or Bold)"
+          exit 1
+        fi

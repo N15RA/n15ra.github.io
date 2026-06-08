@@ -1,6 +1,6 @@
 ---
 import SocialIconRow from "./SocialIconRow.astro";
-import { SITE } from "../data/site";
+import { SITE, VENUE_ROOM, ADDRESS } from "../data/site";
 
 const year = new Date().getFullYear();
 ---
@@ -22,8 +22,8 @@ const year = new Date().getFullYear();
     </nav>
     <div class="footer__contact">
       <p>輔仁大學 資訊工程學系</p>
-      <p>新北市新莊區中正路 510 號</p>
-      <p>聖言樓 SF645</p>
+      <p>{ADDRESS}</p>
+      <p>{VENUE_ROOM}</p>
       <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
     </div>
   </div>

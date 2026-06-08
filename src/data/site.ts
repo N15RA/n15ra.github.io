@@ -36,9 +36,13 @@ export const SOCIALS: ReadonlyArray<{
   { name: "mail", label: SITE.email, href: `mailto:${SITE.email}` },
 ];
 
+// 聚會地點原子（單一事實來源；hero facts / footer / JOIN_INFO 共用，消除重複字串）。
+export const VENUE_ROOM = "聖言樓 SF645";
+export const ADDRESS = "新北市新莊區中正路 510 號";
+
 // 入社資訊（每週二晚間，聖言樓 SF645）。WHEN/WHERE/HOW 為真實內容。
 export const JOIN_INFO = {
   whenLines: ["每週二晚間 19:00–21:00", "第一週與考試週前後不開課"],
-  whereLines: ["輔仁大學資訊工程學系", "聖言樓 SF645"],
+  whereLines: ["輔仁大學資訊工程學系", VENUE_ROOM],
   howLines: ["直接來教室，或在社群私訊我們"],
 } as const;

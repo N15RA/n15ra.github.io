@@ -7,7 +7,7 @@ import CourseCard from "./CourseCard.astro";
 import SocialList from "./SocialList.astro";
 import photoEnlightened from "../assets/photo-enlightened-2019.jpg";
 import { PILLARS } from "../data/pillars";
-import { SITE, SLOGAN, JOIN_INFO } from "../data/site";
+import { SITE, SLOGAN, JOIN_INFO, VENUE_ROOM, ADDRESS } from "../data/site";
 
 const lessonHref = "/lesson";
 const aboutHref = "/about";
@@ -48,8 +48,8 @@ const recentCourses = recent?.data.courses.slice(0, 3) ?? [];
       </div>
       <div class="hero__fact">
         <span class="hero__fact-k">地點</span>
-        <span class="hero__fact-v">輔大資工系 · 聖言樓 SF645</span>
-        <span class="hero__fact-s">新北市新莊區中正路 510 號</span>
+        <span class="hero__fact-v">輔大資工系 · {VENUE_ROOM}</span>
+        <span class="hero__fact-s">{ADDRESS}</span>
       </div>
       <div class="hero__fact">
         <span class="hero__fact-k">參加</span>
