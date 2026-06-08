@@ -1,0 +1,28 @@
+{
+  "id": "term-snake",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "Snake"
+    },
+    {
+      "role": "副會長",
+      "name": "小林、溫祥"
+    },
+    {
+      "role": "紀錄",
+      "name": "燒肉、貴妃、蜘子珣"
+    },
+    {
+      "role": "網管",
+      "name": "鴨鴨"
+    },
+    {
+      "role": "生活",
+      "name": "鈴木"
+    }
+  ],
+  "order": 6,
+  "scaffold": false
+}

@@ -1,0 +1,32 @@
+{
+  "id": "term-caspar",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "Caspar"
+    },
+    {
+      "role": "課記",
+      "name": "Andrew"
+    },
+    {
+      "role": "會記",
+      "name": "ukaze"
+    },
+    {
+      "role": "紀錄",
+      "name": "Teresa"
+    },
+    {
+      "role": "總務",
+      "name": "許家維"
+    },
+    {
+      "role": "網管",
+      "name": "webberwu"
+    }
+  ],
+  "order": 11,
+  "scaffold": false
+}
