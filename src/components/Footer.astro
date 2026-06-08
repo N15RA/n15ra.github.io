@@ -1,10 +1,7 @@
 ---
 import SocialIconRow from "./SocialIconRow.astro";
 import { SITE } from "../data/site";
-import { getLocale, useTranslations, localizePath } from "../i18n/utils";
 
-const locale = getLocale(Astro.currentLocale);
-const t = useTranslations(locale);
 const year = new Date().getFullYear();
 ---
 
@@ -17,16 +14,16 @@ const year = new Date().getFullYear();
       <p class="footer__tag">{SITE.fullName}</p>
       <SocialIconRow />
     </div>
-    <nav class="footer__links" aria-label={t("footer.navLabel")}>
-      <a href={localizePath("/about", locale)}>About us</a>
-      <a href={localizePath("/event", locale)}>Event</a>
-      <a href={localizePath("/lesson", locale)}>Lesson</a>
-      <a href={SITE.hackathonUrl} target="_blank" rel="noreferrer">{t("footer.hackathon")} ↗</a>
+    <nav class="footer__links" aria-label="頁尾導覽">
+      <a href="/about">About us</a>
+      <a href="/event">Event</a>
+      <a href="/lesson">Lesson</a>
+      <a href={SITE.hackathonUrl} target="_blank" rel="noreferrer">Hackathon ↗</a>
     </nav>
     <div class="footer__contact">
-      <p>{t("footer.dept")}</p>
-      <p>{t("footer.addr")}</p>
-      <p>{t("footer.room")}</p>
+      <p>輔仁大學 資訊工程學系</p>
+      <p>新北市新莊區中正路 510 號</p>
+      <p>聖言樓 SF645</p>
       <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
     </div>
   </div>

@@ -1,0 +1,44 @@
+---
+// 歷屆夥伴名冊（Roster）。每屆以「職位—名稱」清單呈現於交替式 mtl 脊線，
+// 會長列高亮。cohort 為 null 時顯示「學年度・屆數待確認」佔位（不杜撰年份）。
+// 群體不以單一會長掛名（見設計 README「people vs. groups」）。
+interface Officer {
+  role: string;
+  name: string;
+}
+interface Cohort {
+  cohort: string | null;
+  officers: Officer[];
+}
+interface Props {
+  cohorts: Cohort[];
+}
+const { cohorts } = Astro.props;
+---
+
+<div class="mtl">
+  {
+    cohorts.map((c, i) => (
+      <div class={"mtl__row " + (i % 2 ? "mtl__row--right" : "mtl__row--left")}>
+        <div class="mtl__card">
+          <div class="roster__head">
+            {c.cohort ? (
+              <span class="roster__cohort">{c.cohort}</span>
+            ) : (
+              <span class="roster__cohort roster__cohort--tbd">學年度・屆數待確認</span>
+            )}
+          </div>
+          <dl class="roster__list">
+            {c.officers.map((o) => (
+              <div class={"roster__row" + (o.role === "會長" ? " roster__row--lead" : "")}>
+                <dt class="roster__role">{o.role}</dt>
+                <dd class="roster__name">{o.name}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <span class="mtl__node" aria-hidden="true" />
+      </div>
+    ))
+  }
+</div>

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Tabs from "./Tabs.astro";
 import Timeline from "./Timeline.astro";
+import Roster from "./Roster.astro";
 import Badge from "./Badge.astro";
 import {
   CHARTER_INTRO,
@@ -17,10 +18,11 @@ const history = (await getCollection("history"))
   .sort((a, b) => b.data.order - a.data.order)
   .map((e) => ({ term: e.data.date, desc: e.data.text }));
 
-// 歷屆夥伴：會長任期由新到舊；附「歷屆合照」照片佔位（待真照片）。
+// 歷屆夥伴：依存檔順序（order 降冪，較新在前）；以 Roster 呈現職位—名稱清單。
+// 各屆學年度／屆數未知 → cohort: null（顯示「待確認」佔位，不杜撰年份）。
 const members = (await getCollection("members"))
   .sort((a, b) => b.data.order - a.data.order)
-  .map((e) => ({ term: e.data.range, desc: e.data.desc, photo: true }));
+  .map((e) => ({ cohort: e.data.cohort, officers: e.data.officers }));
 
 const tabs = [
   { id: "summary", label: "Summary 簡介" },
@@ -47,21 +49,29 @@ const CN = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"
         aria-labelledby="tab-summary"
         data-panel="summary"
       >
-        <div class="prose" style="max-width:68ch">
-          <p class="ds-lead">
+        <div>
+          <p class="ds-lead" style="max-width:68ch">
             NISRA 是由輔仁大學資工系學生於 2007 年 5
             月自主發起、以資訊安全為研究主軸的自學團體。我們熱烈期待校園裡志同道合的同學加入，也與校外資安團體持續交流、切磋。
           </p>
-          <div style="margin-top:32px">
-            <p class="kicker">// 宗旨 Purpose</p>
-            <h2 style="margin:8px 0 14px">為什麼有 NISRA</h2>
-            <p>
-              我們身處沙灘，面臨這個世代的資訊海嘯——這世界上有九成的資料，產生於最近這幾年。當科技越來越聰明，資訊被濫用的隱憂也隨之而來，隱私的界線開始變得模糊。
-            </p>
-            <p>2007 年五月，翁浩正學長預見資訊安全終將是每個人都要面對的課題，於是發起了 NISRA。</p>
-            <p>
-              我們的宗旨，不只是提升自己的資訊能力，更希望藉由這個社團，培養更多專業資安人才——一代帶一代，延續精神，專精素養。
-            </p>
+          <div class="section__split section__split--prose" style="margin-top:44px">
+            <div class="section__split-lead">
+              <p class="kicker">// 宗旨 Purpose</p>
+              <h2>為什麼有 NISRA</h2>
+            </div>
+            <div class="section__split-body">
+              <p>
+                我們身處沙灘，面臨這個世代的資訊海嘯——這世界上有九成的資料，產生於最近這幾年。當科技越來越聰明，資訊被濫用的隱憂也隨之而來，隱私的界線開始變得模糊。
+              </p>
+              <p>
+                2007 年五月，翁浩正學長預見資訊安全終將是每個人都要面對的課題，於是發起了 NISRA。
+              </p>
+              <p>
+                我們的宗旨，不只是提升自己的資訊能力，更希望藉由這個社團，培養更多專業資安人才——<strong
+                  >一代帶一代，延續精神，專精素養。</strong
+                >
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -89,10 +99,11 @@ const CN = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"
         hidden
       >
         <p class="ds-lead">
-          NISRA
-          一代帶一代。以下為歷屆幹部名單（取自舊站，依會長任期由新到舊排序）；各屆對應的學年度與合照待社團確認後補上。
+          NISRA 一代帶一代。以下依存檔順序列出歷屆幹部（較新在前）；各屆對應的<strong
+            style="color:var(--fg)">學年度與屆數待社團確認後補上</strong
+          >，在此之前以佔位符標示，不臆測年份。
         </p>
-        <Timeline items={members} />
+        <Roster cohorts={members} />
       </div>
 
       <div
@@ -115,8 +126,14 @@ const CN = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"
         </div>
         <div style="margin-top:24px">
           <p class="kicker">// 創始與元老</p>
-          <div class="card__tags" style="margin-top:12px">
-            <Badge variant="lime">創辦人 · {OB_FOUNDER}</Badge>
+          <div class="founder-row">
+            <span class="card__avatar" aria-hidden="true">AO</span>
+            <span class="card__person-meta">
+              <span class="card__person-role">創辦人 FOUNDER</span>
+              <span class="card__person-name">{OB_FOUNDER}</span>
+            </span>
+          </div>
+          <div class="card__tags" style="margin-top:16px">
             {OB_ELDERS.map((n) => <Badge variant="soft">{n}</Badge>)}
           </div>
           <p class="ds-caption" style="margin-top:12px">

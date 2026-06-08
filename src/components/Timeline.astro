@@ -1,10 +1,10 @@
 ---
-// 交替式年表（mtl）。沿革（History）與歷屆夥伴（Members）共用；後者帶照片佔位。
+// 交替式年表（mtl）。沿革（History）使用：每筆 term（日期）+ desc（事件）。
+// 歷屆夥伴改用 Roster.astro（職位—名稱清單），不再共用此元件。
 interface Props {
-  items: { term: string; desc: string; photo?: boolean }[];
-  photoLabel?: string;
+  items: { term: string; desc: string }[];
 }
-const { items, photoLabel = "歷屆合照" } = Astro.props;
+const { items } = Astro.props;
 ---
 
 <div class="mtl">
@@ -12,11 +12,6 @@ const { items, photoLabel = "歷屆合照" } = Astro.props;
     items.map((it, i) => (
       <div class={"mtl__row " + (i % 2 ? "mtl__row--right" : "mtl__row--left")}>
         <div class="mtl__card">
-          {it.photo && (
-            <div class="mtl__photo" aria-hidden="true">
-              {photoLabel}
-            </div>
-          )}
           <p class="mtl__term">{it.term}</p>
           <p class="mtl__desc">{it.desc}</p>
         </div>
