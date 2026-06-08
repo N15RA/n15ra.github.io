@@ -14,7 +14,7 @@ export const SITE = {
 
 export const SLOGAN = "Never Stop Learning.";
 
-// 導覽項目。label 在中英文設計皆為英文，故直接放這裡（CTA「加入我們」走 i18n 字典）。
+// 導覽項目。label 依設計皆為英文，故直接放這裡（CTA「加入我們」為固定中文字串）。
 export const NAV_ITEMS = [
   { id: "home", href: "/", label: "Home" },
   { id: "about", href: "/about", label: "About us" },

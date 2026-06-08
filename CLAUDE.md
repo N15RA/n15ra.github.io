@@ -6,17 +6,16 @@
 ## 專案資訊
 
 - **專案名稱**: NISRA 官方網站（repo `n15ra.github.io`）
-- **專案簡述**: NISRA 社團官方網站。已全面退出 Wix，改以 **Astro + GitHub Pages** 的純靜態方案重構；視覺忠於新設計系統，中英雙語（zh-TW 為主、英文 scaffold），字體全自架（無第三方 CDN）。`old-website/` 為既有 Wix 站的忠實備份（read-only，不再作為框架來源）。
-- **技術棧**: **Astro 6**（元件化 SSG、預設零 JS）+ **純 CSS design tokens**（`src/styles/`，不使用 Tailwind）+ Astro 內建 **i18n**（`/` 繁中、`/en/` 英文）+ 自架字體（Maple Mono 拉丁 + Maple Mono NF CN 中文子集 + Noto Sans TC 保底）。環境以 **mise** 管理 Node 22、**Prettier**（pre-commit）格式化、**Playwright** 冒煙/無障礙測試、**GitHub Actions** 部署到 GitHub Pages。
+- **專案簡述**: NISRA 社團官方網站。已全面退出 Wix，改以 **Astro + GitHub Pages** 的純靜態方案重構；視覺忠於新設計系統，繁體中文單一語言（zh-TW），字體全自架（無第三方 CDN）。`old-website/` 為既有 Wix 站的忠實備份（read-only，不再作為框架來源）。
+- **技術棧**: **Astro 6**（元件化 SSG、預設零 JS）+ **純 CSS design tokens**（`src/styles/`，不使用 Tailwind）+ 自架字體（Maple Mono 拉丁 + Maple Mono NF CN 中文子集 + Noto Sans TC 保底）。環境以 **mise** 管理 Node 22、**Prettier**（pre-commit）格式化、**Playwright** 冒煙/無障礙測試、**GitHub Actions** 部署到 GitHub Pages。
 - **專案結構**:
 
 ```
 src/                     # Astro 源碼
-  pages/                 #   路由（/ 繁中、/en/ 英文 scaffold）
+  pages/                 #   路由（繁體中文單一語言）
   layouts/               #   BaseLayout（head、字體、Nav/Footer）
   components/            #   共用元件 + 各頁 *Body
   styles/                #   tokens.css / kit.css / fonts.css（設計 tokens，逐字移植）
-  i18n/                  #   雙語字典 ui.ts + utils.ts（型別守門防單語遺漏）
   data/                  #   穩定常數（site / pillars）
   content/               #   社團可編輯 JSON（Zod 驗證）+ content.config.ts
   assets/                #   走 <Image> 最佳化的影像
@@ -24,7 +23,7 @@ public/                  # 根目錄靜態資產（logo、favicon、自架字體
 scripts/                 # subset-cn-font.mjs（中文字體子集化）
 tests/                   # Playwright 冒煙 + 無障礙測試
 .github/workflows/       # deploy.yml（Pages）、ci.yml（check/build/audit/e2e）
-astro.config.mjs         # site/base、i18n、sitemap
+astro.config.mjs         # site/base、sitemap
 old-website/             # 既有 Wix 站的忠實備份（archival dump，read-only，勿編輯）
 .claude/                 # Claude Code 設定與規則（settings.json、rules/）
 CLAUDE.md / AGENTS.md    # dev guidelines / 通用使用指南
@@ -36,7 +35,7 @@ mise.toml                # runtime 版本（Node 22）
 ## 常用指令
 
 - **開發 / 建置**: `npm run dev`（http://localhost:4321）、`npm run build`（→ `dist/`）、`npm run preview`
-- **型別檢查**: `npm run check`（`astro check`：型別 + content schema + i18n key 完整性）
+- **型別檢查**: `npm run check`（`astro check`：型別 + content schema）
 - **格式化**: `npm run format`（Prettier）／`pre-commit run --all-files`（base hooks + Prettier + astro check）
 - **測試**: `npm run test:e2e`（Playwright 冒煙 + `@axe-core` 無障礙）
 - **字體子集**: `npm run font:subset`（新增中文字後重跑；見 `scripts/subset-cn-font.mjs`）
@@ -168,7 +167,7 @@ mise.toml                # runtime 版本（Node 22）
 ## 專案特殊規範
 
 - **context7-first**: 撰寫、審查或調整程式碼前，優先以 context7 MCP 查證套件 API 與當前 Best Practice，不依賴記憶（延續舊版專案指南，較通用區段「不確定時才查」更主動）。
-- **i18n 雙語（新站需求）**: 既有站以繁中為主、含英文內容；新站重構時須規劃並同步維護 zh-TW 與 en 雙語，避免單語遺漏（具體路由策略待框架選定後定義）。
+- **單一語言（zh-TW）**: 官網依社團提供之資料做繁體中文單一語言維護；不維護英文版本（未來如需英文，再正式導入 i18n）。
 
 ## Formatter & Linter
 
