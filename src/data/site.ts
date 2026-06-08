@@ -1,5 +1,6 @@
 // NISRA 站台層級的穩定常數（真實資料）。
-// 來源：old-website/ + 設計 handoff（components.jsx / pages.jsx）。
+// 來源：old-website/（Wix dump）解析 + 手動查證；視覺對齊另參考外部 Claude Design
+// handoff（未 vendor 入庫、非 in-repo 來源）。
 
 export const SITE = {
   shortName: "NISRA",

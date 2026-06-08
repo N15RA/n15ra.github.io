@@ -1,7 +1,7 @@
 /* ============================================================================
    NISRA Website UI Kit — component styles
-   Built on ../../colors_and_type.css tokens. Mobile-first, flex/grid + gap,
-   no absolute-positioned layout (fixes the original Wix drift).
+   Built on the design tokens in src/styles/tokens.css. Mobile-first, flex/grid +
+   gap, no absolute-positioned layout (fixes the original Wix drift).
    ============================================================================ */
 
 * {
