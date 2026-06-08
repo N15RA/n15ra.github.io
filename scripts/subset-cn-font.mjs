@@ -6,7 +6,7 @@
 // （.cache/fonts/*.ttf，約 20MB 各）不 commit。
 //
 // 取得原始字檔（一次性）：
-//   curl -sL -o .cache/fonts/maple-nf-cn.zip \
+//   curl -fsSL --retry 3 -o .cache/fonts/maple-nf-cn.zip \
 //     https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN-unhinted.zip
 //   unzip -o -j .cache/fonts/maple-nf-cn.zip \
 //     "MapleMono-NF-CN-Regular.ttf" "MapleMono-NF-CN-Bold.ttf" -d .cache/fonts/
@@ -52,25 +52,29 @@ function collectChars() {
   return [...set].sort().join("");
 }
 
-// 原始字檔（~20MB 各）不 commit；缺檔時的策略，讓本機/CI 都能 build：
-// - 已有可沿用的子集 woff2 → 警告並跳過（無字檔的環境仍能建置）。
+// 原始字檔（~20MB 各）不 commit；缺檔時的策略：
+// - 本機（非 CI）已有可沿用的子集 woff2 → 警告並跳過（無原始字檔的開發環境仍能 build）。
+// - CI/deploy 缺源 → fail（保證一律以最新內容重新子集，不沿用舊子集）。
 // - 連子集都沒有 → fail（無法產生中文字體）。
-// 此 script 由 package.json 的 prebuild 在 `npm run build` 前自動執行；CI 會先
-// 下載原始字檔，故部署版一律以最新內容重新子集，杜絕新字字體不一致。
+// 此 script 由 package.json 的 prebuild 在 `npm run build` 前自動執行；CI 由 cn-fonts
+// action 先下載原始字檔，故部署版一律以最新內容重新子集，杜絕新字字體不一致。
 const missingSources = SOURCES.filter((s) => !existsSync(s.in));
 if (missingSources.length > 0) {
   const subsetsReady = SOURCES.every((s) => existsSync(join(OUT_DIR, s.out)));
-  if (subsetsReady) {
+  // CI（process.env.CI）一律不沿用舊子集——即使單看本檔，缺源在 CI 也必定 fail。
+  if (subsetsReady && !process.env.CI) {
     console.warn(
       `找不到原始字檔（${missingSources.map((s) => s.in).join("、")}）；沿用既有子集 woff2，跳過重新子集化。`,
     );
     console.warn("（CI 會自動下載原始字檔重新產生；本機如需更新請依本檔頂部註解下載後重跑。）");
     process.exit(0);
   }
+  console.error(`\n找不到原始字檔：${missingSources.map((s) => s.in).join("、")}`);
   console.error(
-    `\n找不到原始字檔，且尚無可沿用的子集：${missingSources.map((s) => s.in).join("、")}`,
+    process.env.CI
+      ? "CI 必須以原始字檔重新子集；請確認 cn-fonts action 已成功還原 TTF。\n"
+      : "請先依本檔頂部註解下載 Maple Mono NF CN（subframe7536/maple-font，OFL）。\n",
   );
-  console.error("請先依本檔頂部註解下載 Maple Mono NF CN（subframe7536/maple-font，OFL）。\n");
   process.exit(1);
 }
 
