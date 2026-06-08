@@ -145,7 +145,7 @@ test("course card opens a detail modal with the full verbatim text; Esc closes",
   await expect(page.locator("dialog.course-modal[open]")).toHaveCount(0);
 });
 
-test("Nav 加入我們 from a non-home page targets the home #join, not the current page", async ({
+test("Nav Join-us CTA from a non-home page targets the home #join, not the current page", async ({
   page,
 }) => {
   await page.goto("/about");
