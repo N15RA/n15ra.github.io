@@ -35,7 +35,7 @@
 - 存檔（**Save → Publish**）會**直接 commit 回 `main` 並自動部署**——沒有額外的審查／核可關卡（這是讓幹部「存檔即上線」的刻意設計），通常數分鐘後上線。
 - 因此請用**最小權限**的 token：fine-grained PAT、只授權**本 repo** 的 **Contents: Read and write**（不要附帶 workflow／settings 等其他權限）。
 - 安全網：若內容格式錯誤，build 會失敗 → **不會部署**，線上維持上一個正常版本。
-- 日後若想「先審查再上線」，可改用 Sveltia 的 `editorial_workflow`（存檔時自動開 PR、需有人合併）或對 `main` 設 branch protection（會需要有人做合併，UX 較複雜）。
+- 日後若想「先審查再上線」：**Sveltia 目前尚未支援 editorial workflow**（其官方 Feature Compatibility 列為 planned；bundle 內也會顯示「Editorial workflow is not yet supported」）。屆時需先查證 Sveltia 新版是否已支援；在那之前要審查關卡，請改走 **branch protection／自訂 PR 流程**（會需要有人做合併，UX 較複雜）。
 
 ## 常見問題
 
