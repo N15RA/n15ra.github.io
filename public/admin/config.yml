@@ -1,0 +1,114 @@
+# Sveltia CMS 設定 — NISRA 官網內容後台
+# 文件：https://sveltiacms.app/en/docs/
+#
+# 認證：先用 GitHub Personal Access Token（PAT）測試——登入頁會出現
+# 「Sign In with Token」，貼上有 contents:write 權限的 token 即可（存於瀏覽器
+# localStorage，直接打 GitHub API，不經第三方）。日後要多人/免貼 token，再加
+# Cloudflare Workers OAuth（設 base_url 指向 worker）。
+backend:
+  name: github
+  repo: N15RA/n15ra.github.io
+  branch: main
+  auth_methods:
+    - token
+
+site_url: https://n15ra.github.io
+
+# 目前內容皆為文字 + 外部連結，無逐筆圖片；media 設定保留供未來使用。
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  # 各學期社課（每檔含巢狀 courses）
+  - name: semesters
+    label: 社課（學期）
+    folder: src/content/semesters
+    extension: json
+    format: json
+    create: true
+    identifier_field: id
+    slug: "{{id}}"
+    summary: "{{label}}"
+    fields:
+      - { name: id, label: ID（檔名，如 108-1）, widget: string }
+      - { name: label, label: 學期名稱, widget: string }
+      - { name: order, label: 排序（大者在前）, widget: number, value_type: int }
+      - { name: scaffold, label: 示意資料, widget: boolean, default: false }
+      - name: courses
+        label: 課程
+        widget: list
+        summary: "{{title}}"
+        fields:
+          - { name: title, label: 課名, widget: string }
+          - { name: by, label: 講師, widget: string, required: false }
+          - { name: date, label: 日期, widget: string, required: false, hint: "格式 YYYY.MM.DD" }
+          - { name: desc, label: 卡面簡介, widget: text }
+          - { name: detail, label: 完整原文（彈窗）, widget: text, required: false }
+          - name: tags
+            label: 標籤
+            widget: list
+            required: false
+            field: { name: tag, label: 標籤, widget: string }
+
+  # 最新消息 / 活動 / 合作
+  - name: events
+    label: 活動消息
+    folder: src/content/events
+    extension: json
+    format: json
+    create: true
+    identifier_field: id
+    slug: "{{id}}"
+    summary: "{{title}}"
+    fields:
+      - { name: id, label: ID（檔名）, widget: string }
+      - name: category
+        label: 分類
+        widget: select
+        options:
+          - "最新消息"
+          - "活動 Events"
+          - "合作 Partnerships"
+      - { name: title, label: 標題, widget: string }
+      - { name: date, label: 日期, widget: string, hint: "格式 YYYY.MM.DD（部分為 YYYY.MM）" }
+      - { name: desc, label: 簡介, widget: text }
+      - { name: href, label: 連結 URL, widget: string, hint: "完整網址 https://…" }
+      - { name: order, label: 排序（大者在前）, widget: number, value_type: int }
+
+  # 歷屆幹部（每檔含巢狀 officers）
+  - name: members
+    label: 歷屆幹部
+    folder: src/content/members
+    extension: json
+    format: json
+    create: true
+    identifier_field: id
+    slug: "{{id}}"
+    fields:
+      - { name: id, label: ID（檔名）, widget: string }
+      - { name: cohort, label: 學年度／屆數, widget: string, required: false, hint: "未知留空" }
+      - name: officers
+        label: 幹部
+        widget: list
+        summary: "{{role}}：{{name}}"
+        fields:
+          - { name: role, label: 職位, widget: string }
+          - { name: name, label: 姓名（多名以、相連）, widget: string }
+      - { name: order, label: 排序（大者在前）, widget: number, value_type: int }
+      - { name: scaffold, label: 示意資料, widget: boolean, default: false }
+
+  # 沿革年表
+  - name: history
+    label: 沿革
+    folder: src/content/history
+    extension: json
+    format: json
+    create: true
+    identifier_field: id
+    slug: "{{id}}"
+    summary: "{{date}}　{{text}}"
+    fields:
+      - { name: id, label: ID（檔名）, widget: string }
+      - { name: date, label: 日期, widget: string, hint: "格式 YYYY.MM.DD" }
+      - { name: text, label: 內容, widget: text }
+      - { name: order, label: 排序（大者在前）, widget: number, value_type: int }
