@@ -1,0 +1,28 @@
+{
+  "id": "term-dawei",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "大維"
+    },
+    {
+      "role": "活動",
+      "name": "彩虹"
+    },
+    {
+      "role": "紀錄",
+      "name": "大頭"
+    },
+    {
+      "role": "主管",
+      "name": "日成"
+    },
+    {
+      "role": "顧問",
+      "name": "Orange"
+    }
+  ],
+  "order": 3,
+  "scaffold": false
+}
