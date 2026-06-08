@@ -1,5 +1,6 @@
 // NISRA 站台層級的穩定常數（真實資料）。
-// 來源：old-website/ + 設計 handoff（components.jsx / pages.jsx）。
+// 來源：old-website/（Wix dump）解析 + 手動查證；視覺對齊另參考外部 Claude Design
+// handoff（未 vendor 入庫、非 in-repo 來源）。
 
 export const SITE = {
   shortName: "NISRA",
@@ -13,7 +14,8 @@ export const SITE = {
 
 export const SLOGAN = "Never Stop Learning.";
 
-// 導覽項目。label 在中英文設計皆為英文，故直接放這裡（CTA「加入我們」走 i18n 字典）。
+// 導覽項目（label 依設計皆為英文）。navbar 的 CTA 也依設計為英文「Join us」；
+// 首頁 hero 的「加入我們」才是中文 content（設計刻意：nav chrome 英文、hero 內容中文）。
 export const NAV_ITEMS = [
   { id: "home", href: "/", label: "Home" },
   { id: "about", href: "/about", label: "About us" },

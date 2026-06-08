@@ -53,9 +53,16 @@ const members = defineCollection({
   loader: file("src/content/members.json"),
   schema: z.object({
     id: z.string(),
-    range: z.string(),
-    desc: z.string(),
-    order: z.number(),
+    cohort: z.string().nullable(), // 學年度／屆數；未知為 null → UI 顯示「待確認」佔位
+    officers: z
+      .array(
+        z.object({
+          role: z.string(), // 職位（會長／會記／紀錄…）
+          name: z.string(), // 綽號／姓名（多名以「、」相連）
+        }),
+      )
+      .default([]),
+    order: z.number(), // 排序（大者在前）
     scaffold: z.boolean().default(false),
   }),
 });

@@ -16,12 +16,15 @@ const { course } = Astro.props;
 const full = course.detail ?? course.desc; // 詳情顯示完整原文（有 detail 用 detail，否則用 desc）
 const clickable = !!(course.desc || course.detail); // 有內容才可點開詳情
 const dateLabel = course.date ?? "日期未定";
+const kind = "社課";
 ---
 
 <article class={"card course-card" + (clickable ? " course-card--clickable" : "")}>
-  <div class="card__thumb"><Hex /></div>
   <div class="card__body">
-    <p class="course__date">{dateLabel}</p>
+    <div class="card__meta">
+      <span class="card__kind"><Hex /> {kind}</span>
+      <span class="card__date">{dateLabel}</span>
+    </div>
     <h3 class="card__title">
       {
         clickable ? (
@@ -35,8 +38,9 @@ const dateLabel = course.date ?? "日期未定";
     </h3>
     {
       course.by && (
-        <p class="ds-caption" style="margin:0">
-          講師 · {course.by}
+        <p class="course__by">
+          <span class="course__by-label">講師</span>
+          {course.by}
         </p>
       )
     }
@@ -59,11 +63,17 @@ const dateLabel = course.date ?? "日期未定";
           <button type="button" class="course-modal__close" aria-label="關閉">
             ✕
           </button>
-          <p class="course__date">{dateLabel}</p>
+          <div class="card__meta" style="margin-right:40px">
+            <span class="card__kind">
+              <Hex /> {kind}
+            </span>
+            <span class="card__date">{dateLabel}</span>
+          </div>
           <h3 class="course-modal__title">{course.title}</h3>
           {course.by && (
-            <p class="ds-caption" style="margin:0 0 14px">
-              講師 · {course.by}
+            <p class="course__by" style="margin-bottom:14px">
+              <span class="course__by-label">講師</span>
+              {course.by}
             </p>
           )}
           <p class="course-modal__text">{full}</p>
