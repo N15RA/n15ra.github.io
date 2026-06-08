@@ -9,7 +9,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? "github" : "list",
   use: {
-    baseURL: "http://localhost:4321",
+    baseURL: "http://localhost:5321",
     trace: "on-first-retry",
   },
   projects: [
@@ -18,10 +18,13 @@ export default defineConfig({
       use: { browserName: "chromium", viewport: { width: 1280, height: 800 } },
     },
   ],
+  // 專用測試埠 5321（在 Astro 預設 4321 的自動遞增範圍外），避免本地誤接其他 Astro
+  // 專案在 4321 上的 dev/preview server。reuseExistingServer:false 一律啟動自有的
+  // production preview；埠被占用時大聲報錯，而非靜默對「錯誤的 server」跑測試。
   webServer: {
-    command: "npm run preview",
-    url: "http://localhost:4321",
-    reuseExistingServer: !process.env.CI,
+    command: "npm run preview -- --port 5321",
+    url: "http://localhost:5321",
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });
