@@ -4,8 +4,8 @@ Official website for NISRA (Network and Information Security Research
 Association), Fu Jen Catholic University.
 
 Rebuilt off Wix as a pure-static site on **Astro** + **GitHub Pages** — faithful
-to the new design system, bilingual-ready (zh-TW primary, English scaffold), with
-self-hosted fonts (no third-party CDN).
+to the new design system, in Traditional Chinese (zh-TW), with self-hosted fonts
+(no third-party CDN).
 
 > **Design provenance.** The visual design comes from an external **Claude Design**
 > handoff ("NISRA Design System"), which was itself reverse-engineered from this
@@ -17,7 +17,6 @@ self-hosted fonts (no third-party CDN).
 - **Astro 6** — component-based static site generator, zero JS by default
 - **Plain CSS design tokens** (no Tailwind) — `src/styles/{tokens,kit,fonts}.css`,
   ported verbatim from the design system
-- **Built-in i18n** — zh-TW at `/`, English scaffold at `/en/`
 - **Self-hosted fonts** — Maple Mono (Latin) + a content-driven subset of Maple
   Mono NF CN (Traditional Chinese) + Noto Sans TC fallback
 - **GitHub Pages** via GitHub Actions; **Playwright** smoke + axe a11y tests
@@ -56,7 +55,7 @@ npm run font:subset   # regenerate after adding new Chinese characters
 
 | Path                      | Purpose                                                       |
 | ------------------------- | ------------------------------------------------------------- |
-| `src/`                    | Astro source — pages, components, layouts, styles, i18n, data |
+| `src/`                    | Astro source — pages, components, layouts, styles, data       |
 | `src/content/`            | Club-editable JSON content (Zod-validated)                    |
 | `public/`                 | Static assets served at root (logo, favicon, self-host fonts) |
 | `scripts/`                | Build helpers (Traditional Chinese font subsetting)           |

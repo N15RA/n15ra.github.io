@@ -8,11 +8,9 @@ import SocialList from "./SocialList.astro";
 import photoEnlightened from "../assets/photo-enlightened-2019.jpg";
 import { PILLARS } from "../data/pillars";
 import { SITE, SLOGAN, JOIN_INFO } from "../data/site";
-import { getLocale, localizePath } from "../i18n/utils";
 
-const locale = getLocale(Astro.currentLocale);
-const lessonHref = localizePath("/lesson", locale);
-const aboutHref = localizePath("/about", locale);
+const lessonHref = "/lesson";
+const aboutHref = "/about";
 
 // 動態取「最新、非示意、且有課程」的學期作為首頁近期社課，避免硬編學期 id。
 const semesters = await getCollection("semesters");

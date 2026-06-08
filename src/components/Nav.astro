@@ -1,36 +1,24 @@
 ---
 import Button from "./Button.astro";
-import LangSwitcher from "./LangSwitcher.astro";
 import { NAV_ITEMS } from "../data/site";
-import { getLocale, useTranslations, localizePath, stripLocale } from "../i18n/utils";
 
-const locale = getLocale(Astro.currentLocale);
-const t = useTranslations(locale);
-
-// 以「去語言前綴」的邏輯路徑判斷 active；尾斜線正規化。
-const here = (stripLocale(Astro.url.pathname).replace(/\/+$/, "") || "/") as string;
+// 以邏輯路徑判斷 active；尾斜線正規化。
+const here = (Astro.url.pathname.replace(/\/+$/, "") || "/") as string;
 function isActive(href: string): boolean {
   const h = href.replace(/\/+$/, "") || "/";
   return h === "/" ? here === "/" : here === h || here.startsWith(h + "/");
 }
-const homeHref = localizePath("/", locale);
-// 一律指向「該語言首頁的 #join」：zh → /#join、en → /en/#join。
-// 在首頁時同路徑只跳 hash（原地捲動），在非首頁則導回首頁再捲動。
-const joinHref = `${homeHref}#join`;
+// 一律指向首頁的 #join；在首頁時只跳 hash（原地捲動），非首頁則導回首頁再捲動。
+const joinHref = "/#join";
 ---
 
 <nav class="nav" data-theme="dark">
   <div class="wrap nav__inner">
-    <a class="nav__brand" href={homeHref} aria-label="NISRA home">
+    <a class="nav__brand" href="/" aria-label="NISRA home">
       <img class="nav__logo" src="/logo-nisra.svg" alt="NISRA" width="37" height="42" />
       <span class="nav__name">Network and Information Security<br />Research Association</span>
     </a>
-    <button
-      class="nav__burger"
-      aria-label={t("nav.menu")}
-      aria-expanded="false"
-      aria-controls="nav-links"
-    >
+    <button class="nav__burger" aria-label="選單" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
     <div class="nav__links" id="nav-links">
@@ -38,16 +26,15 @@ const joinHref = `${homeHref}#join`;
         NAV_ITEMS.map((it) => (
           <a
             class={"nav__link" + (isActive(it.href) ? " is-active" : "")}
-            href={localizePath(it.href, locale)}
+            href={it.href}
             aria-current={isActive(it.href) ? "page" : undefined}
           >
             {it.label}
           </a>
         ))
       }
-      <LangSwitcher />
       <span class="nav__cta">
-        <Button variant="primary" href={joinHref}>{t("nav.join")}</Button>
+        <Button variant="primary" href={joinHref}>加入我們</Button>
       </span>
     </div>
   </div>

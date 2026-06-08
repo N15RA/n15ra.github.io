@@ -1,27 +1,17 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const ROUTES = ["/", "/about", "/lesson", "/event", "/en/", "/en/about", "/en/lesson", "/en/event"];
+const ROUTES = ["/", "/about", "/lesson", "/event"];
 
-test.describe("routes render with correct lang", () => {
+test.describe("routes render as zh-Hant-TW", () => {
   for (const route of ROUTES) {
     test(`200 + <html lang>: ${route}`, async ({ page }) => {
       const resp = await page.goto(route);
       expect(resp?.status(), `status for ${route}`).toBeLessThan(400);
       const lang = await page.locator("html").getAttribute("lang");
-      expect(lang).toBe(route.startsWith("/en") ? "en" : "zh-Hant-TW");
+      expect(lang).toBe("zh-Hant-TW");
     });
   }
-});
-
-test("language switcher round-trips zh ↔ en and shows the pending banner", async ({ page }) => {
-  await page.goto("/about");
-  await page.getByRole("link", { name: "切換語言" }).click();
-  await expect(page).toHaveURL(/\/en\/about\/?$/);
-  await expect(page.locator(".tp-bar")).toBeVisible();
-  await page.getByRole("link", { name: "Switch language" }).click();
-  await expect(page).toHaveURL(/\/about\/?$/);
-  await expect(page.locator(".tp-bar")).toHaveCount(0);
 });
 
 test("mobile burger toggles the menu and aria-expanded", async ({ page }) => {
@@ -163,7 +153,7 @@ test("Nav 加入我們 from a non-home page targets the home #join, not the curr
 });
 
 test.describe("accessibility — no serious/critical axe violations", () => {
-  for (const route of ["/", "/about", "/lesson", "/event", "/en/", "/en/about"]) {
+  for (const route of ["/", "/about", "/lesson", "/event"]) {
     test(`axe: ${route}`, async ({ page }) => {
       await page.goto(route);
       const results = await new AxeBuilder({ page })
