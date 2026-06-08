@@ -52,16 +52,33 @@ function collectChars() {
   return [...set].sort().join("");
 }
 
+// 原始字檔（~20MB 各）不 commit；缺檔時的策略，讓本機/CI 都能 build：
+// - 已有可沿用的子集 woff2 → 警告並跳過（無字檔的環境仍能建置）。
+// - 連子集都沒有 → fail（無法產生中文字體）。
+// 此 script 由 package.json 的 prebuild 在 `npm run build` 前自動執行；CI 會先
+// 下載原始字檔，故部署版一律以最新內容重新子集，杜絕新字字體不一致。
+const missingSources = SOURCES.filter((s) => !existsSync(s.in));
+if (missingSources.length > 0) {
+  const subsetsReady = SOURCES.every((s) => existsSync(join(OUT_DIR, s.out)));
+  if (subsetsReady) {
+    console.warn(
+      `找不到原始字檔（${missingSources.map((s) => s.in).join("、")}）；沿用既有子集 woff2，跳過重新子集化。`,
+    );
+    console.warn("（CI 會自動下載原始字檔重新產生；本機如需更新請依本檔頂部註解下載後重跑。）");
+    process.exit(0);
+  }
+  console.error(
+    `\n找不到原始字檔，且尚無可沿用的子集：${missingSources.map((s) => s.in).join("、")}`,
+  );
+  console.error("請先依本檔頂部註解下載 Maple Mono NF CN（subframe7536/maple-font，OFL）。\n");
+  process.exit(1);
+}
+
 const chars = collectChars();
 console.log(`收集到 ${[...chars].length} 個非拉丁字元，開始子集化…`);
 
 mkdirSync(OUT_DIR, { recursive: true });
 for (const s of SOURCES) {
-  if (!existsSync(s.in)) {
-    console.error(`\n找不到原始字檔：${s.in}`);
-    console.error("請先依本檔頂部註解下載 Maple Mono NF CN（subframe7536/maple-font，OFL）。\n");
-    process.exit(1);
-  }
   const subset = await subsetFont(readFileSync(s.in), chars, { targetFormat: "woff2" });
   writeFileSync(join(OUT_DIR, s.out), subset);
   console.log(`  ✓ ${s.out}  (${(subset.length / 1024).toFixed(1)} KB)`);

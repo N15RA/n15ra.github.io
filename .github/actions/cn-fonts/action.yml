@@ -1,0 +1,24 @@
+# 還原 Maple Mono NF CN 原始字檔（~20MB 各），讓 `npm run build` 的 prebuild
+# 能依當前內容重新子集化中文字體。原始字檔不 commit（見 scripts/subset-cn-font.mjs
+# 與 .gitignore 的 .cache）；此處以 cache 命中為主、未命中才下載。
+# deploy 與 ci 三個 job 共用，避免三處重複（DRY；換字體版本只改這裡）。
+name: "Restore CN font sources"
+description: "Cache or download the Maple Mono NF CN source TTFs for font subsetting."
+runs:
+  using: composite
+  steps:
+    - name: Cache CN font sources
+      uses: actions/cache@v4
+      with:
+        path: .cache/fonts
+        key: maple-mono-ttf-v7.9
+    - name: Download CN font sources (cache miss only)
+      shell: bash
+      run: |
+        if [ ! -f .cache/fonts/MapleMono-NF-CN-Regular.ttf ]; then
+          mkdir -p .cache/fonts
+          curl -sL -o "$RUNNER_TEMP/maple-nf-cn.zip" \
+            https://github.com/subframe7536/maple-font/releases/download/v7.9/MapleMono-NF-CN-unhinted.zip
+          unzip -o -j "$RUNNER_TEMP/maple-nf-cn.zip" \
+            "MapleMono-NF-CN-Regular.ttf" "MapleMono-NF-CN-Bold.ttf" -d .cache/fonts/
+        fi
