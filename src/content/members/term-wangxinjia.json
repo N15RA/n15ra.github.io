@@ -1,0 +1,36 @@
+{
+  "id": "term-wangxinjia",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "王薪嘉"
+    },
+    {
+      "role": "課記",
+      "name": "洪苡禎"
+    },
+    {
+      "role": "文宣",
+      "name": "朱柏瑞"
+    },
+    {
+      "role": "會記",
+      "name": "黃信憲"
+    },
+    {
+      "role": "紀錄",
+      "name": "許登傑、陳玟君、吳紹瑋"
+    },
+    {
+      "role": "總務",
+      "name": "許家維"
+    },
+    {
+      "role": "網管",
+      "name": "洪苡禎、蛛子珣"
+    }
+  ],
+  "order": 12,
+  "scaffold": false
+}

@@ -1,10 +1,13 @@
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
-import { file } from "astro/loaders";
+import { glob } from "astro/loaders";
 
-// 社團可編輯的清單資料，以 JSON 儲存、Zod 驗證、build 時自動產生型別。
-// 社團幹部只需編輯 src/content/*.json，不必動 .astro 元件。
+// 社團可編輯的清單資料：每筆一個 JSON 檔，置於 src/content/<collection>/，
+// 以 Zod 驗證、build 時自動產生型別。一筆一檔（folder collection）讓 Sveltia CMS
+// 能以表單逐筆編輯（其不支援單檔 root-level 陣列）；entry id 以 generateId 鎖定
+// 為各檔的 `id` 欄位（與舊 file() loader 行為一致，如 LessonBody 的 s.id）。
 // `scaffold: true` 標記「示意資料，待社團補正」（課表、歷屆幹部）。
+const byId = ({ data }: { data: Record<string, unknown> }) => data.id as string;
 
 const course = z.object({
   title: z.string(),
@@ -16,7 +19,7 @@ const course = z.object({
 });
 
 const semesters = defineCollection({
-  loader: file("src/content/semesters.json"),
+  loader: glob({ pattern: "**/*.json", base: "src/content/semesters", generateId: byId }),
   schema: z.object({
     id: z.string(), // 例：111-2
     label: z.string(), // 例：111 學年度 · 第 2 學期
@@ -27,7 +30,7 @@ const semesters = defineCollection({
 });
 
 const events = defineCollection({
-  loader: file("src/content/events.json"),
+  loader: glob({ pattern: "**/*.json", base: "src/content/events", generateId: byId }),
   schema: z.object({
     id: z.string(),
     category: z.enum(["最新消息", "活動 Events", "合作 Partnerships"]),
@@ -40,7 +43,7 @@ const events = defineCollection({
 });
 
 const history = defineCollection({
-  loader: file("src/content/history.json"),
+  loader: glob({ pattern: "**/*.json", base: "src/content/history", generateId: byId }),
   schema: z.object({
     id: z.string(),
     date: z.string(),
@@ -50,7 +53,7 @@ const history = defineCollection({
 });
 
 const members = defineCollection({
-  loader: file("src/content/members.json"),
+  loader: glob({ pattern: "**/*.json", base: "src/content/members", generateId: byId }),
   schema: z.object({
     id: z.string(),
     cohort: z.string().nullable(), // 學年度／屆數；未知為 null → UI 顯示「待確認」佔位

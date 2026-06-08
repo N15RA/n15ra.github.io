@@ -1,0 +1,36 @@
+{
+  "id": "term-oe",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "OE"
+    },
+    {
+      "role": "文宣",
+      "name": "洪苡禎"
+    },
+    {
+      "role": "課記",
+      "name": "馬各"
+    },
+    {
+      "role": "會記",
+      "name": "黃信憲"
+    },
+    {
+      "role": "紀錄",
+      "name": "Sexy"
+    },
+    {
+      "role": "總務",
+      "name": "昱璇"
+    },
+    {
+      "role": "網管",
+      "name": "銘佐"
+    }
+  ],
+  "order": 10,
+  "scaffold": false
+}

@@ -1,0 +1,44 @@
+{
+  "id": "term-sy",
+  "cohort": null,
+  "officers": [
+    {
+      "role": "會長",
+      "name": "SY"
+    },
+    {
+      "role": "文宣",
+      "name": "Gary"
+    },
+    {
+      "role": "教室",
+      "name": "Sexy"
+    },
+    {
+      "role": "課記",
+      "name": "玠均"
+    },
+    {
+      "role": "會記",
+      "name": "韋伽"
+    },
+    {
+      "role": "拍照",
+      "name": "OE"
+    },
+    {
+      "role": "錄影",
+      "name": "允禎"
+    },
+    {
+      "role": "總務",
+      "name": "昱璇"
+    },
+    {
+      "role": "網管",
+      "name": "銘佐"
+    }
+  ],
+  "order": 9,
+  "scaffold": false
+}
