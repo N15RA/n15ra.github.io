@@ -1,0 +1,32 @@
+{
+  "id": "term-sicc",
+  "cohort": "112 學年",
+  "officers": [
+    {
+      "role": "會長",
+      "name": "sicc"
+    },
+    {
+      "role": "副會長",
+      "name": "101"
+    },
+    {
+      "role": "網管",
+      "name": "sicc"
+    },
+    {
+      "role": "總務",
+      "name": "sicc"
+    },
+    {
+      "role": "文書",
+      "name": "101"
+    },
+    {
+      "role": "財務",
+      "name": "ali"
+    }
+  ],
+  "order": 112,
+  "scaffold": false
+}
