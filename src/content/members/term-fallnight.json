@@ -1,0 +1,32 @@
+{
+  "id": "term-fallnight",
+  "cohort": "113 學年",
+  "officers": [
+    {
+      "role": "會長",
+      "name": "fallnight"
+    },
+    {
+      "role": "副會長",
+      "name": "white"
+    },
+    {
+      "role": "網管",
+      "name": "xhA"
+    },
+    {
+      "role": "總務",
+      "name": "xhA"
+    },
+    {
+      "role": "文書",
+      "name": "nickel、fallnight"
+    },
+    {
+      "role": "財務",
+      "name": "101"
+    }
+  ],
+  "order": 113,
+  "scaffold": false
+}
