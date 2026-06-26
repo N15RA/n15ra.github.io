@@ -1,0 +1,28 @@
+{
+  "id": "term-xha",
+  "cohort": "114 學年",
+  "officers": [
+    {
+      "role": "會長",
+      "name": "xhA"
+    },
+    {
+      "role": "副會長",
+      "name": "nickel"
+    },
+    {
+      "role": "網管",
+      "name": "white"
+    },
+    {
+      "role": "文書",
+      "name": "nickel"
+    },
+    {
+      "role": "財務",
+      "name": "fallnight"
+    }
+  ],
+  "order": 114,
+  "scaffold": false
+}
